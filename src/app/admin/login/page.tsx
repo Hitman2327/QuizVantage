@@ -14,8 +14,10 @@ export default function AdminLoginPage() {
 
     // Replace with your hardcoded credentials
     if (username === 'admin' && password === 'password123') {
-      // Redirect to the admin dashboard upon successful login
-      router.push('/admin/dashboard');
+      // Set a session flag to indicate authentication
+      sessionStorage.setItem('isAdminAuthenticated', 'true');
+      // Redirect to the main admin dashboard upon successful login
+      router.push('/admin');
     } else {
       alert('Invalid username or password');
     }

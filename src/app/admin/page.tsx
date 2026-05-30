@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { getQuizzesAction, getAttemptsAction, deleteQuizAction, checkDatabaseHealth } from '@/lib/actions';
 import { Quiz, QuizAttempt } from '@/lib/types';
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function AdminDashboard() {
+  const router = useRouter();
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [results, setResults] = useState<QuizAttempt[]>([]);
   const [loading, setLoading] = useState(true);
@@ -21,17 +23,27 @@ export default function AdminDashboard() {
   const [isBrowserBlocked, setIsBrowserBlocked] = useState(false);
   const { toast } = useToast();
 
+  useEffect(() => {
+    const isAuthenticated = sessionStorage.getItem('isAdminAuthenticated');
+    if (isAuthenticated !== 'true') {
+      router.push('/admin/login');
+    } else {
+      loadData();
+    }
+  }, [router]);
+
   const checkBrowserBlocking = async () => {
     try {
-      // Try to ping a known Google endpoint
-      const response = await fetch('https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel', { mode: 'no-cors' });
+      await fetch('https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel', { mode: 'no-cors' });
     } catch (e) {
       setIsBrowserBlocked(true);
     }
   };
 
   const loadData = async () => {
+    setLoading(true);
     try {
+      await checkBrowserBlocking();
       const status = await checkDatabaseHealth();
       setDbStatus(status);
       
@@ -45,11 +57,6 @@ export default function AdminDashboard() {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    checkBrowserBlocking();
-    loadData();
-  }, []);
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this quiz?')) {
@@ -74,7 +81,7 @@ export default function AdminDashboard() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
         <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />
-        <p className="text-muted-foreground font-medium italic">Handshaking with Cloud Servers...</p>
+        <p className="text-muted-foreground font-medium italic">Verifying credentials and loading dashboard...</p>
       </div>
     );
   }
