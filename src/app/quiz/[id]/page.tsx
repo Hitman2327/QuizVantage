@@ -1,22 +1,27 @@
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { db } from '@/lib/db';
-import { Quiz, QuizAttempt, Question } from '@/lib/types';
+import { Quiz, QuizAttempt } from '@/lib/types';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, XCircle, Clock, Quote, ChevronRight, ChevronLeft, Send, AlertTriangle, User } from "lucide-react";
+import { CheckCircle2, XCircle, Clock, Quote, ChevronRight, ChevronLeft, Send, AlertTriangle, User, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
 export default function StudentQuiz() {
-  const { id } = useParams() as { id: string };
+  const params = useParams();
+  const id = params?.id as string;
+  const router = useRouter();
+  const { toast } = useToast();
+
   const [quiz, setQuiz] = useState<Quiz | null>(null);
+  const [loading, setLoading] = useState(true);
   const [step, setStep] = useState<'gate' | 'test' | 'result'>('gate');
   const [studentName, setStudentName] = useState('');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -24,18 +29,27 @@ export default function StudentQuiz() {
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [isTimeUp, setIsTimeUp] = useState(false);
   const [existingAttempt, setExistingAttempt] = useState<QuizAttempt | null>(null);
-  const { toast } = useToast();
-  const router = useRouter();
 
   useEffect(() => {
-    const loadedQuiz = db.getQuiz(id);
-    if (loadedQuiz) {
-      setQuiz(loadedQuiz);
-    } else {
-      toast({ title: "Quiz not found", description: "This quiz may have been deleted by the administrator.", variant: "destructive" });
-      router.push('/');
-    }
-  }, [id, toast, router]);
+    if (!id) return;
+
+    // Small delay to ensure client-side hydration is complete
+    const timer = setTimeout(() => {
+      const loadedQuiz = db.getQuiz(id);
+      if (loadedQuiz) {
+        setQuiz(loadedQuiz);
+      } else {
+        toast({ 
+          title: "Quiz Not Found", 
+          description: "We couldn't find this quiz in the database. It may have been deleted.",
+          variant: "destructive" 
+        });
+      }
+      setLoading(false);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [id, toast]);
 
   // Gate Check
   const handleStart = () => {
@@ -112,13 +126,33 @@ export default function StudentQuiz() {
     toast({ title: "Quiz Submitted", description: `You scored ${score} out of ${quiz.questions.length}` });
   };
 
-  if (!quiz) return null;
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-4">
+        <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />
+        <p className="text-muted-foreground animate-pulse">Loading your quiz content...</p>
+      </div>
+    );
+  }
+
+  if (!quiz) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 text-center">
+        <AlertTriangle className="w-16 h-16 text-destructive mb-4" />
+        <h1 className="text-2xl font-bold mb-2">Quiz Not Found</h1>
+        <p className="text-muted-foreground mb-6 max-w-md">The quiz you are looking for doesn't exist or has been removed by the educator.</p>
+        <Button onClick={() => router.push('/')} variant="outline" className="rounded-full px-8">
+          Return Home
+        </Button>
+      </div>
+    );
+  }
 
   // Gate UI
   if (step === 'gate') {
     return (
-      <div className="flex items-center justify-center min-h-screen p-4">
-        <Card className="w-full max-w-lg border-border shadow-xl overflow-hidden">
+      <div className="flex items-center justify-center min-h-screen p-4 bg-background">
+        <Card className="w-full max-w-lg border-border shadow-xl overflow-hidden animate-slide-up">
           <div className="bg-primary h-2 w-full"></div>
           <CardHeader className="text-center pt-10 pb-6">
             {quiz.welcomeQuote && (
@@ -153,13 +187,13 @@ export default function StudentQuiz() {
                    <Input
                     id="studentName"
                     className="pl-10 h-12 text-lg border-border focus:ring-primary"
-                    placeholder="e.g., John Smith"
+                    placeholder="e.g., Jane Doe"
                     value={studentName}
                     onChange={(e) => setStudentName(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleStart()}
                   />
                  </div>
-                 <p className="text-xs text-muted-foreground text-center italic mt-2">Required to track your performance</p>
+                 <p className="text-xs text-muted-foreground text-center italic mt-2">Used to identify your score to your teacher</p>
                </div>
             </div>
           </CardContent>
@@ -183,7 +217,7 @@ export default function StudentQuiz() {
         <div className="w-full max-w-4xl space-y-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4 rounded-xl border border-border shadow-sm sticky top-4 z-10">
             <div className="flex items-center space-x-4 w-full md:w-auto">
-              <span className="text-sm font-bold text-primary whitespace-nowrap">Q{currentQuestionIndex + 1} of {quiz.questions.length}</span>
+              <span className="text-sm font-bold text-primary whitespace-nowrap">Question {currentQuestionIndex + 1} of {quiz.questions.length}</span>
               <Progress value={progress} className="h-2 w-full md:w-48 bg-muted" />
             </div>
 
@@ -258,10 +292,6 @@ export default function StudentQuiz() {
               </div>
             </CardFooter>
           </Card>
-
-          <div className="flex justify-center text-muted-foreground text-xs uppercase tracking-widest pt-4">
-             Exam Mode • One Question At A Time
-          </div>
         </div>
       </div>
     );
@@ -286,13 +316,13 @@ export default function StudentQuiz() {
                    {passed ? <CheckCircle2 className="w-12 h-12" /> : <AlertTriangle className="w-12 h-12" />}
                  </div>
               </div>
-              <CardTitle className="text-3xl font-headline font-bold text-primary">Assessment Result</CardTitle>
-              <CardDescription className="text-lg">Great job, {existingAttempt.studentName}! Here is your breakdown.</CardDescription>
+              <CardTitle className="text-3xl font-headline font-bold text-primary">Assessment Results</CardTitle>
+              <CardDescription className="text-lg">Review your performance, {existingAttempt.studentName}.</CardDescription>
 
               <div className="flex justify-center items-center space-x-12 mt-8">
                  <div className="text-center">
                     <span className="block text-4xl font-bold text-primary">{existingAttempt.score} / {existingAttempt.totalQuestions}</span>
-                    <span className="text-xs uppercase font-bold text-muted-foreground tracking-widest">Final Score</span>
+                    <span className="text-xs uppercase font-bold text-muted-foreground tracking-widest">Score</span>
                  </div>
                  <div className="w-px h-16 bg-border"></div>
                  <div className="text-center">
@@ -305,7 +335,7 @@ export default function StudentQuiz() {
 
           <div className="space-y-6">
             <h3 className="text-xl font-headline font-bold text-primary flex items-center px-2">
-              <BookOpen className="w-5 h-5 mr-2" /> Review Your Answers
+              <BookOpen className="w-5 h-5 mr-2" /> Answer Review
             </h3>
 
             {quiz.questions.map((q, idx) => {
