@@ -29,10 +29,26 @@ export default function AdminDashboard() {
     }
   };
 
-  const copyLink = (id: string) => {
+  const copyLink = async (id: string) => {
     const url = `${window.location.origin}/quiz/${id}`;
-    navigator.clipboard.writeText(url);
-    toast({ title: "Link Copied", description: "Share this link with your students!" });
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(url);
+        toast({ 
+          title: "Link Copied", 
+          description: "Share this link with your students!" 
+        });
+      } else {
+        throw new Error("Clipboard API not available");
+      }
+    } catch (error) {
+      console.error("Clipboard copy failed:", error);
+      toast({ 
+        title: "Copy Failed", 
+        description: `Browser policy blocked automatic copying. Link: ${url}`,
+        variant: "destructive" 
+      });
+    }
   };
 
   return (
