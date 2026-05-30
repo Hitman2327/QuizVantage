@@ -13,7 +13,7 @@ export default function AdminLoginPage() {
     e.preventDefault();
 
     // Replace with your hardcoded credentials
-    if (username === 'admin' && password === 'password123') {
+    if (username === 'admin' && password === 'Afaq2327') {
       // Set a session flag to indicate authentication
       sessionStorage.setItem('isAdminAuthenticated', 'true');
       // Redirect to the main admin dashboard upon successful login
