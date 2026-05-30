@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Sparkles, Wand2, ArrowLeft, CheckCircle2, Clock, Quote, FileSpreadsheet, Upload, AlertCircle } from "lucide-react";
+import { Loader2, Sparkles, Wand2, ArrowLeft, CheckCircle2, Clock, Quote, FileSpreadsheet, Upload, AlertCircle, WifiOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Papa from 'papaparse';
@@ -92,13 +92,15 @@ export default function CreateQuiz() {
         createdAt: Date.now(),
       };
 
+      console.log("Triggering server save action...");
       await saveQuizAction(newQuiz);
       toast({ title: "Quiz Published!", description: "Your quiz is ready to be shared globally." });
       router.push('/admin');
     } catch (err: any) {
+      console.error("Save Error:", err);
       toast({ 
-        title: "Server Sync Failed", 
-        description: "The server could not process the request. Please try again.", 
+        title: "Publish Failed", 
+        description: "The cloud server is taking too long to respond. Please check your internet or try again.", 
         variant: "destructive" 
       });
     } finally {
@@ -233,12 +235,23 @@ export default function CreateQuiz() {
                     </div>
                   ))}
                 </div>
+                
+                {saving && (
+                  <Alert className="bg-yellow-50 border-yellow-200">
+                    <WifiOff className="h-4 w-4 text-yellow-600" />
+                    <AlertTitle className="text-yellow-800">Publishing to Cloud...</AlertTitle>
+                    <AlertDescription className="text-yellow-700">
+                      If this takes more than 10 seconds, check if your browser is blocking "firestore.googleapis.com" or disable AdBlockers.
+                    </AlertDescription>
+                  </Alert>
+                )}
+
                 <Button 
                   onClick={handleSave} 
                   disabled={saving || extracting || !title}
                   className="w-full bg-primary hover:bg-primary/90 text-white rounded-full h-14 mt-4 shadow-lg text-lg font-bold"
                 >
-                  {saving ? <><Loader2 className="animate-spin mr-2" /> Saving to Cloud Server...</> : 'Confirm & Publish Globally'}
+                  {saving ? <><Loader2 className="animate-spin mr-2" /> Syncing with Server...</> : 'Confirm & Publish Globally'}
                 </Button>
               </div>
             )}

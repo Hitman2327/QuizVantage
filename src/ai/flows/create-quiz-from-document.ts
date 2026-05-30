@@ -2,7 +2,7 @@
 'use server';
 /**
  * @fileOverview This file implements a Genkit flow for extracting quiz questions from document text.
- * It is optimized for high-volume extraction.
+ * It is optimized for speed and accuracy.
  */
 
 import { ai } from '@/ai/genkit';
@@ -21,6 +21,8 @@ const QuizQuestionSchema = z.object({
   questionText: z.string().describe('The main text of the quiz question.'),
   options: z
     .array(z.string())
+    .min(4)
+    .max(4)
     .describe('Exactly 4 multiple-choice options.'),
   correctAnswer: z
     .string()
@@ -52,20 +54,20 @@ const extractQuizPrompt = ai.definePrompt({
   name: 'extractQuizPrompt',
   input: { schema: CreateQuizFromDocumentInputSchema },
   output: { schema: CreateQuizFromDocumentOutputSchema },
-  prompt: `You are an expert educational content generator. Analyze the provided text and extract EVERY possible multiple-choice question.
+  prompt: `You are a high-speed educational AI. Quickly extract high-quality multiple-choice questions from the text below.
 
-Guidelines:
-1. Extract as many questions as the text supports.
-2. Each question MUST have 4 options.
-3. The correct answer must be one of those 4 options.
-4. If the text is long, process all of it.
+Instructions:
+1. Extract as many questions as logically possible (minimum 1, no upper limit).
+2. Each question MUST have exactly 4 distinct options.
+3. Mark the correct answer precisely.
+4. Be brief with explanations.
 
 Text Content:
 ---
 {{{documentContent}}}
 ---
 
-Return the questions as a structured JSON array.`,
+Return the questions immediately as a valid JSON array.`,
 });
 
 const createQuizFromDocumentFlow = ai.defineFlow(
@@ -76,8 +78,8 @@ const createQuizFromDocumentFlow = ai.defineFlow(
   },
   async (input) => {
     const { output } = await extractQuizPrompt(input);
-    if (!output) {
-      throw new Error('AI could not find enough questions in that content.');
+    if (!output || output.length === 0) {
+      throw new Error('AI could not identify any questions in this text.');
     }
     return output;
   }

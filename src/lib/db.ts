@@ -24,58 +24,71 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-const firestore = getFirestore(app);
+// Initialize Firebase only when needed to prevent client-side bundling issues
+function getDb() {
+  const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+  return getFirestore(app);
+}
 
 const QUIZZES_COL = 'quizzes';
 const ATTEMPTS_COL = 'attempts';
 
 export const db = {
   getQuizzes: async (): Promise<Quiz[]> => {
+    const firestore = getDb();
     const q = query(collection(firestore, QUIZZES_COL), orderBy("createdAt", "desc"));
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Quiz));
+    return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as Quiz));
   },
 
   getQuiz: async (id: string): Promise<Quiz | null> => {
+    const firestore = getDb();
     const docRef = doc(firestore, QUIZZES_COL, id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      return { id: docSnap.id, ...docSnap.data() } as Quiz;
+      return { ...docSnap.data(), id: docSnap.id } as Quiz;
     }
     return null;
   },
 
   saveQuiz: async (quiz: Quiz) => {
+    const firestore = getDb();
     const { id, ...data } = quiz;
+    console.log(`[Server] Saving quiz: ${id}`);
     await setDoc(doc(firestore, QUIZZES_COL, id), data);
+    return { success: true };
   },
 
   deleteQuiz: async (id: string) => {
+    const firestore = getDb();
     await deleteDoc(doc(firestore, QUIZZES_COL, id));
   },
 
   saveAttempt: async (attempt: QuizAttempt) => {
+    const firestore = getDb();
     await addDoc(collection(firestore, ATTEMPTS_COL), attempt);
   },
 
   getAttempts: async (): Promise<QuizAttempt[]> => {
+    const firestore = getDb();
     const q = query(collection(firestore, ATTEMPTS_COL), orderBy("timestamp", "desc"));
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as QuizAttempt));
+    return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as QuizAttempt));
   },
 
   getAttemptsForStudent: async (studentName: string): Promise<QuizAttempt[]> => {
+    const firestore = getDb();
     const q = query(
       collection(firestore, ATTEMPTS_COL),
       where("studentName", "==", studentName),
       orderBy("timestamp", "desc")
     );
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as QuizAttempt));
+    return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as QuizAttempt));
   },
 
   getAttemptForStudentInQuiz: async (quizId: string, studentName: string): Promise<QuizAttempt | null> => {
+    const firestore = getDb();
     const q = query(
       collection(firestore, ATTEMPTS_COL),
       where("quizId", "==", quizId),
@@ -83,6 +96,6 @@ export const db = {
     );
     const snapshot = await getDocs(q);
     if (snapshot.empty) return null;
-    return { id: snapshot.docs[0].id, ...snapshot.docs[0].data() } as QuizAttempt;
+    return { ...snapshot.docs[0].data(), id: snapshot.docs[0].id } as QuizAttempt;
   }
 };
