@@ -10,14 +10,16 @@ import { Quiz, QuizAttempt } from './types';
 
 export async function checkDatabaseHealth() {
   try {
-    const firestore = (db as any).getDb ? (db as any).getDb() : null;
-    if (!firestore) return { success: false, message: 'Database initialization failed.' };
-    
     // Attempt a lightweight read to verify connection
+    // This will trigger initialization and catch any config errors
     await db.getQuizzes();
     return { success: true, message: 'Cloud Database Connected' };
   } catch (err: any) {
-    return { success: false, message: err.message || 'Could not connect to Cloud Database.' };
+    console.error("Health Check Error:", err);
+    return { 
+      success: false, 
+      message: err.message || 'Could not connect to Cloud Database.' 
+    };
   }
 }
 
