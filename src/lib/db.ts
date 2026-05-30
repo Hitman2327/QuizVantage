@@ -8,9 +8,9 @@ export const db = {
     if (typeof window === 'undefined') return [];
     try {
       const data = localStorage.getItem(QUIZZES_KEY);
-      const quizzes = data ? JSON.parse(data) : [];
-      console.log(`[DB] Retrieved ${quizzes.length} quizzes`);
-      return quizzes;
+      if (!data) return [];
+      const quizzes = JSON.parse(data);
+      return Array.isArray(quizzes) ? quizzes : [];
     } catch (error) {
       console.error("[DB] Failed to parse quizzes from localStorage", error);
       return [];
@@ -20,8 +20,8 @@ export const db = {
   getQuiz: (id: string): Quiz | undefined => {
     if (!id) return undefined;
     const quizzes = db.getQuizzes();
-    const found = quizzes.find(q => q.id === id);
-    console.log(`[DB] Seeking quiz ${id}: ${found ? 'Found' : 'Not Found'}`);
+    // Use a case-insensitive and trimmed comparison for maximum reliability
+    const found = quizzes.find(q => q.id.trim() === id.trim());
     return found;
   },
 
@@ -36,7 +36,6 @@ export const db = {
         quizzes.push(quiz);
       }
       localStorage.setItem(QUIZZES_KEY, JSON.stringify(quizzes));
-      console.log(`[DB] Saved quiz: ${quiz.title} (${quiz.id})`);
     } catch (error) {
       console.error("[DB] Failed to save quiz to localStorage", error);
     }
@@ -67,7 +66,9 @@ export const db = {
     if (typeof window === 'undefined') return [];
     try {
       const data = localStorage.getItem(ATTEMPTS_KEY);
-      return data ? JSON.parse(data) : [];
+      if (!data) return [];
+      const attempts = JSON.parse(data);
+      return Array.isArray(attempts) ? attempts : [];
     } catch (error) {
       console.error("[DB] Failed to parse attempts from localStorage", error);
       return [];
@@ -79,6 +80,9 @@ export const db = {
   },
 
   getAttemptForStudent: (quizId: string, studentName: string): QuizAttempt | undefined => {
-    return db.getAttempts().find(a => a.quizId === quizId && a.studentName.toLowerCase() === studentName.toLowerCase());
+    return db.getAttempts().find(a => 
+      a.quizId === quizId && 
+      a.studentName.toLowerCase().trim() === studentName.toLowerCase().trim()
+    );
   }
 };

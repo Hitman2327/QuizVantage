@@ -31,7 +31,6 @@ export default function StudentQuiz() {
   const [isTimeUp, setIsTimeUp] = useState(false);
   const [existingAttempt, setExistingAttempt] = useState<QuizAttempt | null>(null);
 
-  // Set mounted state to avoid hydration issues
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -39,30 +38,34 @@ export default function StudentQuiz() {
   useEffect(() => {
     if (!mounted || !id) return;
 
-    const loadQuiz = () => {
-      console.log("[QuizPage] Attempting to load quiz ID:", id);
+    const loadData = () => {
+      // Direct lookup from the db utility
       const loadedQuiz = db.getQuiz(id);
       
       if (loadedQuiz) {
         setQuiz(loadedQuiz);
-        console.log("[QuizPage] Quiz loaded successfully:", loadedQuiz.title);
+        setLoading(false);
       } else {
-        console.warn("[QuizPage] Quiz not found for ID:", id);
-        toast({ 
-          title: "Quiz Not Found", 
-          description: "We couldn't find this quiz. Please check the link or ask your instructor.",
-          variant: "destructive" 
-        });
+        // Retry once after a brief moment in case of storage lag
+        setTimeout(() => {
+          const retryQuiz = db.getQuiz(id);
+          if (retryQuiz) {
+            setQuiz(retryQuiz);
+          } else {
+            toast({ 
+              title: "Quiz Not Found", 
+              description: "We couldn't locate this assessment. Please verify the URL.",
+              variant: "destructive" 
+            });
+          }
+          setLoading(false);
+        }, 500);
       }
-      setLoading(false);
     };
 
-    // Small delay to ensure any synchronous save processes are settled
-    const timeout = setTimeout(loadQuiz, 200);
-    return () => clearTimeout(timeout);
-  }, [id, toast, mounted]);
+    loadData();
+  }, [id, mounted, toast]);
 
-  // Gate Check
   const handleStart = () => {
     if (!studentName.trim()) {
       toast({ title: "Name required", description: "Please enter your full name to begin." });
@@ -73,7 +76,7 @@ export default function StudentQuiz() {
     if (attempt) {
       setExistingAttempt(attempt);
       setStep('result');
-      toast({ title: "Attempt Found", description: "Welcome back! Viewing your previous results." });
+      toast({ title: "Attempt Found", description: "Loading your previous results." });
       return;
     }
 
@@ -83,7 +86,6 @@ export default function StudentQuiz() {
     }
   };
 
-  // Timer Logic
   useEffect(() => {
     if (step !== 'test' || timeLeft === null) return;
 
@@ -141,7 +143,7 @@ export default function StudentQuiz() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-background">
         <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />
-        <p className="text-muted-foreground animate-pulse">Loading secure assessment content...</p>
+        <p className="text-muted-foreground animate-pulse">Initializing assessment environment...</p>
       </div>
     );
   }
@@ -149,13 +151,13 @@ export default function StudentQuiz() {
   if (!quiz) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4 text-center bg-background">
-        <div className="bg-white p-12 rounded-2xl shadow-lg border border-border max-w-md">
+        <div className="bg-white p-12 rounded-2xl shadow-lg border border-border max-w-md animate-slide-up">
           <AlertTriangle className="w-16 h-16 text-destructive mx-auto mb-6" />
           <h1 className="text-3xl font-headline font-bold mb-4">Quiz Not Found</h1>
           <p className="text-muted-foreground mb-8">
             The assessment you are looking for doesn't exist in this environment or has been removed.
           </p>
-          <Button onClick={() => router.push('/')} variant="primary" className="rounded-full px-8 w-full">
+          <Button onClick={() => router.push('/')} className="rounded-full px-8 w-full bg-primary hover:bg-primary/90">
             Return to Homepage
           </Button>
         </div>
@@ -163,7 +165,6 @@ export default function StudentQuiz() {
     );
   }
 
-  // Gate UI
   if (step === 'gate') {
     return (
       <div className="flex items-center justify-center min-h-screen p-4 bg-background">
@@ -184,14 +185,14 @@ export default function StudentQuiz() {
                <div className="flex justify-center space-x-6 py-4 border-y border-border/50">
                   <div className="text-center">
                     <span className="block text-2xl font-bold text-primary">{quiz.questions.length}</span>
-                    <span className="text-xs uppercase text-muted-foreground">Questions</span>
+                    <span className="text-xs uppercase text-muted-foreground font-semibold">Questions</span>
                   </div>
                   <div className="w-px h-10 bg-border"></div>
                   <div className="text-center">
                     <span className="block text-2xl font-bold text-primary">
                       {quiz.timerMinutes ? `${quiz.timerMinutes}m` : '∞'}
                     </span>
-                    <span className="text-xs uppercase text-muted-foreground">Time Limit</span>
+                    <span className="text-xs uppercase text-muted-foreground font-semibold">Time Limit</span>
                   </div>
                </div>
 
@@ -208,7 +209,7 @@ export default function StudentQuiz() {
                     onKeyDown={(e) => e.key === 'Enter' && handleStart()}
                   />
                  </div>
-                 <p className="text-xs text-muted-foreground text-center italic mt-2">Used to identify your score to your teacher</p>
+                 <p className="text-xs text-muted-foreground text-center italic mt-2">Required for identification</p>
                </div>
             </div>
           </CardContent>
@@ -222,7 +223,6 @@ export default function StudentQuiz() {
     );
   }
 
-  // Testing UI
   if (step === 'test' && currentQuestion) {
     const isLastQuestion = currentQuestionIndex === quiz.questions.length - 1;
     const isUrgent = timeLeft !== null && timeLeft < 60;
@@ -312,7 +312,6 @@ export default function StudentQuiz() {
     );
   }
 
-  // Result UI
   if (step === 'result' && existingAttempt) {
     const percentage = Math.round((existingAttempt.score / existingAttempt.totalQuestions) * 100);
     const passed = percentage >= 50;
