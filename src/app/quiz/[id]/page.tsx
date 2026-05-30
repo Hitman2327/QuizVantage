@@ -68,7 +68,8 @@ export default function StudentQuiz() {
         setStep('result');
         toast({ title: "Results Loaded", description: "Showing your previous submission." });
       } else {
-        setStep('test');
+        // If no existing attempt, proceed directly to the test
+        setStep('test'); 
         if (quiz?.timerMinutes) setTimeLeft(quiz.timerMinutes * 60);
       }
     } catch (err) {
