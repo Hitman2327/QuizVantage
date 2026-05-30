@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, XCircle, Clock, Quote, ChevronRight, ChevronLeft, Send, AlertTriangle, User, Loader2 } from "lucide-react";
+import { CheckCircle2, XCircle, Clock, Quote, ChevronRight, ChevronLeft, Send, AlertTriangle, User, Loader2, BookOpen } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
