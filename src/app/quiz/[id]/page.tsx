@@ -20,6 +20,7 @@ export default function StudentQuiz() {
   const router = useRouter();
   const { toast } = useToast();
 
+  const [mounted, setMounted] = useState(false);
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [loading, setLoading] = useState(true);
   const [step, setStep] = useState<'gate' | 'test' | 'result'>('gate');
@@ -30,26 +31,36 @@ export default function StudentQuiz() {
   const [isTimeUp, setIsTimeUp] = useState(false);
   const [existingAttempt, setExistingAttempt] = useState<QuizAttempt | null>(null);
 
+  // Set mounted state to avoid hydration issues
   useEffect(() => {
-    if (!id) return;
+    setMounted(true);
+  }, []);
 
-    // Small delay to ensure client-side hydration is complete
-    const timer = setTimeout(() => {
+  useEffect(() => {
+    if (!mounted || !id) return;
+
+    const loadQuiz = () => {
+      console.log("[QuizPage] Attempting to load quiz ID:", id);
       const loadedQuiz = db.getQuiz(id);
+      
       if (loadedQuiz) {
         setQuiz(loadedQuiz);
+        console.log("[QuizPage] Quiz loaded successfully:", loadedQuiz.title);
       } else {
+        console.warn("[QuizPage] Quiz not found for ID:", id);
         toast({ 
           title: "Quiz Not Found", 
-          description: "We couldn't find this quiz in the database. It may have been deleted.",
+          description: "We couldn't find this quiz. Please check the link or ask your instructor.",
           variant: "destructive" 
         });
       }
       setLoading(false);
-    }, 100);
+    };
 
-    return () => clearTimeout(timer);
-  }, [id, toast]);
+    // Small delay to ensure any synchronous save processes are settled
+    const timeout = setTimeout(loadQuiz, 200);
+    return () => clearTimeout(timeout);
+  }, [id, toast, mounted]);
 
   // Gate Check
   const handleStart = () => {
@@ -126,24 +137,28 @@ export default function StudentQuiz() {
     toast({ title: "Quiz Submitted", description: `You scored ${score} out of ${quiz.questions.length}` });
   };
 
-  if (loading) {
+  if (!mounted || loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-background">
         <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />
-        <p className="text-muted-foreground animate-pulse">Loading your quiz content...</p>
+        <p className="text-muted-foreground animate-pulse">Loading secure assessment content...</p>
       </div>
     );
   }
 
   if (!quiz) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-4 text-center">
-        <AlertTriangle className="w-16 h-16 text-destructive mb-4" />
-        <h1 className="text-2xl font-bold mb-2">Quiz Not Found</h1>
-        <p className="text-muted-foreground mb-6 max-w-md">The quiz you are looking for doesn't exist or has been removed by the educator.</p>
-        <Button onClick={() => router.push('/')} variant="outline" className="rounded-full px-8">
-          Return Home
-        </Button>
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 text-center bg-background">
+        <div className="bg-white p-12 rounded-2xl shadow-lg border border-border max-w-md">
+          <AlertTriangle className="w-16 h-16 text-destructive mx-auto mb-6" />
+          <h1 className="text-3xl font-headline font-bold mb-4">Quiz Not Found</h1>
+          <p className="text-muted-foreground mb-8">
+            The assessment you are looking for doesn't exist in this environment or has been removed.
+          </p>
+          <Button onClick={() => router.push('/')} variant="primary" className="rounded-full px-8 w-full">
+            Return to Homepage
+          </Button>
+        </div>
       </div>
     );
   }
