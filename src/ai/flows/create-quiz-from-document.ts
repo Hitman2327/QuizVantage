@@ -57,11 +57,11 @@ const extractQuizPrompt = ai.definePrompt({
   prompt: `You are a high-speed educational AI. Exhaustively extract high-quality multiple-choice questions from the text below.
 
 Instructions:
-1. Identify EVERY potential question that can be derived from the text.
-2. Each question MUST have exactly 4 distinct options.
-3. Mark the correct answer precisely.
-4. Keep explanations concise but helpful.
-5. If the text is long, do not stop after 5 questions; continue until the entire document is analyzed.
+1. Identify EVERY potential question that can be derived from the text. 
+2. Do not stop after 5 or 10 questions. If the text is massive, extract as many as possible (up to 50 per call).
+3. Each question MUST have exactly 4 distinct options.
+4. Mark the correct answer precisely by its text.
+5. Keep explanations concise but helpful.
 
 Text Content:
 ---

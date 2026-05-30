@@ -11,7 +11,9 @@ import {
   query, 
   where, 
   orderBy, 
-  addDoc
+  addDoc,
+  enableNetwork,
+  disableNetwork
 } from "firebase/firestore";
 import { Quiz, QuizAttempt } from './types';
 
@@ -25,7 +27,11 @@ const firebaseConfig = {
 };
 
 function getDb() {
-  // Ensure we don't initialize multiple times
+  // Validate config
+  if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
+    console.error("FIREBASE CONFIG MISSING. Check .env file.");
+  }
+  
   const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
   return getFirestore(app);
 }
@@ -59,8 +65,15 @@ export const db = {
   saveQuiz: async (quiz: Quiz) => {
     const firestore = getDb();
     const { id, ...data } = quiz;
-    await setDoc(doc(firestore, QUIZZES_COL, id), data);
-    return { success: true };
+    console.log(`Attempting to sync quiz to Firestore: ${id}`);
+    try {
+      await setDoc(doc(firestore, QUIZZES_COL, id), data);
+      console.log("Firestore sync successful.");
+      return { success: true };
+    } catch (err: any) {
+      console.error("Firestore setDoc error:", err);
+      throw err;
+    }
   },
 
   deleteQuiz: async (id: string) => {
