@@ -21,7 +21,7 @@ export default function CreateQuiz() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [welcomeQuote, setWelcomeQuote] = useState('');
-  const [timerMinutes, setTimerMinutes] = useState<string>('');
+  const [timerMinutes, setTimerMinutes] = useState<number | null>(null);
   const [content, setContent] = useState('');
   
   const [extracting, setExtracting] = useState(false);
@@ -82,14 +82,12 @@ export default function CreateQuiz() {
     setSaving(true);
 
     try {
-      const newQuiz: Quiz = {
-        id: `quiz-${Date.now()}`,
+      const newQuiz: Omit<Quiz, 'id' | 'createdAt'> = {
         title,
         description,
         welcomeQuote,
-        timerMinutes: timerMinutes ? parseInt(timerMinutes) : null,
+        timerMinutes: timerMinutes,
         questions: extractedQuestions,
-        createdAt: Date.now(),
       };
 
       console.log("Triggering server save action...");
@@ -133,6 +131,15 @@ export default function CreateQuiz() {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="description">Quiz Description</Label>
+              <Textarea
+                id="description"
+                placeholder="A brief overview of the quiz content."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="timer" className="flex items-center">
@@ -141,9 +148,9 @@ export default function CreateQuiz() {
                 <Input
                   id="timer"
                   type="number"
-                  placeholder="e.g., 75 (Empty for no limit)"
-                  value={timerMinutes}
-                  onChange={(e) => setTimerMinutes(e.target.value)}
+                  placeholder="Leave blank for unlimited time"
+                  value={timerMinutes === null ? '' : timerMinutes}
+                  onChange={(e) => setTimerMinutes(e.target.value === '' ? null : parseInt(e.target.value, 10))}
                 />
               </div>
               <div className="space-y-2">

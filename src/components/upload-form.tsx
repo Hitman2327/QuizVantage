@@ -8,6 +8,7 @@ export default function UploadForm() {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [timerMinutes, setTimerMinutes] = useState<number | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,9 +37,9 @@ export default function UploadForm() {
         if (evt.target?.result) {
           try {
             const jsonContent = evt.target.result as string;
-            const result = await saveQuizFromJSONAction(title, description, jsonContent);
+            const result = await saveQuizFromJSONAction(title, description, jsonContent, timerMinutes);
             if (result.success) {
-              router.push(`/quiz/${result.quizId}`); // Redirect to the new quiz page
+              router.push(`/quiz/${result.quizId}`);
             } else {
               setError('Failed to save the quiz. Please check the JSON format.');
             }
@@ -84,6 +85,18 @@ export default function UploadForm() {
           rows={3}
           required
         ></textarea>
+      </div>
+
+      <div>
+        <label htmlFor="timerMinutes" className="block text-sm font-medium text-gray-700">Time Limit (minutes)</label>
+        <input
+          id="timerMinutes"
+          type="number"
+          value={timerMinutes === null ? '' : timerMinutes}
+          onChange={(e) => setTimerMinutes(e.target.value === '' ? null : parseInt(e.target.value, 10))}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          placeholder="Leave blank for unlimited time"
+        />
       </div>
 
       <div>

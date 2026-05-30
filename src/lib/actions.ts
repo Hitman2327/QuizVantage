@@ -53,26 +53,38 @@ export async function getQuizAction(id: string) {
   }
 }
 
-export async function saveQuizAction(quiz: Quiz) {
+export async function saveQuizAction(quiz: Omit<Quiz, 'id' | 'createdAt'>) {
   try {
     console.log("Saving quiz via RTDB server action...");
-    await withTimeout(db.saveQuiz(quiz), "Save operation timed out. Verify your RTDB setup.");
-    return { success: true };
+    
+    const newQuiz: Quiz = {
+      ...quiz,
+      id: `quiz-${Date.now()}`,
+      createdAt: Date.now(),
+    };
+
+    await withTimeout(db.saveQuiz(newQuiz), "Save operation timed out. Verify your RTDB setup.");
+    return { success: true, quizId: newQuiz.id };
   } catch (e: any) {
     console.error("Save Quiz Action Error:", e);
     throw new Error(e.message || "Failed to save quiz to cloud.");
   }
 }
 
-export async function saveQuizFromJSONAction(title: string, description: string, jsonContent: string) {
+export async function saveQuizFromJSONAction(title: string, description: string, jsonContent: string, timerMinutes: number | null) {
   try {
     console.log("Saving quiz from JSON upload...");
-    const questions = JSON.parse(jsonContent) as Question[];
+    const parsedQuestions = JSON.parse(jsonContent) as Omit<Question, 'id'>[];
 
     // Basic validation
-    if (!Array.isArray(questions) || questions.length === 0) {
+    if (!Array.isArray(parsedQuestions) || parsedQuestions.length === 0) {
       throw new Error("Invalid JSON format or empty question array.");
     }
+
+    const questions: Question[] = parsedQuestions.map((q, i) => ({
+        ...q,
+        id: `q-${Date.now()}-${i}`
+    }));
 
     const newQuiz: Quiz = {
       id: `quiz-${Date.now()}`,
@@ -80,6 +92,8 @@ export async function saveQuizFromJSONAction(title: string, description: string,
       description,
       questions,
       createdAt: Date.now(),
+      timerMinutes: timerMinutes,
+      welcomeQuote: "Good Luck",
     };
 
     await withTimeout(db.saveQuiz(newQuiz), "Save operation from JSON timed out.");
