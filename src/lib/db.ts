@@ -11,7 +11,8 @@ import {
   query, 
   where, 
   orderBy, 
-  addDoc 
+  addDoc,
+  enableIndexedDbPersistence
 } from "firebase/firestore";
 import { Quiz, QuizAttempt } from './types';
 
@@ -24,10 +25,19 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
-console.log("Initializing Firebase with project:", firebaseConfig.projectId);
-
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const firestore = getFirestore(app);
+
+// Attempt to enable offline persistence for better resilience
+if (typeof window !== "undefined") {
+  enableIndexedDbPersistence(firestore).catch((err) => {
+    if (err.code === 'failed-precondition') {
+      console.warn("Multiple tabs open, persistence can only be enabled in one tab at a time.");
+    } else if (err.code === 'unimplemented') {
+      console.warn("The current browser does not support all of the features required to enable persistence");
+    }
+  });
+}
 
 const QUIZZES_COL = 'quizzes';
 const ATTEMPTS_COL = 'attempts';
@@ -61,10 +71,14 @@ export const db = {
 
   saveQuiz: async (quiz: Quiz) => {
     try {
-      console.log("Attempting to save quiz to cloud...", quiz.id);
       const { id, ...data } = quiz;
-      await setDoc(doc(firestore, QUIZZES_COL, id), data);
-      console.log("Quiz saved successfully.");
+      // Using setDoc with a timeout wrapper for better UX
+      const savePromise = setDoc(doc(firestore, QUIZZES_COL, id), data);
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error("Cloud Connection Timeout. Check your AdBlocker.")), 15000)
+      );
+      
+      await Promise.race([savePromise, timeoutPromise]);
     } catch (error) {
       console.error("Firestore saveQuiz error:", error);
       throw error;
@@ -83,9 +97,7 @@ export const db = {
   // --- Attempts ---
   saveAttempt: async (attempt: QuizAttempt) => {
     try {
-      console.log("Saving attempt to cloud...");
       await addDoc(collection(firestore, ATTEMPTS_COL), attempt);
-      console.log("Attempt saved successfully.");
     } catch (error) {
       console.error("Firestore saveAttempt error:", error);
       throw error;
@@ -99,21 +111,6 @@ export const db = {
       return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as QuizAttempt));
     } catch (error) {
       console.error("Firestore getAttempts error:", error);
-      throw error;
-    }
-  },
-
-  getAttemptsForQuiz: async (quizId: string): Promise<QuizAttempt[]> => {
-    try {
-      const q = query(
-        collection(firestore, ATTEMPTS_COL), 
-        where("quizId", "==", quizId),
-        orderBy("timestamp", "desc")
-      );
-      const snapshot = await getDocs(q);
-      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as QuizAttempt));
-    } catch (error) {
-      console.error("Firestore getAttemptsForQuiz error:", error);
       throw error;
     }
   },

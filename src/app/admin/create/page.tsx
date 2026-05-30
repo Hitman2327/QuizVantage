@@ -12,8 +12,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Sparkles, Wand2, ArrowLeft, CheckCircle2, Clock, Quote, FileSpreadsheet, Upload } from "lucide-react";
+import { Loader2, Sparkles, Wand2, ArrowLeft, CheckCircle2, Clock, Quote, FileSpreadsheet, Upload, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Papa from 'papaparse';
 
 export default function CreateQuiz() {
@@ -26,6 +27,7 @@ export default function CreateQuiz() {
   const [extracting, setExtracting] = useState(false);
   const [saving, setSaving] = useState(false);
   const [extractedQuestions, setExtractedQuestions] = useState<Question[]>([]);
+  const [showNetworkWarning, setShowNetworkWarning] = useState(false);
   
   const router = useRouter();
   const { toast } = useToast();
@@ -42,7 +44,7 @@ export default function CreateQuiz() {
       setExtractedQuestions(formattedQuestions);
       toast({ title: "Extraction Complete", description: `Found ${formattedQuestions.length} questions!` });
     } catch (error) {
-      toast({ title: "Extraction Failed", description: "There was an error parsing your document.", variant: "destructive" });
+      toast({ title: "Extraction Failed", description: "The AI could not process this text. Try a shorter snippet.", variant: "destructive" });
     } finally {
       setExtracting(false);
     }
@@ -79,6 +81,11 @@ export default function CreateQuiz() {
   const handleSave = async () => {
     if (!title || extractedQuestions.length === 0) return;
     setSaving(true);
+    setShowNetworkWarning(false);
+
+    // Show warning if it takes longer than 5 seconds
+    const warningTimer = setTimeout(() => setShowNetworkWarning(true), 5000);
+
     try {
       const newQuiz: Quiz = {
         id: `quiz-${Date.now()}`,
@@ -91,10 +98,17 @@ export default function CreateQuiz() {
       };
 
       await db.saveQuiz(newQuiz);
+      clearTimeout(warningTimer);
       toast({ title: "Quiz Published!", description: "Your quiz is ready to be shared globally." });
       router.push('/admin');
-    } catch (err) {
-      toast({ title: "Save Failed", description: "Check your cloud database connection or rules.", variant: "destructive" });
+    } catch (err: any) {
+      clearTimeout(warningTimer);
+      const isBlocked = err.message?.includes("Timeout") || err.message?.includes("blocked");
+      toast({ 
+        title: "Cloud Sync Failed", 
+        description: isBlocked ? "Connection blocked. Please disable your AdBlocker or VPN." : "Check your internet connection.", 
+        variant: "destructive" 
+      });
     } finally {
       setSaving(false);
     }
@@ -108,6 +122,16 @@ export default function CreateQuiz() {
         </Button>
         <h1 className="text-3xl font-headline font-bold text-primary">Create New Quiz</h1>
       </div>
+
+      {showNetworkWarning && (
+        <Alert variant="destructive" className="bg-red-50 border-red-200">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Connection Issue Detected</AlertTitle>
+          <AlertDescription>
+            Syncing is taking longer than usual. This is often caused by <b>AdBlockers</b> or <b>VPNs</b> blocking the connection to Google Cloud. Please disable them for this site.
+          </AlertDescription>
+        </Alert>
+      )}
 
       <div className="grid grid-cols-1 gap-8">
         <Card className="border-border shadow-sm">
@@ -156,13 +180,13 @@ export default function CreateQuiz() {
         <Card className="border-border shadow-sm">
           <CardHeader>
             <CardTitle className="font-headline">2. Import Content</CardTitle>
-            <CardDescription>Use AI to extract questions from text or upload a CSV.</CardDescription>
+            <CardDescription>AI can handle large text snippets, or upload a CSV for bulk imports.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <Tabs defaultValue="ai" className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-8">
                 <TabsTrigger value="ai" className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" /> AI Document Extraction
+                  <Sparkles className="w-4 h-4" /> AI Extraction
                 </TabsTrigger>
                 <TabsTrigger value="csv" className="flex items-center gap-2">
                   <FileSpreadsheet className="w-4 h-4" /> CSV Upload
@@ -171,8 +195,8 @@ export default function CreateQuiz() {
               
               <TabsContent value="ai" className="space-y-4">
                 <Textarea
-                  className="min-h-[200px] font-mono text-sm"
-                  placeholder="Paste text from PDF, DOCX or website. AI will detect questions, options, and answers..."
+                  className="min-h-[250px] font-mono text-sm leading-relaxed"
+                  placeholder="Paste text from PDF, DOCX or website. AI will detect any number of questions, options, and answers..."
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                 />
@@ -181,7 +205,7 @@ export default function CreateQuiz() {
                   disabled={extracting || !content.trim()}
                   className="w-full bg-accent hover:bg-accent/90 rounded-full h-12"
                 >
-                  {extracting ? <Loader2 className="animate-spin" /> : <><Wand2 className="mr-2" /> Generate with AI</>}
+                  {extracting ? <><Loader2 className="animate-spin mr-2" /> AI is Reading...</> : <><Wand2 className="mr-2" /> Generate with AI</>}
                 </Button>
               </TabsContent>
 
@@ -206,24 +230,33 @@ export default function CreateQuiz() {
             </Tabs>
 
             {extractedQuestions.length > 0 && (
-              <div className="mt-8 space-y-4 animate-slide-up">
-                <div className="flex items-center text-green-600 font-semibold mb-2">
-                  <CheckCircle2 className="w-5 h-5 mr-2" />
-                  Preview: {extractedQuestions.length} Questions Loaded
+              <div className="mt-8 space-y-4 animate-slide-up border-t pt-8">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center text-green-600 font-semibold">
+                    <CheckCircle2 className="w-5 h-5 mr-2" />
+                    Preview: {extractedQuestions.length} Questions Ready
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => setExtractedQuestions([])} className="text-xs text-muted-foreground">Clear All</Button>
                 </div>
-                <div className="max-h-[300px] overflow-y-auto space-y-3 p-4 bg-muted/50 rounded-lg border border-border">
+                <div className="max-h-[400px] overflow-y-auto space-y-3 p-4 bg-muted/50 rounded-lg border border-border">
                   {extractedQuestions.map((q, idx) => (
-                    <div key={q.id} className="text-sm border-b border-border/50 pb-2 last:border-0">
-                      <span className="font-bold mr-2 text-primary">{idx + 1}.</span> {q.questionText}
+                    <div key={q.id} className="text-sm border-b border-border/50 pb-3 last:border-0 last:pb-0">
+                      <p className="font-bold mb-1"><span className="text-primary">{idx + 1}.</span> {q.questionText}</p>
+                      <div className="grid grid-cols-2 gap-2 pl-5 opacity-70 italic text-[12px]">
+                        {q.options.map((opt, i) => (
+                          <div key={i}>• {opt}</div>
+                        ))}
+                      </div>
+                      <p className="text-[11px] mt-2 font-bold text-green-600 pl-5">Answer: {q.correctAnswer}</p>
                     </div>
                   ))}
                 </div>
                 <Button 
                   onClick={handleSave} 
-                  disabled={saving || extracting}
-                  className="w-full bg-primary hover:bg-primary/90 text-white rounded-full h-12 mt-4 shadow-lg"
+                  disabled={saving || extracting || !title}
+                  className="w-full bg-primary hover:bg-primary/90 text-white rounded-full h-14 mt-4 shadow-lg text-lg font-bold"
                 >
-                  {saving ? <Loader2 className="animate-spin" /> : 'Confirm & Sync to Cloud'}
+                  {saving ? <><Loader2 className="animate-spin mr-2" /> Syncing to Cloud...</> : 'Confirm & Publish Globally'}
                 </Button>
               </div>
             )}
