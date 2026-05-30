@@ -1,7 +1,7 @@
 
 'use server';
 /**
- * @fileOverview Server Actions for Database Operations
+ * @fileOverview Server Actions for Database Operations (RTDB)
  * Returns plain objects to ensure compatibility with Next.js client-server boundary.
  * Includes timeout protection for cloud operations.
  */
@@ -21,13 +21,14 @@ async function withTimeout<T>(promise: Promise<T>, message: string): Promise<T> 
 
 export async function checkDatabaseHealth() {
   try {
-    const quizzes = await withTimeout(db.getQuizzes(), "Database health check timed out.");
-    return { success: true, message: 'Cloud Database Connected' };
+    // Ping RTDB
+    await withTimeout(db.getQuizzes(), "Realtime Database health check timed out.");
+    return { success: true, message: 'Cloud RTDB Connected' };
   } catch (err: any) {
     console.error("Health Check Error:", err);
     return { 
       success: false, 
-      message: err.message || 'Could not connect to Firestore. Check Firebase Console Setup.' 
+      message: err.message || 'Could not connect to Realtime Database. Check your rules and config.' 
     };
   }
 }
@@ -54,8 +55,8 @@ export async function getQuizAction(id: string) {
 
 export async function saveQuizAction(quiz: Quiz) {
   try {
-    console.log("Saving quiz via server action...");
-    await withTimeout(db.saveQuiz(quiz), "Save operation timed out. Check your Firestore setup.");
+    console.log("Saving quiz via RTDB server action...");
+    await withTimeout(db.saveQuiz(quiz), "Save operation timed out. Verify your RTDB setup.");
     return { success: true };
   } catch (e: any) {
     console.error("Save Quiz Action Error:", e);

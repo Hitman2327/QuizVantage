@@ -1,20 +1,16 @@
 
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { 
-  getFirestore, 
-  collection, 
-  doc, 
-  setDoc, 
-  getDoc, 
-  getDocs, 
-  deleteDoc, 
-  query, 
-  where, 
-  orderBy, 
-  addDoc,
-  enableNetwork,
-  disableNetwork
-} from "firebase/firestore";
+  getDatabase, 
+  ref, 
+  set, 
+  get, 
+  remove, 
+  child,
+  query,
+  orderByChild,
+  equalTo
+} from "firebase/database";
 import { Quiz, QuizAttempt } from './types';
 
 const firebaseConfig = {
@@ -23,99 +19,106 @@ const firebaseConfig = {
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  databaseURL: `https://${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`
 };
 
-function getDb() {
-  // Validate config
+function getRtdb() {
   if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
     console.error("FIREBASE CONFIG MISSING. Check .env file.");
   }
-  
   const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-  return getFirestore(app);
+  return getDatabase(app);
 }
-
-const QUIZZES_COL = 'quizzes';
-const ATTEMPTS_COL = 'attempts';
 
 export const db = {
   getQuizzes: async (): Promise<Quiz[]> => {
     try {
-      const firestore = getDb();
-      const q = query(collection(firestore, QUIZZES_COL), orderBy("createdAt", "desc"));
-      const snapshot = await getDocs(q);
-      return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as Quiz));
+      const rtdb = getRtdb();
+      const snapshot = await get(ref(rtdb, 'quizzes'));
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        return Object.keys(data).map(key => ({ ...data[key], id: key }));
+      }
+      return [];
     } catch (e) {
-      console.error("Firestore getQuizzes error:", e);
+      console.error("RTDB getQuizzes error:", e);
       throw e;
     }
   },
 
   getQuiz: async (id: string): Promise<Quiz | null> => {
-    const firestore = getDb();
-    const docRef = doc(firestore, QUIZZES_COL, id);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      return { ...docSnap.data(), id: docSnap.id } as Quiz;
+    const rtdb = getRtdb();
+    const snapshot = await get(ref(rtdb, `quizzes/${id}`));
+    if (snapshot.exists()) {
+      return { ...snapshot.val(), id } as Quiz;
     }
     return null;
   },
 
   saveQuiz: async (quiz: Quiz) => {
-    const firestore = getDb();
+    const rtdb = getRtdb();
     const { id, ...data } = quiz;
-    console.log(`Attempting to sync quiz to Firestore: ${id}`);
+    console.log(`Syncing quiz to RTDB: ${id}`);
     try {
-      await setDoc(doc(firestore, QUIZZES_COL, id), data);
-      console.log("Firestore sync successful.");
+      await set(ref(rtdb, `quizzes/${id}`), {
+        ...data,
+        createdAt: data.createdAt || Date.now()
+      });
       return { success: true };
     } catch (err: any) {
-      console.error("Firestore setDoc error:", err);
+      console.error("RTDB set error:", err);
       throw err;
     }
   },
 
   deleteQuiz: async (id: string) => {
-    const firestore = getDb();
-    await deleteDoc(doc(firestore, QUIZZES_COL, id));
+    const rtdb = getRtdb();
+    await remove(ref(rtdb, `quizzes/${id}`));
     return { success: true };
   },
 
   saveAttempt: async (attempt: QuizAttempt) => {
-    const firestore = getDb();
-    await addDoc(collection(firestore, ATTEMPTS_COL), attempt);
+    const rtdb = getRtdb();
+    const attemptId = `att-${Date.now()}`;
+    await set(ref(rtdb, `attempts/${attemptId}`), attempt);
     return { success: true };
   },
 
   getAttempts: async (): Promise<QuizAttempt[]> => {
-    const firestore = getDb();
-    const q = query(collection(firestore, ATTEMPTS_COL), orderBy("timestamp", "desc"));
-    const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as QuizAttempt));
+    const rtdb = getRtdb();
+    const snapshot = await get(ref(rtdb, 'attempts'));
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      return Object.keys(data).map(key => ({ ...data[key], id: key }));
+    }
+    return [];
   },
 
   getAttemptsForStudent: async (studentName: string): Promise<QuizAttempt[]> => {
-    const firestore = getDb();
-    const q = query(
-      collection(firestore, ATTEMPTS_COL),
-      where("studentName", "==", studentName),
-      orderBy("timestamp", "desc")
-    );
-    const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as QuizAttempt));
+    const rtdb = getRtdb();
+    // In RTDB, complex queries are restricted without specific indices.
+    // For this prototype, we'll fetch and filter to ensure it works immediately.
+    const snapshot = await get(ref(rtdb, 'attempts'));
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      return Object.keys(data)
+        .map(key => ({ ...data[key], id: key }))
+        .filter((a: QuizAttempt) => a.studentName === studentName);
+    }
+    return [];
   },
 
   getAttemptForStudentInQuiz: async (quizId: string, studentName: string): Promise<QuizAttempt | null> => {
-    const firestore = getDb();
-    const q = query(
-      collection(firestore, ATTEMPTS_COL),
-      where("quizId", "==", quizId),
-      where("studentName", "==", studentName)
-    );
-    const snapshot = await getDocs(q);
-    if (snapshot.empty) return null;
-    const doc = snapshot.docs[0];
-    return { ...doc.data(), id: doc.id } as QuizAttempt;
+    const rtdb = getRtdb();
+    const snapshot = await get(ref(rtdb, 'attempts'));
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      const match = Object.keys(data)
+        .map(key => ({ ...data[key], id: key }))
+        .find((a: QuizAttempt) => a.quizId === quizId && a.studentName === studentName);
+      return match || null;
+    }
+    return null;
   }
 };
