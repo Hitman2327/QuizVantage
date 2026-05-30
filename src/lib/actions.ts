@@ -10,8 +10,7 @@ import { Quiz, QuizAttempt } from './types';
 
 export async function checkDatabaseHealth() {
   try {
-    // Attempt a lightweight read to verify connection
-    // This will trigger initialization and catch any config errors
+    // Attempt a lightweight read
     await db.getQuizzes();
     return { success: true, message: 'Cloud Database Connected' };
   } catch (err: any) {
@@ -24,33 +23,65 @@ export async function checkDatabaseHealth() {
 }
 
 export async function getQuizzesAction() {
-  return await db.getQuizzes();
+  try {
+    return await db.getQuizzes();
+  } catch (e) {
+    return [];
+  }
 }
 
 export async function getQuizAction(id: string) {
-  return await db.getQuiz(id);
+  try {
+    return await db.getQuiz(id);
+  } catch (e) {
+    return null;
+  }
 }
 
 export async function saveQuizAction(quiz: Quiz) {
-  return await db.saveQuiz(quiz);
+  try {
+    return await db.saveQuiz(quiz);
+  } catch (e: any) {
+    throw new Error(e.message || "Failed to save quiz");
+  }
 }
 
 export async function deleteQuizAction(id: string) {
-  return await db.deleteQuiz(id);
+  try {
+    return await db.deleteQuiz(id);
+  } catch (e: any) {
+    throw new Error(e.message || "Failed to delete quiz");
+  }
 }
 
 export async function saveAttemptAction(attempt: QuizAttempt) {
-  return await db.saveAttempt(attempt);
+  try {
+    return await db.saveAttempt(attempt);
+  } catch (e: any) {
+    throw new Error(e.message || "Failed to save attempt");
+  }
 }
 
 export async function getAttemptsAction() {
-  return await db.getAttempts();
+  try {
+    return await db.getAttempts();
+  } catch (e) {
+    return [];
+  }
 }
 
 export async function getAttemptsForStudentAction(name: string) {
-  return await db.getAttemptsForStudent(name);
+  try {
+    return await db.getAttemptsForStudent(name);
+  } catch (e) {
+    return [];
+  }
 }
 
 export async function checkExistingAttemptAction(quizId: string, studentName: string) {
-  return await db.getAttemptForStudentInQuiz(quizId, studentName);
+  try {
+    return await db.getAttemptForStudentInQuiz(quizId, studentName);
+  } catch (e) {
+    return null;
+  }
 }

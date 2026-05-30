@@ -251,7 +251,7 @@ export default function StudentQuiz() {
         </Card>
 
         <div className="space-y-6">
-          <h3 className="text-xl font-bold flex items-center px-2">
+          <h3 className="text-xl font-headline font-bold text-primary flex items-center px-2">
             <BookOpen className="w-5 h-5 mr-2" /> Question Review
           </h3>
           {quiz.questions.map((q, idx) => {

@@ -24,8 +24,8 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
-// Initialize Firebase only when needed to prevent client-side bundling issues
 function getDb() {
+  // Ensure we don't initialize multiple times
   const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
   return getFirestore(app);
 }
@@ -35,10 +35,15 @@ const ATTEMPTS_COL = 'attempts';
 
 export const db = {
   getQuizzes: async (): Promise<Quiz[]> => {
-    const firestore = getDb();
-    const q = query(collection(firestore, QUIZZES_COL), orderBy("createdAt", "desc"));
-    const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as Quiz));
+    try {
+      const firestore = getDb();
+      const q = query(collection(firestore, QUIZZES_COL), orderBy("createdAt", "desc"));
+      const snapshot = await getDocs(q);
+      return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as Quiz));
+    } catch (e) {
+      console.error("Firestore getQuizzes error:", e);
+      throw e;
+    }
   },
 
   getQuiz: async (id: string): Promise<Quiz | null> => {
@@ -54,7 +59,6 @@ export const db = {
   saveQuiz: async (quiz: Quiz) => {
     const firestore = getDb();
     const { id, ...data } = quiz;
-    console.log(`[Server] Saving quiz: ${id}`);
     await setDoc(doc(firestore, QUIZZES_COL, id), data);
     return { success: true };
   },
@@ -62,11 +66,13 @@ export const db = {
   deleteQuiz: async (id: string) => {
     const firestore = getDb();
     await deleteDoc(doc(firestore, QUIZZES_COL, id));
+    return { success: true };
   },
 
   saveAttempt: async (attempt: QuizAttempt) => {
     const firestore = getDb();
     await addDoc(collection(firestore, ATTEMPTS_COL), attempt);
+    return { success: true };
   },
 
   getAttempts: async (): Promise<QuizAttempt[]> => {
@@ -96,6 +102,7 @@ export const db = {
     );
     const snapshot = await getDocs(q);
     if (snapshot.empty) return null;
-    return { ...snapshot.docs[0].data(), id: snapshot.docs[0].id } as QuizAttempt;
+    const doc = snapshot.docs[0];
+    return { ...doc.data(), id: doc.id } as QuizAttempt;
   }
 };
