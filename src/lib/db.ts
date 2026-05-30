@@ -13,6 +13,9 @@ import {
 } from "firebase/database";
 import { Quiz, QuizAttempt } from './types';
 
+// The database URL for your specific region (Singapore)
+const DATABASE_URL = "https://studio-4519492786-48ff8-default-rtdb.asia-southeast1.firebasedatabase.app";
+
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -20,7 +23,7 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  databaseURL: `https://${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`
+  databaseURL: DATABASE_URL
 };
 
 function getRtdb() {
@@ -97,8 +100,6 @@ export const db = {
 
   getAttemptsForStudent: async (studentName: string): Promise<QuizAttempt[]> => {
     const rtdb = getRtdb();
-    // In RTDB, complex queries are restricted without specific indices.
-    // For this prototype, we'll fetch and filter to ensure it works immediately.
     const snapshot = await get(ref(rtdb, 'attempts'));
     if (snapshot.exists()) {
       const data = snapshot.val();
