@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { db } from '@/lib/db';
+import { getQuizAction, saveAttemptAction, checkExistingAttemptAction } from '@/lib/actions';
 import { Quiz, QuizAttempt } from '@/lib/types';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,14 +39,14 @@ export default function StudentQuiz() {
     if (!mounted || !id) return;
     async function loadQuiz() {
       try {
-        const loadedQuiz = await db.getQuiz(id);
+        const loadedQuiz = await getQuizAction(id);
         if (loadedQuiz) {
           setQuiz(loadedQuiz);
         } else {
           toast({ title: "Not Found", description: "Assessment no longer available.", variant: "destructive" });
         }
       } catch (err) {
-        toast({ title: "Sync Error", description: "Could not connect to database.", variant: "destructive" });
+        toast({ title: "Server Error", description: "Could not fetch quiz data from server.", variant: "destructive" });
       } finally {
         setLoading(false);
       }
@@ -62,7 +62,7 @@ export default function StudentQuiz() {
 
     setLoading(true);
     try {
-      const attempt = await db.getAttemptForStudentInQuiz(id, studentName);
+      const attempt = await checkExistingAttemptAction(id, studentName);
       if (attempt) {
         setExistingAttempt(attempt);
         setStep('result');
@@ -72,7 +72,7 @@ export default function StudentQuiz() {
         if (quiz?.timerMinutes) setTimeLeft(quiz.timerMinutes * 60);
       }
     } catch (err) {
-      toast({ title: "Error", description: "Could not check for existing attempts." });
+      toast({ title: "Error", description: "Could not verify existing attempts on server." });
     } finally {
       setLoading(false);
     }
@@ -112,12 +112,12 @@ export default function StudentQuiz() {
     };
 
     try {
-      await db.saveAttempt(attempt);
+      await saveAttemptAction(attempt);
       setExistingAttempt(attempt);
       setStep('result');
-      toast({ title: "Submitted!" });
+      toast({ title: "Submitted successfully!" });
     } catch (err) {
-      toast({ title: "Submission Error", variant: "destructive" });
+      toast({ title: "Submission Error", description: "Could not save attempt to server.", variant: "destructive" });
     }
   };
 
@@ -125,7 +125,7 @@ export default function StudentQuiz() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-background">
         <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />
-        <p className="text-muted-foreground">Authenticating session...</p>
+        <p className="text-muted-foreground">Synchronizing with Server...</p>
       </div>
     );
   }

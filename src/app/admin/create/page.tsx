@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createQuizFromDocument } from '@/ai/flows/create-quiz-from-document';
-import { db } from '@/lib/db';
+import { saveQuizAction } from '@/lib/actions';
 import { Quiz, Question } from '@/lib/types';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,7 +27,6 @@ export default function CreateQuiz() {
   const [extracting, setExtracting] = useState(false);
   const [saving, setSaving] = useState(false);
   const [extractedQuestions, setExtractedQuestions] = useState<Question[]>([]);
-  const [showNetworkWarning, setShowNetworkWarning] = useState(false);
   
   const router = useRouter();
   const { toast } = useToast();
@@ -81,10 +80,6 @@ export default function CreateQuiz() {
   const handleSave = async () => {
     if (!title || extractedQuestions.length === 0) return;
     setSaving(true);
-    setShowNetworkWarning(false);
-
-    // Show warning if it takes longer than 5 seconds
-    const warningTimer = setTimeout(() => setShowNetworkWarning(true), 5000);
 
     try {
       const newQuiz: Quiz = {
@@ -97,16 +92,13 @@ export default function CreateQuiz() {
         createdAt: Date.now(),
       };
 
-      await db.saveQuiz(newQuiz);
-      clearTimeout(warningTimer);
+      await saveQuizAction(newQuiz);
       toast({ title: "Quiz Published!", description: "Your quiz is ready to be shared globally." });
       router.push('/admin');
     } catch (err: any) {
-      clearTimeout(warningTimer);
-      const isBlocked = err.message?.includes("Timeout") || err.message?.includes("blocked");
       toast({ 
-        title: "Cloud Sync Failed", 
-        description: isBlocked ? "Connection blocked. Please disable your AdBlocker or VPN." : "Check your internet connection.", 
+        title: "Server Sync Failed", 
+        description: "The server could not process the request. Please try again.", 
         variant: "destructive" 
       });
     } finally {
@@ -122,16 +114,6 @@ export default function CreateQuiz() {
         </Button>
         <h1 className="text-3xl font-headline font-bold text-primary">Create New Quiz</h1>
       </div>
-
-      {showNetworkWarning && (
-        <Alert variant="destructive" className="bg-red-50 border-red-200">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Connection Issue Detected</AlertTitle>
-          <AlertDescription>
-            Syncing is taking longer than usual. This is often caused by <b>AdBlockers</b> or <b>VPNs</b> blocking the connection to Google Cloud. Please disable them for this site.
-          </AlertDescription>
-        </Alert>
-      )}
 
       <div className="grid grid-cols-1 gap-8">
         <Card className="border-border shadow-sm">
@@ -256,7 +238,7 @@ export default function CreateQuiz() {
                   disabled={saving || extracting || !title}
                   className="w-full bg-primary hover:bg-primary/90 text-white rounded-full h-14 mt-4 shadow-lg text-lg font-bold"
                 >
-                  {saving ? <><Loader2 className="animate-spin mr-2" /> Syncing to Cloud...</> : 'Confirm & Publish Globally'}
+                  {saving ? <><Loader2 className="animate-spin mr-2" /> Saving to Cloud Server...</> : 'Confirm & Publish Globally'}
                 </Button>
               </div>
             )}

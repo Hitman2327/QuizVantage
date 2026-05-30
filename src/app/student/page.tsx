@@ -2,14 +2,15 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { db } from '@/lib/db';
+import { getAttemptsForStudentAction, getQuizAction } from '@/lib/actions';
 import { QuizAttempt, Quiz } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, History, Trophy, Clock, Search, BookOpen, Loader2 } from "lucide-react";
+import { GraduationCap, History, Trophy, Clock, Search, BookOpen, Loader2, ChevronRight } from "lucide-react";
 import Link from 'next/link';
+import { cn } from "@/lib/utils";
 
 export default function StudentPortal() {
   const [studentName, setStudentName] = useState('');
@@ -19,7 +20,6 @@ export default function StudentPortal() {
   const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
-    // Attempt to load from previous session if available
     const saved = localStorage.getItem('quizvantage_student_name');
     if (saved) {
       setStudentName(saved);
@@ -36,14 +36,13 @@ export default function StudentPortal() {
     localStorage.setItem('quizvantage_student_name', name);
 
     try {
-      const results = await db.getAttemptsForStudent(name);
+      const results = await getAttemptsForStudentAction(name);
       setAttempts(results);
       
-      // Batch fetch quizzes for the attempt titles
       const quizMap: Record<string, Quiz> = {};
       for (const attempt of results) {
         if (!quizMap[attempt.quizId]) {
-          const q = await db.getQuiz(attempt.quizId);
+          const q = await getQuizAction(attempt.quizId);
           if (q) quizMap[attempt.quizId] = q;
         }
       }
@@ -71,7 +70,7 @@ export default function StudentPortal() {
       <Card className="max-w-md mx-auto shadow-md">
         <CardHeader>
           <CardTitle>Identify Yourself</CardTitle>
-          <CardDescription>Enter your full name to pull your assessment records from the cloud.</CardDescription>
+          <CardDescription>Enter your full name to pull your records from the server.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex gap-2">
@@ -95,7 +94,7 @@ export default function StudentPortal() {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs uppercase font-bold opacity-70 tracking-widest">Total Assessments</p>
+                    <p className="text-xs uppercase font-bold opacity-70 tracking-widest">Assessments</p>
                     <p className="text-4xl font-bold">{attempts.length}</p>
                   </div>
                   <BookOpen className="w-10 h-10 opacity-30" />
@@ -107,7 +106,7 @@ export default function StudentPortal() {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs uppercase font-bold opacity-70 tracking-widest">Average Accuracy</p>
+                    <p className="text-xs uppercase font-bold opacity-70 tracking-widest">Avg. Accuracy</p>
                     <p className="text-4xl font-bold">{avgAccuracy}%</p>
                   </div>
                   <Trophy className="w-10 h-10 opacity-30" />
@@ -135,9 +134,13 @@ export default function StudentPortal() {
               <History className="mr-2 w-6 h-6" /> Assessment History
             </h2>
             
-            {attempts.length === 0 ? (
+            {loading ? (
+              <div className="flex justify-center py-20">
+                <Loader2 className="w-10 h-10 animate-spin text-primary" />
+              </div>
+            ) : attempts.length === 0 ? (
               <div className="py-20 text-center bg-white border rounded-xl border-dashed">
-                <p className="text-muted-foreground">No records found for "{studentName}". Join a quiz to start tracking!</p>
+                <p className="text-muted-foreground">No records found for "{studentName}".</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-4">
@@ -157,7 +160,7 @@ export default function StudentPortal() {
                             <span className="text-[10px] uppercase font-bold text-muted-foreground">Score</span>
                           </div>
                           <Badge className={cn("px-4 py-1", percentage >= 80 ? "bg-green-100 text-green-700" : percentage >= 50 ? "bg-yellow-100 text-yellow-700" : "bg-red-100 text-red-700")}>
-                            {percentage}% Correct
+                            {percentage}%
                           </Badge>
                           <Button asChild variant="ghost" size="sm" className="rounded-full">
                             <Link href={`/quiz/${attempt.quizId}`}>

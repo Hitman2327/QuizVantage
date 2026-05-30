@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { db } from '@/lib/db';
+import { getQuizzesAction, getAttemptsAction, deleteQuizAction } from '@/lib/actions';
 import { Quiz, QuizAttempt } from '@/lib/types';
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2, ExternalLink, Users, BarChart2, BookOpen, Clock, Loader2 } from "lucide-react";
@@ -18,39 +18,43 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  useEffect(() => {
-    async function loadData() {
-      try {
-        const [qs, rs] = await Promise.all([db.getQuizzes(), db.getAttempts()]);
-        setQuizzes(qs);
-        setResults(rs);
-      } catch (err) {
-        toast({ title: "Load Error", description: "Could not fetch data from Firebase.", variant: "destructive" });
-      } finally {
-        setLoading(false);
-      }
+  const loadData = async () => {
+    try {
+      const [qs, rs] = await Promise.all([getQuizzesAction(), getAttemptsAction()]);
+      setQuizzes(qs);
+      setResults(rs);
+    } catch (err) {
+      toast({ title: "Load Error", description: "Could not fetch data via Server Actions.", variant: "destructive" });
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
     loadData();
-  }, [toast]);
+  }, []);
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this quiz?')) {
       try {
-        await db.deleteQuiz(id);
+        await deleteQuizAction(id);
         setQuizzes(quizzes.filter(q => q.id !== id));
-        toast({ title: "Quiz Deleted", description: "Permanently removed from cloud storage." });
+        toast({ title: "Quiz Deleted", description: "Successfully removed from cloud." });
       } catch (err) {
         toast({ title: "Delete Failed", variant: "destructive" });
       }
     }
   };
 
-  const copyLink = async (id: string) => {
+  const copyLink = (id: string) => {
     const url = `${window.location.origin}/quiz/${id}`;
-    try {
-      await navigator.clipboard.writeText(url);
-      toast({ title: "Link Copied", description: "Share this link with anyone over the internet!" });
-    } catch (error) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url)
+        .then(() => toast({ title: "Link Copied", description: "Ready to share!" }))
+        .catch(() => {
+          window.prompt("Copy this link:", url);
+        });
+    } else {
       window.prompt("Copy this link:", url);
     }
   };
@@ -59,7 +63,7 @@ export default function AdminDashboard() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
         <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />
-        <p className="text-muted-foreground">Connecting to Cloud Database...</p>
+        <p className="text-muted-foreground">Communicating with Server...</p>
       </div>
     );
   }
@@ -123,7 +127,7 @@ export default function AdminDashboard() {
                       </div>
                       <div className="flex flex-wrap gap-2 pt-2 border-t border-border mt-4">
                         <Button variant="ghost" size="sm" className="flex-1" onClick={() => copyLink(quiz.id)}>
-                          <ExternalLink className="w-4 h-4 mr-2 text-primary" /> Share Link
+                          <ExternalLink className="w-4 h-4 mr-2 text-primary" /> Share
                         </Button>
                         <Button variant="ghost" size="sm" className="flex-1 text-destructive hover:text-destructive" onClick={() => handleDelete(quiz.id)}>
                           <Trash2 className="w-4 h-4 mr-2" /> Delete
