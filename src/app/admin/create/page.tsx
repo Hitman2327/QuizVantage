@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -10,8 +11,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Loader2, Sparkles, Wand2, ArrowLeft, CheckCircle2, Clock, Quote } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Loader2, Sparkles, Wand2, ArrowLeft, CheckCircle2, Clock, Quote, FileSpreadsheet, FileText, Upload } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import Papa from 'papaparse';
 
 export default function CreateQuiz() {
   const [title, setTitle] = useState('');
@@ -42,22 +45,57 @@ export default function CreateQuiz() {
     }
   };
 
-  const handleSave = () => {
+  const handleCSVUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    Papa.parse(file, {
+      header: true,
+      skipEmptyLines: true,
+      complete: (results) => {
+        const questions: Question[] = results.data.map((row: any, i) => {
+          // Expecting headers: Question, Option1, Option2, Option3, Option4, CorrectAnswer, Explanation
+          const options = [row.Option1, row.Option2, row.Option3, row.Option4].filter(Boolean);
+          return {
+            id: `q-csv-${Date.now()}-${i}`,
+            questionText: row.Question || row.question || '',
+            options,
+            correctAnswer: row.CorrectAnswer || row.correctAnswer || '',
+            explanation: row.Explanation || row.explanation || '',
+          };
+        }).filter(q => q.questionText && q.options.length > 0);
+
+        setExtractedQuestions(questions);
+        toast({ title: "CSV Imported", description: `Successfully loaded ${questions.length} questions.` });
+      },
+      error: (error) => {
+        toast({ title: "Import Failed", description: error.message, variant: "destructive" });
+      }
+    });
+  };
+
+  const handleSave = async () => {
     if (!title || extractedQuestions.length === 0) return;
+    setLoading(true);
+    try {
+      const newQuiz: Quiz = {
+        id: `quiz-${Date.now()}`,
+        title,
+        description,
+        welcomeQuote,
+        timerMinutes: timerMinutes ? parseInt(timerMinutes) : null,
+        questions: extractedQuestions,
+        createdAt: Date.now(),
+      };
 
-    const newQuiz: Quiz = {
-      id: `quiz-${Date.now()}`,
-      title,
-      description,
-      welcomeQuote,
-      timerMinutes: timerMinutes ? parseInt(timerMinutes) : null,
-      questions: extractedQuestions,
-      createdAt: Date.now(),
-    };
-
-    db.saveQuiz(newQuiz);
-    toast({ title: "Quiz Published!", description: "Your quiz is ready to be shared." });
-    router.push('/admin');
+      await db.saveQuiz(newQuiz);
+      toast({ title: "Quiz Published!", description: "Your quiz is ready to be shared globally." });
+      router.push('/admin');
+    } catch (err) {
+      toast({ title: "Save Failed", description: "Could not sync to cloud database.", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -83,7 +121,6 @@ export default function CreateQuiz() {
                 placeholder="e.g., Biology Midterm: Cellular Structure"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="rounded-md border-border focus:ring-primary"
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -111,15 +148,6 @@ export default function CreateQuiz() {
                 />
               </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="desc">Instructions (Optional)</Label>
-              <Textarea
-                id="desc"
-                placeholder="Briefly explain what students should expect..."
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
           </CardContent>
         </Card>
 
@@ -127,40 +155,63 @@ export default function CreateQuiz() {
           <CardHeader>
             <div className="flex justify-between items-center">
               <div>
-                <CardTitle className="font-headline">2. AI Content Extraction</CardTitle>
-                <CardDescription>Paste text from your PDF or DOCX file.</CardDescription>
+                <CardTitle className="font-headline">2. Import Content</CardTitle>
+                <CardDescription>Use AI or manual file upload to add questions.</CardDescription>
               </div>
-              <Sparkles className="text-accent h-6 w-6 animate-pulse" />
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
-            <Textarea
-              className="min-h-[250px] font-mono text-sm border-border focus:ring-accent"
-              placeholder="Paste your questions and content here. Don't worry about perfect formatting, our AI will handle it..."
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
-            <Button
-              onClick={handleExtract}
-              disabled={loading || !content.trim()}
-              className="w-full bg-accent hover:bg-accent/90 rounded-full h-12"
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Extracting Content...
-                </>
-              ) : (
-                <>
-                  <Wand2 className="mr-2 h-5 w-5" /> Generate Quiz with AI
-                </>
-              )}
-            </Button>
+            <Tabs defaultValue="ai" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-8">
+                <TabsTrigger value="ai" className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" /> AI Document Extraction
+                </TabsTrigger>
+                <TabsTrigger value="csv" className="flex items-center gap-2">
+                  <FileSpreadsheet className="w-4 h-4" /> CSV Upload
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="ai" className="space-y-4">
+                <Textarea
+                  className="min-h-[200px] font-mono text-sm"
+                  placeholder="Paste text from PDF, DOCX or website. AI will detect questions, options, and answers..."
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                />
+                <Button
+                  onClick={handleExtract}
+                  disabled={loading || !content.trim()}
+                  className="w-full bg-accent hover:bg-accent/90 rounded-full h-12"
+                >
+                  {loading ? <Loader2 className="animate-spin" /> : <><Wand2 className="mr-2" /> Generate with AI</>}
+                </Button>
+              </TabsContent>
+
+              <TabsContent value="csv" className="space-y-6">
+                <div className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-12 bg-muted/30">
+                  <Upload className="w-12 h-12 text-muted-foreground mb-4" />
+                  <p className="text-sm text-center mb-6 max-w-xs text-muted-foreground">
+                    Upload a CSV file with columns: <strong>Question, Option1, Option2, Option3, Option4, CorrectAnswer</strong>
+                  </p>
+                  <Input 
+                    type="file" 
+                    accept=".csv" 
+                    onChange={handleCSVUpload}
+                    className="hidden" 
+                    id="csv-upload"
+                  />
+                  <Button asChild variant="outline" className="rounded-full">
+                    <label htmlFor="csv-upload" className="cursor-pointer">Choose CSV File</label>
+                  </Button>
+                </div>
+              </TabsContent>
+            </Tabs>
 
             {extractedQuestions.length > 0 && (
               <div className="mt-8 space-y-4 animate-slide-up">
                 <div className="flex items-center text-green-600 font-semibold mb-2">
                   <CheckCircle2 className="w-5 h-5 mr-2" />
-                  Preview: {extractedQuestions.length} Questions Found
+                  Preview: {extractedQuestions.length} Questions Loaded
                 </div>
                 <div className="max-h-[300px] overflow-y-auto space-y-3 p-4 bg-muted/50 rounded-lg border border-border">
                   {extractedQuestions.map((q, idx) => (
@@ -169,8 +220,12 @@ export default function CreateQuiz() {
                     </div>
                   ))}
                 </div>
-                <Button onClick={handleSave} className="w-full bg-primary hover:bg-primary/90 text-white rounded-full h-12 mt-4 shadow-lg">
-                  Confirm & Publish Quiz
+                <Button 
+                  onClick={handleSave} 
+                  disabled={loading}
+                  className="w-full bg-primary hover:bg-primary/90 text-white rounded-full h-12 mt-4 shadow-lg"
+                >
+                  {loading ? <Loader2 className="animate-spin" /> : 'Confirm & Sync to Cloud'}
                 </Button>
               </div>
             )}

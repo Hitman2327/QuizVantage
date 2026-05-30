@@ -1,88 +1,101 @@
+
+import { initializeApp, getApps } from "firebase/app";
+import { 
+  getFirestore, 
+  collection, 
+  doc, 
+  setDoc, 
+  getDoc, 
+  getDocs, 
+  deleteDoc, 
+  query, 
+  where, 
+  orderBy, 
+  addDoc 
+} from "firebase/firestore";
 import { Quiz, QuizAttempt } from './types';
 
-const QUIZZES_KEY = 'quizvantage_quizzes';
-const ATTEMPTS_KEY = 'quizvantage_attempts';
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+};
+
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const firestore = getFirestore(app);
+
+const QUIZZES_COL = 'quizzes';
+const ATTEMPTS_COL = 'attempts';
 
 export const db = {
-  getQuizzes: (): Quiz[] => {
-    if (typeof window === 'undefined') return [];
-    try {
-      const data = localStorage.getItem(QUIZZES_KEY);
-      if (!data) return [];
-      const quizzes = JSON.parse(data);
-      return Array.isArray(quizzes) ? quizzes : [];
-    } catch (error) {
-      console.error("[DB] Failed to parse quizzes from localStorage", error);
-      return [];
+  // --- Quizzes ---
+  getQuizzes: async (): Promise<Quiz[]> => {
+    const q = query(collection(firestore, QUIZZES_COL), orderBy("createdAt", "desc"));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Quiz));
+  },
+
+  getQuiz: async (id: string): Promise<Quiz | null> => {
+    const docRef = doc(firestore, QUIZZES_COL, id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return { id: docSnap.id, ...docSnap.data() } as Quiz;
     }
+    return null;
   },
 
-  getQuiz: (id: string): Quiz | undefined => {
-    if (!id) return undefined;
-    const quizzes = db.getQuizzes();
-    // Use a case-insensitive and trimmed comparison for maximum reliability
-    const found = quizzes.find(q => q.id.trim() === id.trim());
-    return found;
+  saveQuiz: async (quiz: Quiz) => {
+    const { id, ...data } = quiz;
+    await setDoc(doc(firestore, QUIZZES_COL, id), data);
   },
 
-  saveQuiz: (quiz: Quiz) => {
-    if (typeof window === 'undefined') return;
-    try {
-      const quizzes = db.getQuizzes();
-      const index = quizzes.findIndex(q => q.id === quiz.id);
-      if (index >= 0) {
-        quizzes[index] = quiz;
-      } else {
-        quizzes.push(quiz);
-      }
-      localStorage.setItem(QUIZZES_KEY, JSON.stringify(quizzes));
-    } catch (error) {
-      console.error("[DB] Failed to save quiz to localStorage", error);
-    }
+  deleteQuiz: async (id: string) => {
+    await deleteDoc(doc(firestore, QUIZZES_COL, id));
+    // Optionally delete associated attempts
   },
 
-  deleteQuiz: (id: string) => {
-    if (typeof window === 'undefined') return;
-    try {
-      const quizzes = db.getQuizzes().filter(q => q.id !== id);
-      localStorage.setItem(QUIZZES_KEY, JSON.stringify(quizzes));
-    } catch (error) {
-      console.error("[DB] Failed to delete quiz from localStorage", error);
-    }
+  // --- Attempts ---
+  saveAttempt: async (attempt: QuizAttempt) => {
+    await addDoc(collection(firestore, ATTEMPTS_COL), attempt);
   },
 
-  saveAttempt: (attempt: QuizAttempt) => {
-    if (typeof window === 'undefined') return;
-    try {
-      const attempts = db.getAttempts();
-      attempts.push(attempt);
-      localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(attempts));
-    } catch (error) {
-      console.error("[DB] Failed to save attempt to localStorage", error);
-    }
+  getAttempts: async (): Promise<QuizAttempt[]> => {
+    const q = query(collection(firestore, ATTEMPTS_COL), orderBy("timestamp", "desc"));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as QuizAttempt));
   },
 
-  getAttempts: (): QuizAttempt[] => {
-    if (typeof window === 'undefined') return [];
-    try {
-      const data = localStorage.getItem(ATTEMPTS_KEY);
-      if (!data) return [];
-      const attempts = JSON.parse(data);
-      return Array.isArray(attempts) ? attempts : [];
-    } catch (error) {
-      console.error("[DB] Failed to parse attempts from localStorage", error);
-      return [];
-    }
-  },
-
-  getAttemptsForQuiz: (quizId: string): QuizAttempt[] => {
-    return db.getAttempts().filter(a => a.quizId === quizId);
-  },
-
-  getAttemptForStudent: (quizId: string, studentName: string): QuizAttempt | undefined => {
-    return db.getAttempts().find(a => 
-      a.quizId === quizId && 
-      a.studentName.toLowerCase().trim() === studentName.toLowerCase().trim()
+  getAttemptsForQuiz: async (quizId: string): Promise<QuizAttempt[]> => {
+    const q = query(
+      collection(firestore, ATTEMPTS_COL), 
+      where("quizId", "==", quizId),
+      orderBy("timestamp", "desc")
     );
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as QuizAttempt));
+  },
+
+  getAttemptsForStudent: async (studentName: string): Promise<QuizAttempt[]> => {
+    const q = query(
+      collection(firestore, ATTEMPTS_COL),
+      where("studentName", "==", studentName),
+      orderBy("timestamp", "desc")
+    );
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as QuizAttempt));
+  },
+
+  getAttemptForStudentInQuiz: async (quizId: string, studentName: string): Promise<QuizAttempt | null> => {
+    const q = query(
+      collection(firestore, ATTEMPTS_COL),
+      where("quizId", "==", quizId),
+      where("studentName", "==", studentName)
+    );
+    const snapshot = await getDocs(q);
+    if (snapshot.empty) return null;
+    return { id: snapshot.docs[0].id, ...snapshot.docs[0].data() } as QuizAttempt;
   }
 };
