@@ -7,7 +7,7 @@
  */
 
 import { db } from './db';
-import { Quiz, QuizAttempt } from './types';
+import { Quiz, QuizAttempt, Question } from './types';
 
 const TIMEOUT_MS = 15000; // 15 seconds
 
@@ -61,6 +61,32 @@ export async function saveQuizAction(quiz: Quiz) {
   } catch (e: any) {
     console.error("Save Quiz Action Error:", e);
     throw new Error(e.message || "Failed to save quiz to cloud.");
+  }
+}
+
+export async function saveQuizFromJSONAction(title: string, description: string, jsonContent: string) {
+  try {
+    console.log("Saving quiz from JSON upload...");
+    const questions = JSON.parse(jsonContent) as Question[];
+
+    // Basic validation
+    if (!Array.isArray(questions) || questions.length === 0) {
+      throw new Error("Invalid JSON format or empty question array.");
+    }
+
+    const newQuiz: Quiz = {
+      id: `quiz-${Date.now()}`,
+      title,
+      description,
+      questions,
+      createdAt: Date.now(),
+    };
+
+    await withTimeout(db.saveQuiz(newQuiz), "Save operation from JSON timed out.");
+    return { success: true, quizId: newQuiz.id };
+  } catch (e: any) {
+    console.error("Save Quiz from JSON Action Error:", e);
+    throw new Error(e.message || "Failed to save quiz from JSON.");
   }
 }
 

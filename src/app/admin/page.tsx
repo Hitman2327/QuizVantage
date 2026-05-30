@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { getQuizzesAction, getAttemptsAction, deleteQuizAction, checkDatabaseHealth } from '@/lib/actions';
 import { Quiz, QuizAttempt } from '@/lib/types';
 import { Button } from "@/components/ui/button";
-import { Plus, Trash2, ExternalLink, Users, BarChart2, BookOpen, Clock, Loader2, Database, AlertCircle, CheckCircle, WifiOff } from "lucide-react";
+import { Plus, Upload, Trash2, ExternalLink, Users, BarChart2, BookOpen, Clock, Loader2, Database, AlertCircle, CheckCircle, WifiOff } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -103,11 +103,18 @@ export default function AdminDashboard() {
             )}
           </div>
         </div>
-        <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-full px-6 h-12">
-          <Link href="/admin/create">
-            <Plus className="mr-2 h-4 w-4" /> Create New Quiz
-          </Link>
-        </Button>
+        <div className="flex gap-2">
+          <Button asChild variant="outline">
+            <Link href="/admin/upload">
+              <Upload className="mr-2 h-4 w-4" /> Upload JSON
+            </Link>
+          </Button>
+          <Button asChild>
+            <Link href="/admin/create">
+              <Plus className="mr-2 h-4 w-4" /> Create New Quiz
+            </Link>
+          </Button>
+        </div>
       </div>
 
       {!dbStatus?.success && (
