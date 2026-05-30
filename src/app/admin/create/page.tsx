@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Sparkles, Wand2, ArrowLeft, CheckCircle2, Clock, Quote, FileSpreadsheet, FileText, Upload } from "lucide-react";
+import { Loader2, Sparkles, Wand2, ArrowLeft, CheckCircle2, Clock, Quote, FileSpreadsheet, Upload } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Papa from 'papaparse';
 
@@ -22,14 +22,17 @@ export default function CreateQuiz() {
   const [welcomeQuote, setWelcomeQuote] = useState('');
   const [timerMinutes, setTimerMinutes] = useState<string>('');
   const [content, setContent] = useState('');
-  const [loading, setLoading] = useState(false);
+  
+  const [extracting, setExtracting] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [extractedQuestions, setExtractedQuestions] = useState<Question[]>([]);
+  
   const router = useRouter();
   const { toast } = useToast();
 
   const handleExtract = async () => {
     if (!content.trim()) return;
-    setLoading(true);
+    setExtracting(true);
     try {
       const result = await createQuizFromDocument({ documentContent: content });
       const formattedQuestions: Question[] = result.map((q, i) => ({
@@ -37,11 +40,11 @@ export default function CreateQuiz() {
         id: `q-${Date.now()}-${i}`,
       }));
       setExtractedQuestions(formattedQuestions);
-      toast({ title: "Questions Extracted", description: `Found ${formattedQuestions.length} questions in your text!` });
+      toast({ title: "Extraction Complete", description: `Found ${formattedQuestions.length} questions!` });
     } catch (error) {
       toast({ title: "Extraction Failed", description: "There was an error parsing your document.", variant: "destructive" });
     } finally {
-      setLoading(false);
+      setExtracting(false);
     }
   };
 
@@ -54,7 +57,6 @@ export default function CreateQuiz() {
       skipEmptyLines: true,
       complete: (results) => {
         const questions: Question[] = results.data.map((row: any, i) => {
-          // Expecting headers: Question, Option1, Option2, Option3, Option4, CorrectAnswer, Explanation
           const options = [row.Option1, row.Option2, row.Option3, row.Option4].filter(Boolean);
           return {
             id: `q-csv-${Date.now()}-${i}`,
@@ -76,7 +78,7 @@ export default function CreateQuiz() {
 
   const handleSave = async () => {
     if (!title || extractedQuestions.length === 0) return;
-    setLoading(true);
+    setSaving(true);
     try {
       const newQuiz: Quiz = {
         id: `quiz-${Date.now()}`,
@@ -92,9 +94,9 @@ export default function CreateQuiz() {
       toast({ title: "Quiz Published!", description: "Your quiz is ready to be shared globally." });
       router.push('/admin');
     } catch (err) {
-      toast({ title: "Save Failed", description: "Could not sync to cloud database.", variant: "destructive" });
+      toast({ title: "Save Failed", description: "Check your cloud database connection or rules.", variant: "destructive" });
     } finally {
-      setLoading(false);
+      setSaving(false);
     }
   };
 
@@ -111,7 +113,7 @@ export default function CreateQuiz() {
         <Card className="border-border shadow-sm">
           <CardHeader>
             <CardTitle className="font-headline">1. Quiz Details</CardTitle>
-            <CardDescription>Basic information for your students.</CardDescription>
+            <CardDescription>Enter basic information for this assessment.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
@@ -131,7 +133,7 @@ export default function CreateQuiz() {
                 <Input
                   id="timer"
                   type="number"
-                  placeholder="e.g., 75 (Leave empty for no limit)"
+                  placeholder="e.g., 75 (Empty for no limit)"
                   value={timerMinutes}
                   onChange={(e) => setTimerMinutes(e.target.value)}
                 />
@@ -153,12 +155,8 @@ export default function CreateQuiz() {
 
         <Card className="border-border shadow-sm">
           <CardHeader>
-            <div className="flex justify-between items-center">
-              <div>
-                <CardTitle className="font-headline">2. Import Content</CardTitle>
-                <CardDescription>Use AI or manual file upload to add questions.</CardDescription>
-              </div>
-            </div>
+            <CardTitle className="font-headline">2. Import Content</CardTitle>
+            <CardDescription>Use AI to extract questions from text or upload a CSV.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <Tabs defaultValue="ai" className="w-full">
@@ -180,10 +178,10 @@ export default function CreateQuiz() {
                 />
                 <Button
                   onClick={handleExtract}
-                  disabled={loading || !content.trim()}
+                  disabled={extracting || !content.trim()}
                   className="w-full bg-accent hover:bg-accent/90 rounded-full h-12"
                 >
-                  {loading ? <Loader2 className="animate-spin" /> : <><Wand2 className="mr-2" /> Generate with AI</>}
+                  {extracting ? <Loader2 className="animate-spin" /> : <><Wand2 className="mr-2" /> Generate with AI</>}
                 </Button>
               </TabsContent>
 
@@ -222,10 +220,10 @@ export default function CreateQuiz() {
                 </div>
                 <Button 
                   onClick={handleSave} 
-                  disabled={loading}
+                  disabled={saving || extracting}
                   className="w-full bg-primary hover:bg-primary/90 text-white rounded-full h-12 mt-4 shadow-lg"
                 >
-                  {loading ? <Loader2 className="animate-spin" /> : 'Confirm & Sync to Cloud'}
+                  {saving ? <Loader2 className="animate-spin" /> : 'Confirm & Sync to Cloud'}
                 </Button>
               </div>
             )}
