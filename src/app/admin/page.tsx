@@ -31,23 +31,47 @@ export default function AdminDashboard() {
 
   const copyLink = async (id: string) => {
     const url = `${window.location.origin}/quiz/${id}`;
+    
     try {
+      // 1. Try modern Clipboard API
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(url);
         toast({ 
           title: "Link Copied", 
           description: "Share this link with your students!" 
         });
-      } else {
-        throw new Error("Clipboard API not available");
+        return;
       }
+      throw new Error("Clipboard API restricted");
     } catch (error) {
-      console.error("Clipboard copy failed:", error);
-      toast({ 
-        title: "Copy Failed", 
-        description: `Browser policy blocked automatic copying. Link: ${url}`,
-        variant: "destructive" 
-      });
+      console.warn("Primary copy method failed, attempting fallback:", error);
+      
+      try {
+        // 2. Try legacy textarea + execCommand fallback
+        const textArea = document.createElement("textarea");
+        textArea.value = url;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        if (successful) {
+          toast({ 
+            title: "Link Copied", 
+            description: "Link copied to clipboard." 
+          });
+          return;
+        }
+      } catch (err) {
+        console.error("Fallback copy failed:", err);
+      }
+
+      // 3. Final fallback: User-triggered prompt
+      window.prompt("Copy this link to share your quiz:", url);
     }
   };
 
