@@ -2,14 +2,15 @@
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import { BookOpen, ShieldCheck, GraduationCap, Globe, Users, Zap } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 space-y-16 pb-20">
       <div className="text-center space-y-6 max-w-3xl pt-20">
-        <Badge variant="outline" className="px-6 py-2 rounded-full border-primary/30 text-primary font-bold bg-primary/5 mb-4">
+        <div className="inline-flex items-center rounded-full border px-6 py-2 border-primary/30 text-primary font-bold bg-primary/5 mb-4 text-xs">
           <Globe className="w-4 h-4 mr-2" /> Global Cloud Learning Platform
-        </Badge>
+        </div>
         <h1 className="text-6xl font-headline font-bold text-primary tracking-tight leading-tight">
           QuizVantage <span className="text-accent">Cloud</span>
         </h1>
@@ -71,16 +72,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
-
-function Badge({ children, className, variant }: any) {
-  return (
-    <div className={cn("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2", className)}>
-      {children}
-    </div>
-  );
-}
-
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(' ');
 }

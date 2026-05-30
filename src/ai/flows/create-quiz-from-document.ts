@@ -2,7 +2,7 @@
 'use server';
 /**
  * @fileOverview This file implements a Genkit flow for extracting quiz questions from document text.
- * It is optimized for speed and accuracy.
+ * It is optimized for large documents and variable MCQ counts.
  */
 
 import { ai } from '@/ai/genkit';
@@ -54,20 +54,21 @@ const extractQuizPrompt = ai.definePrompt({
   name: 'extractQuizPrompt',
   input: { schema: CreateQuizFromDocumentInputSchema },
   output: { schema: CreateQuizFromDocumentOutputSchema },
-  prompt: `You are a high-speed educational AI. Quickly extract high-quality multiple-choice questions from the text below.
+  prompt: `You are a high-speed educational AI. Exhaustively extract high-quality multiple-choice questions from the text below.
 
 Instructions:
-1. Extract as many questions as logically possible (minimum 1, no upper limit).
+1. Identify EVERY potential question that can be derived from the text.
 2. Each question MUST have exactly 4 distinct options.
 3. Mark the correct answer precisely.
-4. Be brief with explanations.
+4. Keep explanations concise but helpful.
+5. If the text is long, do not stop after 5 questions; continue until the entire document is analyzed.
 
 Text Content:
 ---
 {{{documentContent}}}
 ---
 
-Return the questions immediately as a valid JSON array.`,
+Return the complete JSON array of questions immediately.`,
 });
 
 const createQuizFromDocumentFlow = ai.defineFlow(
