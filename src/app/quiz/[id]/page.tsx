@@ -148,7 +148,7 @@ export default function StudentQuiz() {
           <CardHeader className="text-center pt-10">
             {quiz.welcomeQuote && <p className="italic text-muted-foreground mb-4">"{quiz.welcomeQuote}"</p>}
             <CardTitle className="text-3xl font-headline text-primary">{quiz.title}</CardTitle>
-            <CardDescription>{quiz.description || 'Welcome to the assessment portal.'}</CardDescription>
+            {quiz.description && <CardDescription className="mt-2">{quiz.description}</CardDescription>}
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid grid-cols-2 gap-4 py-4 border-y">
@@ -168,7 +168,7 @@ export default function StudentQuiz() {
                 <Input 
                   className="pl-10" 
                   value={studentName} 
-                  onChange={e => setStudentName(e.target.value)} 
+                  onChange={e => setStudentName(e.target.value.trim())} // Trim whitespace from name input
                   placeholder="John Doe"
                 />
               </div>
@@ -268,11 +268,44 @@ export default function StudentQuiz() {
                   <CardTitle className="text-lg mt-2">{q.questionText}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <div className={cn("p-3 rounded-lg border", isCorrect ? "bg-green-50" : "bg-red-50")}>
-                    <span className="text-xs font-bold block opacity-70">Your Answer: {studentAnswer || "None"}</span>
-                  </div>
-                  {!isCorrect && <div className="p-3 rounded-lg border bg-green-50">Correct: {q.correctAnswer}</div>}
-                  {q.explanation && <div className="text-sm italic text-muted-foreground pt-2">Exp: {q.explanation}</div>}
+                  {q.options.map((option, optionIdx) => {
+                    const isStudentAnswer = studentAnswer === option;
+                    const isCorrectAnswer = q.correctAnswer === option;
+                    
+                    let bgColorClass = '';
+                    let textColorClass = '';
+                    let label = '';
+
+                    if (isStudentAnswer && isCorrectAnswer) {
+                      bgColorClass = 'bg-green-50'; // Correct answer selected by student
+                      textColorClass = 'text-green-800';
+                      label = 'Correct';
+                    } else if (isStudentAnswer && !isCorrectAnswer) {
+                      bgColorClass = 'bg-red-50'; // Incorrect answer selected by student
+                      textColorClass = 'text-red-800';
+                      label = 'Your Incorrect Answer';
+                    } else if (isCorrectAnswer) {
+                      bgColorClass = 'bg-green-50'; // Correct answer not selected by student
+                      textColorClass = 'text-green-800';
+                      label = 'Correct Answer';
+                    }
+
+                    return (
+                      <div key={optionIdx} className={cn("p-3 rounded-lg border flex items-center justify-between", bgColorClass, textColorClass)}>
+                        <div className="flex items-center">
+                          <span className={cn("w-8 h-8 rounded-full flex items-center justify-center mr-3 font-bold shrink-0", isCorrectAnswer ? 'bg-green-600 text-white' : 'bg-red-600 text-white')}>{String.fromCharCode(65 + optionIdx)}</span>
+                          <span className="font-medium">{option}</span>
+                        </div>
+                        {label && <Badge variant={isCorrectAnswer ? "default" : "destructive"} className="ml-4">{label}</Badge>}
+                      </div>
+                    );
+                  })}
+                  {q.explanation && (
+                    <div className="mt-3 p-3 rounded-lg bg-muted/30 border border-muted">
+                      <p className="text-sm font-semibold text-muted-foreground mb-1">Explanation:</p>
+                      <p className="text-sm italic text-muted-foreground">{q.explanation}</p>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             );
@@ -285,5 +318,5 @@ export default function StudentQuiz() {
     );
   }
 
-  return null;
+  return null; // Should not be reached
 }
