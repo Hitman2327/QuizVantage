@@ -201,7 +201,7 @@ export default function StudentQuiz() {
           <Card className="border-border shadow-lg">
             <CardHeader className="p-8"><h2 className="text-2xl font-semibold">{currentQuestion.questionText}</h2></CardHeader>
             <CardContent className="p-8 pt-0 space-y-3">
-              {currentQuestion.options.map((option, idx) => {
+              {currentQuestion.options && currentQuestion.options.map((option, idx) => {
                 const isSelected = answers[currentQuestion.id] === option;
                 return (
                   <button
@@ -268,7 +268,7 @@ export default function StudentQuiz() {
                   <CardTitle className="text-lg mt-2">{q.questionText}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  {q.options.map((option, optionIdx) => {
+                  {q.options && q.options.map((option, optionIdx) => {
                     const isStudentAnswer = studentAnswer === option;
                     const isCorrectAnswer = q.correctAnswer === option;
                     
