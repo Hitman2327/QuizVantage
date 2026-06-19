@@ -11,7 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, XCircle, Clock, Quote, ChevronRight, ChevronLeft, Send, AlertTriangle, User, Loader2, BookOpen } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { CheckCircle2, XCircle, Clock, Quote, ChevronRight, ChevronLeft, Send, AlertTriangle, User, Loader2, BookOpen, Edit } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
@@ -30,6 +31,7 @@ export default function StudentQuiz() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [existingAttempt, setExistingAttempt] = useState<QuizAttempt | null>(null);
+  const [dataError, setDataError] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -41,6 +43,10 @@ export default function StudentQuiz() {
       try {
         const loadedQuiz = await getQuizAction(id);
         if (loadedQuiz) {
+          const invalidQuestions = loadedQuiz.questions.filter(q => !Array.isArray(q.options) || q.options.length === 0);
+          if (invalidQuestions.length > 0) {
+            setDataError(`This quiz is unplayable due to ${invalidQuestions.length} malformed question(s) with no answer choices. Please notify the administrator to fix this issue in the admin dashboard.`);
+          }
           setQuiz(loadedQuiz);
         } else {
           toast({ title: "Not Found", description: "Assessment no longer available.", variant: "destructive" });
@@ -68,7 +74,6 @@ export default function StudentQuiz() {
         setStep('result');
         toast({ title: "Results Loaded", description: "Showing your previous submission." });
       } else {
-        // If no existing attempt, proceed directly to the test
         setStep('test'); 
         if (quiz?.timerMinutes) setTimeLeft(quiz.timerMinutes * 60);
       }
@@ -131,6 +136,23 @@ export default function StudentQuiz() {
     );
   }
 
+  if (dataError) {
+    return (
+      <div className="flex items-center justify-center min-h-screen p-4">
+        <Alert variant="destructive" className="max-w-lg shadow-lg">
+          <AlertTriangle className="h-4 w-4" />
+          <AlertTitle>Quiz Data Corrupted</AlertTitle>
+          <AlertDescription>
+            {dataError}
+            <div className="mt-4">
+              <Button onClick={() => router.push('/admin')}><Edit className="w-4 h-4 mr-2"/> Go to Admin</Button>
+            </div>
+          </AlertDescription>
+        </Alert>
+      </div>
+    )
+  }
+
   if (!quiz) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4 text-center">
@@ -168,7 +190,7 @@ export default function StudentQuiz() {
                 <Input 
                   className="pl-10" 
                   value={studentName} 
-                  onChange={e => setStudentName(e.target.value.trim())} // Trim whitespace from name input
+                  onChange={e => setStudentName(e.target.value.trim())} 
                   placeholder="John Doe"
                 />
               </div>
@@ -201,7 +223,7 @@ export default function StudentQuiz() {
           <Card className="border-border shadow-lg">
             <CardHeader className="p-8"><h2 className="text-2xl font-semibold">{currentQuestion.questionText}</h2></CardHeader>
             <CardContent className="p-8 pt-0 space-y-3">
-              {currentQuestion.options && currentQuestion.options.map((option, idx) => {
+              {Array.isArray(currentQuestion.options) && currentQuestion.options.map((option, idx) => {
                 const isSelected = answers[currentQuestion.id] === option;
                 return (
                   <button
@@ -268,7 +290,7 @@ export default function StudentQuiz() {
                   <CardTitle className="text-lg mt-2">{q.questionText}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  {q.options && q.options.map((option, optionIdx) => {
+                  {Array.isArray(q.options) && q.options.map((option, optionIdx) => {
                     const isStudentAnswer = studentAnswer === option;
                     const isCorrectAnswer = q.correctAnswer === option;
                     
@@ -277,15 +299,15 @@ export default function StudentQuiz() {
                     let label = '';
 
                     if (isStudentAnswer && isCorrectAnswer) {
-                      bgColorClass = 'bg-green-50'; // Correct answer selected by student
+                      bgColorClass = 'bg-green-50'; 
                       textColorClass = 'text-green-800';
                       label = 'Correct';
                     } else if (isStudentAnswer && !isCorrectAnswer) {
-                      bgColorClass = 'bg-red-50'; // Incorrect answer selected by student
+                      bgColorClass = 'bg-red-50';
                       textColorClass = 'text-red-800';
                       label = 'Your Incorrect Answer';
                     } else if (isCorrectAnswer) {
-                      bgColorClass = 'bg-green-50'; // Correct answer not selected by student
+                      bgColorClass = 'bg-green-50';
                       textColorClass = 'text-green-800';
                       label = 'Correct Answer';
                     }
@@ -318,5 +340,5 @@ export default function StudentQuiz() {
     );
   }
 
-  return null; // Should not be reached
+  return null;
 }

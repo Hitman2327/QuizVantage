@@ -76,15 +76,21 @@ export async function saveQuizFromJSONAction(title: string, description: string,
     console.log("Saving quiz from JSON upload...");
     const parsedQuestions = JSON.parse(jsonContent) as Omit<Question, 'id'>[];
 
-    // Basic validation
+    // Enhanced validation
     if (!Array.isArray(parsedQuestions) || parsedQuestions.length === 0) {
-      throw new Error("Invalid JSON format or empty question array.");
+      throw new Error("Invalid JSON: The file must contain a non-empty array of questions.");
     }
 
-    const questions: Question[] = parsedQuestions.map((q, i) => ({
+    const questions: Question[] = parsedQuestions.map((q, i) => {
+      // Validate each question object
+      if (!q.questionText || typeof q.questionText !== 'string' || !q.correctAnswer || typeof q.correctAnswer !== 'string' || !Array.isArray(q.options) || q.options.length === 0) {
+        throw new Error(`Invalid question structure at index ${i}. Each question must have a 'questionText', 'correctAnswer', and a non-empty 'options' array.`);
+      }
+      return {
         ...q,
         id: `q-${Date.now()}-${i}`
-    }));
+      };
+    });
 
     const newQuiz: Quiz = {
       id: `quiz-${Date.now()}`,
@@ -100,7 +106,8 @@ export async function saveQuizFromJSONAction(title: string, description: string,
     return { success: true, quizId: newQuiz.id };
   } catch (e: any) {
     console.error("Save Quiz from JSON Action Error:", e);
-    throw new Error(e.message || "Failed to save quiz from JSON.");
+    // Ensure a helpful error message is sent back to the client
+    throw new Error(e.message || "An unknown error occurred while saving the quiz from JSON.");
   }
 }
 
