@@ -13,8 +13,8 @@ import {
 } from "firebase/database";
 import { Quiz, QuizAttempt } from './types';
 
-// **REMOVED HARDCODED URL**
-// const DATABASE_URL = "https://studio-4519492786-48ff8-default-rtdb.asia-southeast1.firebasedatabase.app";
+// Hardcoded URL is correct for this project as confirmed by user's console
+const DATABASE_URL = "https://studio-4519492786-48ff8-default-rtdb.asia-southeast1.firebasedatabase.app";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -23,14 +23,12 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  // Use the databaseURL from your environment variables
-  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL
+  databaseURL: DATABASE_URL // Use the correct hardcoded URL
 };
 
 function getRtdb() {
   if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
     console.error("FIREBASE CONFIG MISSING. Check .env file.");
-    // In a real app, you might want to throw an error or handle this more gracefully
   }
   const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
   return getDatabase(app);
