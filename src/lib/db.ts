@@ -13,7 +13,6 @@ import {
 } from "firebase/database";
 import { Quiz, QuizAttempt } from './types';
 
-// Hardcoded URL is correct for this project as confirmed by user's console
 const DATABASE_URL = "https://studio-4519492786-48ff8-default-rtdb.asia-southeast1.firebasedatabase.app";
 
 const firebaseConfig = {
@@ -23,7 +22,7 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  databaseURL: DATABASE_URL // Use the correct hardcoded URL
+  databaseURL: DATABASE_URL
 };
 
 function getRtdb() {
@@ -46,7 +45,7 @@ export const db = {
       return [];
     } catch (e) {
       console.error("RTDB getQuizzes error:", e);
-      throw e; // Re-throw to be caught by server action
+      throw e;
     }
   },
 
@@ -79,7 +78,6 @@ export const db = {
     const snapshot = await get(ref(rtdb, 'attempts'));
     if (snapshot.exists()) {
       const data = snapshot.val();
-      // Sort results by timestamp descending
       return Object.keys(data)
         .map(key => ({ ...data[key], id: key }))
         .sort((a, b) => b.timestamp - a.timestamp);
@@ -89,25 +87,31 @@ export const db = {
 
   getAttemptsForStudent: async (name: string): Promise<QuizAttempt[]> => {
     const rtdb = getRtdb();
-    const attemptsRef = ref(rtdb, 'attempts');
-    const studentQuery = query(attemptsRef, orderByChild('studentName'), equalTo(name));
-    const snapshot = await get(studentQuery);
+    const snapshot = await get(ref(rtdb, 'attempts'));
     if (snapshot.exists()) {
       const data = snapshot.val();
-      return Object.keys(data).map(key => ({ ...data[key], id: key }));
+      const allAttempts: QuizAttempt[] = Object.keys(data).map(key => ({ ...data[key], id: key }));
+      
+      const lowercasedName = name.toLowerCase();
+      const studentAttempts = allAttempts.filter(attempt => attempt.studentName.toLowerCase() === lowercasedName);
+
+      return studentAttempts.sort((a, b) => b.timestamp - a.timestamp);
     }
     return [];
   },
   
   getAttemptForStudentInQuiz: async (quizId: string, studentName: string): Promise<QuizAttempt | null> => {
     const rtdb = getRtdb();
-    const attemptsRef = ref(rtdb, 'attempts');
-    const studentQuery = query(attemptsRef, orderByChild('studentName'), equalTo(studentName));
-    const snapshot = await get(studentQuery);
-
+    const snapshot = await get(ref(rtdb, 'attempts'));
     if (snapshot.exists()) {
-      const attempts = snapshot.val();
-      const relevantAttempt = Object.values(attempts as Record<string, QuizAttempt>).find(att => att.quizId === quizId);
+      const data = snapshot.val();
+      const allAttempts: QuizAttempt[] = Object.keys(data).map(key => ({ ...data[key], id: key }));
+      
+      const lowercasedName = studentName.toLowerCase();
+      const relevantAttempt = allAttempts.find(att => 
+        att.quizId === quizId && att.studentName.toLowerCase() === lowercasedName
+      );
+      
       return relevantAttempt || null;
     }
     return null;
