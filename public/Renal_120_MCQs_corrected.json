@@ -1,0 +1,1803 @@
+
+[
+  {
+    "id": 1,
+    "subject": "Anatomy",
+    "topic": "Kidney Position",
+    "questionText": "A student is studying kidney surface markings. On the back, the kidneys extend between which vertebral levels?",
+    "options": [
+      "T10 to L1",
+      "T12 to L3",
+      "L1 to L4",
+      "T11 to L2"
+    ],
+    "correctAnswer": "T12 to L3",
+    "explanation": "According to Snell's, on the back the kidneys extend from the 12th thoracic spine to the 3rd lumbar spine, and the hila are opposite the 1st lumbar vertebra. The right kidney lies slightly lower than the left because of the large right lobe of the liver.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 2,
+    "subject": "Anatomy",
+    "topic": "Hilum Contents",
+    "questionText": "During a nephrectomy, the surgeon must identify the structures at the renal hilum. From front to back, the correct order of structures at the renal hilum is:",
+    "options": [
+      "Artery, vein, pelvis of ureter",
+      "Vein, two branches of artery, pelvis of ureter",
+      "Pelvis of ureter, vein, artery",
+      "Artery, pelvis of ureter, vein"
+    ],
+    "correctAnswer": "Vein, two branches of artery, pelvis of ureter",
+    "explanation": "Snell's states the hilum transmits from front backward: the renal vein, two branches of the renal artery, the ureter, and the third branch of the renal artery (mnemonic: VAP – Vein, Artery, Pelvis). Lymph vessels and sympathetic fibres also pass through the hilum.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 3,
+    "subject": "Anatomy",
+    "topic": "Kidney Relations",
+    "questionText": "A CT scan shows a mass compressing the anterior surface of the right kidney. Which of the following structures is NOT an anterior relation of the right kidney?",
+    "options": [
+      "Liver",
+      "Second part of duodenum",
+      "Right colic flexure",
+      "Pancreas"
+    ],
+    "correctAnswer": "Pancreas",
+    "explanation": "Anterior relations of the right kidney are: suprarenal gland, liver, second part of duodenum, and right colic flexure. The pancreas is an anterior relation of the LEFT kidney, along with the suprarenal gland, spleen, stomach, left colic flexure, and jejunum coils.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 4,
+    "subject": "Anatomy",
+    "topic": "Kidney Relations",
+    "questionText": "A patient has a tumor of the body of the pancreas. Which kidney's anterior surface is directly related to this structure?",
+    "options": [
+      "Right kidney",
+      "Left kidney",
+      "Both kidneys equally",
+      "Neither kidney"
+    ],
+    "correctAnswer": "Left kidney",
+    "explanation": "The pancreas lies anterior to the left kidney. Snell's lists the anterior relations of the left kidney as: suprarenal gland, spleen, stomach, pancreas, left colic flexure, and coils of jejunum. The right kidney is related anteriorly to the suprarenal gland, liver, second part of duodenum, and right colic flexure.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 5,
+    "subject": "Anatomy",
+    "topic": "Renal Fascia",
+    "questionText": "A patient has a perirenal abscess that has extended outside the kidney but has NOT affected the suprarenal gland. What explains this clinical finding?",
+    "options": [
+      "The suprarenal gland is protected by the fibrous renal capsule",
+      "The suprarenal gland occupies a separate compartment within the renal fascia",
+      "The perirenal fat acts as a barrier between the kidney and suprarenal gland",
+      "The suprarenal gland has its own thick fibrous capsule"
+    ],
+    "correctAnswer": "The suprarenal gland occupies a separate compartment within the renal fascia",
+    "explanation": "Snell's specifically states: 'Excessive mobility of the kidney leaves the suprarenal gland undisturbed because the latter occupies a separate compartment in the renal fascia (Gerota's fascia).' This separate compartment explains why renal surgery or abscess does not always affect the suprarenal gland.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 6,
+    "subject": "Anatomy",
+    "topic": "Ureteric Constrictions",
+    "questionText": "A 35-year-old man presents to the emergency department with severe flank pain radiating to the groin. An X-ray shows a renal calculus. At which of the following sites is the stone most likely impacted?",
+    "options": [
+      "Where the ureter enters the psoas muscle",
+      "Where the renal pelvis joins the ureter (PUJ), where it crosses the pelvic brim, or where it pierces the bladder wall (VUJ)",
+      "Where the ureter crosses the common iliac artery",
+      "Where the ureter passes behind the uterus in females"
+    ],
+    "correctAnswer": "Where the renal pelvis joins the ureter (PUJ), where it crosses the pelvic brim, or where it pierces the bladder wall (VUJ)",
+    "explanation": "Snell's states the ureter has three constrictions along its course: (1) where the renal pelvis joins the ureter (pelviureteric junction), (2) where it is kinked as it crosses the pelvic brim, and (3) where it pierces the bladder wall (vesicoureteric junction). These are the three sites where kidney stones commonly get stuck.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 7,
+    "subject": "Anatomy",
+    "topic": "Ureter Blood Supply",
+    "questionText": "A urologist is performing a pyeloplasty. The blood supply to the upper end of the ureter is derived from which artery?",
+    "options": [
+      "Superior vesical artery",
+      "Ovarian/testicular artery",
+      "Renal artery",
+      "Common iliac artery"
+    ],
+    "correctAnswer": "Renal artery",
+    "explanation": "Snell's describes the arterial supply to the ureter as follows: upper end from the renal artery, middle portion from the testicular or ovarian artery, and in the pelvis from the superior vesical artery. This segmental blood supply is clinically important during ureteric surgery to avoid ischemia.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 8,
+    "subject": "Anatomy",
+    "topic": "Renal Nerve Supply",
+    "questionText": "A patient with renal colic has pain referred to the flank and anterior abdominal wall. The afferent nerve fibres responsible for this pain enter the spinal cord at which level?",
+    "options": [
+      "T8–T10",
+      "T10–T12",
+      "L1–L2",
+      "S2–S4"
+    ],
+    "correctAnswer": "T10–T12",
+    "explanation": "Snell's states the nerve supply to the kidney is the renal sympathetic plexus, and the afferent fibres that travel through the renal plexus enter the spinal cord in the 10th, 11th, and 12th thoracic nerves. Pain is commonly referred along the distribution of the subcostal nerve (T12) to the flank and anterior abdominal wall.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 9,
+    "subject": "Anatomy",
+    "topic": "Renal Artery",
+    "questionText": "The renal artery divides into five segmental arteries. What is the clinical significance of these segmental arteries?",
+    "options": [
+      "They freely anastomose with each other, so blocking one does not cause infarction",
+      "They are end arteries with no significant anastomoses between segments",
+      "They anastomose extensively with the capsular vessels",
+      "They are branches of the inferior mesenteric artery"
+    ],
+    "correctAnswer": "They are end arteries with no significant anastomoses between segments",
+    "explanation": "Snell's states the renal artery divides into five segmental arteries that are distributed to different segments or areas of the kidney. These are end arteries — blocking one causes infarction of that renal segment. This is why renal artery embolism causes a wedge-shaped infarct.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 10,
+    "subject": "Anatomy",
+    "topic": "Lymph Drainage of Kidney",
+    "questionText": "Carcinoma of the kidney spreads via lymphatics to which group of lymph nodes primarily?",
+    "options": [
+      "Para-aortic nodes at L4",
+      "Lateral aortic (para-aortic) lymph nodes around the origin of the renal artery",
+      "Internal iliac nodes",
+      "Inguinal lymph nodes"
+    ],
+    "correctAnswer": "Lateral aortic (para-aortic) lymph nodes around the origin of the renal artery",
+    "explanation": "According to Snell's, lymph from the kidneys drains to the lateral aortic lymph nodes around the origin of the renal artery. This is at the level of L2. This is clinically important because renal cell carcinoma can spread to these para-aortic nodes.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 11,
+    "subject": "Anatomy",
+    "topic": "Kidney Mobility",
+    "questionText": "A patient is told their right kidney is palpable on deep inspiration. This is considered normal in whom?",
+    "options": [
+      "All adults regardless of body build",
+      "Obese individuals only",
+      "Persons with poorly developed abdominal musculature",
+      "Athletes with very strong abdominal muscles"
+    ],
+    "correctAnswer": "Persons with poorly developed abdominal musculature",
+    "explanation": "Snell's states: 'The lower pole can be palpated in the right lumbar region at the end of deep inspiration in a person with poorly developed abdominal muscles.' Each kidney moves about 1 inch (2.5 cm) in a vertical direction during full respiratory movement of the diaphragm.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 12,
+    "subject": "Anatomy",
+    "topic": "Renal Transplant",
+    "questionText": "During kidney transplantation, where is the donor kidney most commonly placed?",
+    "options": [
+      "Posterior abdominal wall in the normal kidney position",
+      "The iliac fossa on the posterior abdominal wall",
+      "The pelvic cavity near the bladder dome",
+      "Subcutaneous tissue of the anterior abdominal wall"
+    ],
+    "correctAnswer": "The iliac fossa on the posterior abdominal wall",
+    "explanation": "Snell's states: 'The iliac fossa on the posterior abdominal wall is the usual site chosen for transplantation of the kidney.' The fossa is approached retroperitoneally. The renal artery is anastomosed end-to-end to the internal iliac artery, and the renal vein is anastomosed end-to-side to the external iliac vein.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 13,
+    "subject": "Anatomy",
+    "topic": "Bladder Nerve Supply",
+    "questionText": "A 30-year-old man suffers a spinal cord injury at the S2–S3 level. Which function of the bladder will be most directly affected?",
+    "options": [
+      "Storage of urine (controlled by sympathetics from L1–L2)",
+      "Micturition reflex (parasympathetic fibres via pelvic nerves S2–S3)",
+      "Urine production in the kidney",
+      "Ureteric peristalsis"
+    ],
+    "correctAnswer": "Micturition reflex (parasympathetic fibres via pelvic nerves S2–S3)",
+    "explanation": "Snell's states the principal nerve supply of the bladder is via the pelvic nerves, which connect with the spinal cord through the sacral plexus, mainly connecting with cord segments S2 and S3. These carry parasympathetic (motor) fibres to the detrusor muscle that drive the micturition reflex.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 14,
+    "subject": "Anatomy",
+    "topic": "Bladder Anatomy",
+    "questionText": "A patient has a bladder stone visible on cystoscopy, sitting on the inner surface of the bladder. The smooth inner surface where stones commonly lodge is called:",
+    "options": [
+      "Uvula vesicae",
+      "Rugae",
+      "Trigone",
+      "Detrusor dome"
+    ],
+    "correctAnswer": "Trigone",
+    "explanation": "Snell's describes the trigone as a small triangular area on the posterior wall of the bladder, lying immediately above the bladder neck. The trigone can be identified because its mucosa is smooth, in contrast to the remaining bladder mucosa which is folded to form rugae. The two ureters enter at the uppermost angles and the urethra exits at the apex of the trigone.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 15,
+    "subject": "Anatomy",
+    "topic": "External Sphincter of Bladder",
+    "questionText": "During urinary continence, which sphincter is under voluntary control and can consciously delay urination?",
+    "options": [
+      "Internal sphincter — smooth muscle controlled by sympathetics",
+      "Detrusor muscle",
+      "External sphincter — skeletal muscle controlled by pudendal nerve",
+      "Trigone musculature"
+    ],
+    "correctAnswer": "External sphincter — skeletal muscle controlled by pudendal nerve",
+    "explanation": "Snell's states the external sphincter is a layer of muscle in the urogenital diaphragm. It is a voluntary skeletal muscle innervated via the pudendal nerve, in contrast to the internal sphincter and detrusor which are smooth muscle. The external sphincter can be used to consciously prevent urination even when involuntary controls are attempting to empty the bladder.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 16,
+    "subject": "Anatomy",
+    "topic": "Vesicoureteric Reflux",
+    "questionText": "A 6-year-old child has repeated urinary tract infections. Imaging shows urine refluxing from the bladder into the ureter during voiding. What is the anatomical reason for this?",
+    "options": [
+      "The detrusor muscle is too thick",
+      "The distance the ureter courses through the bladder wall is less than normal, preventing occlusion during contraction",
+      "The trigone is absent",
+      "The internal sphincter is non-functional"
+    ],
+    "correctAnswer": "The distance the ureter courses through the bladder wall is less than normal, preventing occlusion during contraction",
+    "explanation": "Snell's explains that in some people, the distance that the ureter courses through the bladder wall is less than normal; thus contraction of the bladder during micturition does not always occlude the ureter completely. As a result, urine in the bladder is propelled backward into the ureter — vesicoureteral reflux — which can increase pressure in the renal calyces and damage the medulla.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 17,
+    "subject": "Anatomy",
+    "topic": "Ureter Length",
+    "questionText": "A urologist compares the ureter to another abdominal structure of the same length during a teaching session. The ureter is approximately how long, and which structure shares this length?",
+    "options": [
+      "10 cm – equal to the trachea",
+      "25 cm – equal to the esophagus",
+      "30 cm – equal to the sigmoid colon",
+      "15 cm – equal to the descending colon"
+    ],
+    "correctAnswer": "25 cm – equal to the esophagus",
+    "explanation": "Snell's states each ureter measures about 10 inches (25 cm) long and 'resembles the esophagus (also 10 in. long) in having three constrictions along its course.' The three constrictions of the ureter are clinically important sites for renal stone impaction.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 18,
+    "subject": "Anatomy",
+    "topic": "Kidney Trauma",
+    "questionText": "A patient arrives after a road traffic accident with hematuria. A CT scan shows blood and urine in the perirenal and pararenal fat, blood in the calyces, but the kidney is not shattered. This corresponds to which grade of renal injury?",
+    "options": [
+      "Contusion — hemorrhage confined beneath the intact fibrous capsule",
+      "Tearing of capsule and cortex only, with bleeding into perirenal fat",
+      "Tearing of capsule, cortex, and medulla with escape of blood into calyces",
+      "Shattered kidney with extensive hemorrhage"
+    ],
+    "correctAnswer": "Tearing of capsule, cortex, and medulla with escape of blood into calyces",
+    "explanation": "Snell's describes injury type C as: tearing of the capsule, the cortex, and the medulla, with escape of blood into the calyces and therefore the urine. Urine as well as blood may extravasate into the perirenal and pararenal fat and into the peritoneal cavity. This matches the clinical description — hematuria plus perirenal collection but intact kidney shape.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 19,
+    "subject": "Anatomy",
+    "topic": "Renal Structure",
+    "questionText": "Which part of the renal medulla projects medially and is indented by each minor calyx?",
+    "options": [
+      "Renal column",
+      "Medullary ray",
+      "Renal papilla (apex of the renal pyramid)",
+      "Cortical lobule"
+    ],
+    "correctAnswer": "Renal papilla (apex of the renal pyramid)",
+    "explanation": "Snell's describes the renal pyramid as having its base oriented toward the cortex and its apex — the renal papilla — projecting medially. The apex of the renal pyramid (renal papilla) indents each minor calyx. The renal pelvis divides into 2–3 major calyces, each of which divides into 2–3 minor calyces.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 20,
+    "subject": "Anatomy",
+    "topic": "Kidney Coverings",
+    "questionText": "From innermost to outermost, the correct order of coverings of the kidney is:",
+    "options": [
+      "Fibrous capsule → perirenal fat → renal fascia → pararenal fat",
+      "Perirenal fat → fibrous capsule → renal fascia → pararenal fat",
+      "Renal fascia → perirenal fat → fibrous capsule → pararenal fat",
+      "Fibrous capsule → renal fascia → perirenal fat → pararenal fat"
+    ],
+    "correctAnswer": "Fibrous capsule → perirenal fat → renal fascia → pararenal fat",
+    "explanation": "According to Snell's, the coverings from inside out are: (1) Fibrous capsule — closely applied to the outer surface; (2) Perirenal fat — covers the fibrous capsule; (3) Renal fascia (Gerota's fascia) — condensation of connective tissue enclosing kidneys and suprarenal glands; (4) Pararenal fat — external to the renal fascia, often in large quantity.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 21,
+    "subject": "Anatomy",
+    "topic": "Kidney Blood Supply",
+    "questionText": "At what vertebral level does the renal artery arise from the aorta?",
+    "options": [
+      "T12",
+      "L1",
+      "L2",
+      "L3"
+    ],
+    "correctAnswer": "L2",
+    "explanation": "Snell's states: 'The renal artery arises from the aorta at the level of the second lumbar vertebra.' The renal vein emerges from the hilum in front of the renal artery and drains into the inferior vena cava. The left renal vein also receives the left testicular vein, which is why left-sided testicular tumors or varicoceles can be associated with left renal vein compression.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 22,
+    "subject": "Anatomy",
+    "topic": "Kidney on Hilum",
+    "questionText": "On the anterior abdominal wall surface marking, the hilum of each kidney lies on which plane and at what distance from the midline?",
+    "options": [
+      "Transtubercular plane, 5 fingerbreadths from midline",
+      "Transpyloric plane, approximately 3 fingerbreadths from the midline",
+      "Subcostal plane, 2 fingerbreadths from midline",
+      "Intertubercular plane, 4 fingerbreadths from midline"
+    ],
+    "correctAnswer": "Transpyloric plane, approximately 3 fingerbreadths from the midline",
+    "explanation": "Snell's states: 'On the anterior abdominal wall, the hilum of each kidney lies on the transpyloric plane, about three fingerbreadths from the midline.' The transpyloric plane passes through the pylorus of the stomach, the neck of the pancreas, and the hilum of the kidneys at the L1 vertebral level.",
+    "source": "Snell's Clinical Anatomy by Regions – Chapter 7"
+  },
+  {
+    "id": 23,
+    "subject": "Physiology",
+    "topic": "Body Fluid Compartments",
+    "questionText": "A 70-kg male patient is admitted for assessment of fluid status. His total body water (TBW) is approximately:",
+    "options": [
+      "28 litres (40% body weight)",
+      "35 litres (50% body weight)",
+      "42 litres (60% body weight)",
+      "56 litres (80% body weight)"
+    ],
+    "correctAnswer": "42 litres (60% body weight)",
+    "explanation": "Guyton states: 'In a 70-kg adult man, the total body water is about 60% of the body weight, or about 42 liters.' Women average about 50% because they have a greater percentage of body fat. This percentage also decreases with age and obesity. The 42L is distributed as: ICF = 28L (40% body weight) and ECF = 14L (20% body weight).",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 24,
+    "subject": "Physiology",
+    "topic": "Body Fluid Compartments",
+    "questionText": "In a 70-kg man, the intracellular fluid (ICF) volume is approximately:",
+    "options": [
+      "14 litres",
+      "21 litres",
+      "28 litres",
+      "35 litres"
+    ],
+    "correctAnswer": "28 litres",
+    "explanation": "Guyton states the ICF constitutes about 40% of the total body weight in an average person, which is 28 litres in a 70-kg man. The ECF is about 20% of body weight (14 litres), further divided into interstitial fluid (11L) and plasma (3L). The ICF is the largest compartment.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 25,
+    "subject": "Physiology",
+    "topic": "Blood Volume",
+    "questionText": "A patient is told their blood volume is 'normal for their body weight.' The average blood volume of adults is approximately:",
+    "options": [
+      "3% of body weight (~2.1 litres)",
+      "5% of body weight (~3.5 litres)",
+      "7% of body weight (~5 litres)",
+      "10% of body weight (~7 litres)"
+    ],
+    "correctAnswer": "7% of body weight (~5 litres)",
+    "explanation": "Guyton states: 'The average blood volume of adults is about 7% of body weight, or about 5 liters. About 60% of the blood is plasma and 40% is red blood cells.' The hematocrit is normally about 0.40 in men and 0.36 in women.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 26,
+    "subject": "Physiology",
+    "topic": "Edema",
+    "questionText": "A 45-year-old woman has pitting edema of both legs. When you press your thumb into the shin, it leaves a pit for a few seconds. This is because:",
+    "options": [
+      "Intracellular fluid has accumulated in the muscle cells",
+      "Free fluid in the interstitium (positive pressure range) can be pushed out and flows back slowly",
+      "Fibrinogen has clotted the interstitial fluid making it immobile",
+      "The lymphatic vessels are obstructed by filarial worms"
+    ],
+    "correctAnswer": "Free fluid in the interstitium (positive pressure range) can be pushed out and flows back slowly",
+    "explanation": "Guyton explains that when interstitial fluid pressure rises into the positive pressure range, there is tremendous accumulation of FREE fluid in the tissues (not gel-bound). This free fluid can be pushed aside by pressing the thumb (leaving a pit) and flows back when the thumb is removed. This is pitting edema. Non-pitting edema occurs when fluid is clotted with fibrinogen or when cells swell.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 27,
+    "subject": "Physiology",
+    "topic": "Edema — Nephrotic Syndrome",
+    "questionText": "A child has generalised edema, frothy urine, and a serum albumin of 1.5 g/100mL. What is the main mechanism of edema in this case?",
+    "options": [
+      "Increased capillary hydrostatic pressure due to heart failure",
+      "Lymphatic obstruction by filarial worms",
+      "Decreased plasma colloid osmotic pressure due to urinary protein loss",
+      "Increased capillary permeability due to histamine"
+    ],
+    "correctAnswer": "Decreased plasma colloid osmotic pressure due to urinary protein loss",
+    "explanation": "Guyton describes nephrotic syndrome: damage to glomerular membranes causes protein to leak into urine, reducing plasma protein concentration. Serious generalised edema occurs when plasma protein falls below 2.5 g/100 mL. The fall in plasma colloid osmotic pressure leads to increased capillary filtration throughout the body. This is the prototype of edema caused by decreased plasma proteins.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 28,
+    "subject": "Physiology",
+    "topic": "Edema — Safety Factors",
+    "questionText": "The total safety factor against edema in peripheral tissues is approximately:",
+    "options": [
+      "7 mmHg",
+      "10 mmHg",
+      "17 mmHg",
+      "25 mmHg"
+    ],
+    "correctAnswer": "17 mmHg",
+    "explanation": "Guyton states the total safety factor against edema is about 17 mmHg, comprising: (1) low tissue compliance in the negative pressure range = 3 mmHg; (2) increased lymph flow = 7 mmHg; (3) washdown of interstitial proteins = 7 mmHg. This means capillary pressure could theoretically rise by ~17 mmHg before marked edema occurs.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 29,
+    "subject": "Physiology",
+    "topic": "Hyponatremia",
+    "questionText": "A 55-year-old patient with small cell lung carcinoma develops confusion and serum Na+ of 118 mEq/L. His urine sodium is high. What is the most likely diagnosis?",
+    "options": [
+      "Diabetes insipidus",
+      "Primary hyperaldosteronism",
+      "Syndrome of inappropriate ADH secretion (SIADH)",
+      "Addison's disease"
+    ],
+    "correctAnswer": "Syndrome of inappropriate ADH secretion (SIADH)",
+    "explanation": "Guyton's Table 25-4 lists SIADH (syndrome of inappropriate ADH secretion) and bronchogenic tumors as causes of hyponatremia-overhydration, where plasma Na+ decreases and ECF volume increases. Small cell lung carcinoma is a classic paraneoplastic cause of SIADH — ectopic ADH production causes excess water retention, diluting plasma sodium.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 30,
+    "subject": "Physiology",
+    "topic": "Hypernatremia",
+    "questionText": "A patient has hypernatremia with decreased ECF volume. He is excreting large volumes of very dilute urine despite being dehydrated. What is the diagnosis?",
+    "options": [
+      "Primary hyperaldosteronism",
+      "SIADH",
+      "Diabetes insipidus (central or nephrogenic)",
+      "Cushing's disease"
+    ],
+    "correctAnswer": "Diabetes insipidus (central or nephrogenic)",
+    "explanation": "Guyton states that primary loss of water from the ECF results in hypernatremia and dehydration. Lack of ADH (central DI) causes the kidneys to excrete large amounts of dilute urine causing dehydration and concentrated Na+ in ECF. Nephrogenic DI has the same effect but the kidneys cannot respond to ADH. Guyton's Table 25-4 classifies this as hypernatremia-dehydration.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 31,
+    "subject": "Physiology",
+    "topic": "Kidney Functions",
+    "questionText": "A patient with chronic kidney disease on dialysis develops severe anemia. Which kidney function is directly responsible for this complication when lost?",
+    "options": [
+      "Production of calcitriol (active vitamin D)",
+      "Gluconeogenesis",
+      "Secretion of erythropoietin",
+      "Acid-base regulation"
+    ],
+    "correctAnswer": "Secretion of erythropoietin",
+    "explanation": "Guyton states: 'The kidneys secrete erythropoietin, which stimulates production of red blood cells by hematopoietic stem cells in the bone marrow. One important stimulus for erythropoietin secretion is hypoxia. In people with severe kidney disease or who have had their kidneys removed and are on hemodialysis, severe anemia develops as a result of decreased erythropoietin production.'",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 32,
+    "subject": "Physiology",
+    "topic": "Kidney Functions",
+    "questionText": "A patient with chronic kidney disease develops bone pain and hypocalcemia. Which kidney function is responsible for calcium regulation when impaired?",
+    "options": [
+      "Secretion of aldosterone",
+      "Production of 1,25-dihydroxyvitamin D3 (calcitriol) by hydroxylation",
+      "Gluconeogenesis from amino acids",
+      "Secretion of renin"
+    ],
+    "correctAnswer": "Production of 1,25-dihydroxyvitamin D3 (calcitriol) by hydroxylation",
+    "explanation": "Guyton states: 'The kidneys produce 1,25-dihydroxyvitamin D3 (calcitriol), the active form of vitamin D, by hydroxylating this vitamin at the number 1 position. Calcitriol is essential for normal calcium deposition in bone and calcium reabsorption by the gastrointestinal tract.' In chronic kidney disease, this hydroxylation is impaired, causing renal osteodystrophy.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 33,
+    "subject": "Physiology",
+    "topic": "Nephron Types",
+    "questionText": "Which type of nephron has long loops of Henle that dip deeply into the medulla, all the way to the tips of the renal papillae, and is essential for concentrating urine?",
+    "options": [
+      "Cortical nephrons (80% of nephrons)",
+      "Juxtamedullary nephrons (20–30% of nephrons)",
+      "All nephrons have equal loop lengths",
+      "Superficial cortical nephrons"
+    ],
+    "correctAnswer": "Juxtamedullary nephrons (20–30% of nephrons)",
+    "explanation": "Guyton states: 'About 20% to 30% of the nephrons have glomeruli that lie deep in the renal cortex near the medulla and are called juxtamedullary nephrons. These nephrons have long loops of Henle that dip deeply into the medulla, in some cases all the way to the tips of the renal papillae.' These nephrons, with their associated vasa recta, are essential for the countercurrent mechanism and urine concentration.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 34,
+    "subject": "Physiology",
+    "topic": "Glomerular Filtration",
+    "questionText": "The normal glomerular filtration rate (GFR) in a 70-kg adult is approximately:",
+    "options": [
+      "60 mL/min",
+      "90 mL/min",
+      "125 mL/min",
+      "180 mL/min"
+    ],
+    "correctAnswer": "125 mL/min",
+    "explanation": "Guyton states the normal GFR is approximately 125 mL/min (or 180 L/day). The kidneys receive about 22% of cardiac output (1100 mL/min as renal blood flow). The filtration fraction — GFR divided by renal plasma flow — is approximately 20% under normal conditions. Even a 10% increase in GFR from 180 to 198 L/day would raise urine volume 13-fold if reabsorption remained constant.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 27"
+  },
+  {
+    "id": 35,
+    "subject": "Physiology",
+    "topic": "Glomerular Filtration",
+    "questionText": "A doctor calculates the filtration fraction. If GFR = 125 mL/min and renal plasma flow = 625 mL/min, the filtration fraction is:",
+    "options": [
+      "10%",
+      "15%",
+      "20%",
+      "25%"
+    ],
+    "correctAnswer": "20%",
+    "explanation": "Guyton defines filtration fraction = GFR ÷ Renal Plasma Flow = 125/625 = 0.20 = 20%. This means 20% of the plasma flowing through the glomerular capillaries is filtered into Bowman's capsule. Increasing the filtration fraction concentrates the plasma proteins and raises glomerular capillary colloid osmotic pressure, which can reduce GFR.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 27"
+  },
+  {
+    "id": 36,
+    "subject": "Physiology",
+    "topic": "GFR Regulation",
+    "questionText": "A patient is given a drug that constricts the afferent arteriole. What is the expected effect on GFR and renal blood flow?",
+    "options": [
+      "GFR increases, renal blood flow increases",
+      "GFR decreases, renal blood flow decreases",
+      "GFR increases, renal blood flow decreases",
+      "GFR unchanged due to autoregulation only"
+    ],
+    "correctAnswer": "GFR decreases, renal blood flow decreases",
+    "explanation": "Guyton states that increased resistance of afferent arterioles reduces glomerular hydrostatic pressure and decreases the GFR, while also decreasing renal blood flow. This is shown in Guyton's Figure 27-6. Conversely, dilation of the afferent arterioles increases both glomerular hydrostatic pressure and GFR.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 27"
+  },
+  {
+    "id": 37,
+    "subject": "Physiology",
+    "topic": "GFR Regulation",
+    "questionText": "The glomerular capillary hydrostatic pressure under normal conditions is approximately:",
+    "options": [
+      "13 mmHg",
+      "28 mmHg",
+      "45 mmHg",
+      "60 mmHg"
+    ],
+    "correctAnswer": "60 mmHg",
+    "explanation": "Guyton states: 'The glomerular capillary hydrostatic pressure has been estimated to be about 60 mm Hg under normal conditions.' This is in contrast to peritubular capillary pressure of approximately 13 mmHg. The high glomerular pressure (60 mmHg) drives filtration, while the low peritubular pressure (13 mmHg) permits rapid tubular reabsorption.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 27"
+  },
+  {
+    "id": 38,
+    "subject": "Physiology",
+    "topic": "Autoregulation",
+    "questionText": "A patient's arterial blood pressure drops suddenly. The kidneys maintain GFR near normal. Which two mechanisms are responsible for renal autoregulation?",
+    "options": [
+      "ADH and aldosterone responses",
+      "Myogenic reflex and tubuloglomerular feedback (TGF)",
+      "Renin-angiotensin and prostaglandins",
+      "Sympathetic nervous system and dopamine"
+    ],
+    "correctAnswer": "Myogenic reflex and tubuloglomerular feedback (TGF)",
+    "explanation": "Guyton describes two major mechanisms of renal autoregulation: (1) Myogenic reflex — the afferent arteriole automatically constricts or dilates in response to pressure changes (intrinsic smooth muscle property); (2) Tubuloglomerular feedback (TGF) — the macula densa senses NaCl in the tubular fluid and signals back to the afferent arteriole. These maintain GFR between mean arterial pressures of roughly 75–160 mmHg.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 27"
+  },
+  {
+    "id": 39,
+    "subject": "Physiology",
+    "topic": "Renin-Angiotensin System",
+    "questionText": "A patient with severe hemorrhagic shock has very low blood pressure. Which cells in the kidney sense this and release renin?",
+    "options": [
+      "Podocytes of the glomerulus",
+      "Macula densa cells of the DCT",
+      "Juxtaglomerular (JG) cells — modified smooth muscle cells of the afferent arteriole",
+      "Mesangial cells"
+    ],
+    "correctAnswer": "Juxtaglomerular (JG) cells — modified smooth muscle cells of the afferent arteriole",
+    "explanation": "Guyton describes that the juxtaglomerular (JG) cells are modified smooth muscle cells located in the wall of the afferent arteriole as it enters the glomerulus. They respond to decreased arterial pressure (stretch) and decreased NaCl delivery sensed by the macula densa by secreting renin. Renin then cleaves angiotensinogen → angiotensin I → angiotensin II (by ACE) → aldosterone release.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 27"
+  },
+  {
+    "id": 40,
+    "subject": "Physiology",
+    "topic": "Proximal Tubule Reabsorption",
+    "questionText": "What fraction of the filtered water and sodium is reabsorbed by the proximal convoluted tubule?",
+    "options": [
+      "50%",
+      "65–67%",
+      "80%",
+      "90%"
+    ],
+    "correctAnswer": "65–67%",
+    "explanation": "Guyton states the proximal tubule reabsorbs about 65% of the filtered water, sodium, and other solutes. He confirms this using the inulin tubular fluid/plasma concentration ratio: at the end of the proximal tubule, this ratio rises to about 3.0, meaning 2/3 of the filtered water has been reabsorbed (leaving 1/3 in the tubule). The PCT has brush borders (high mitochondria) for active transport.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 28"
+  },
+  {
+    "id": 41,
+    "subject": "Physiology",
+    "topic": "Glucose Reabsorption",
+    "questionText": "A patient with diabetes mellitus has a fasting blood glucose of 250 mg/dL and is excreting glucose in the urine. The tubular maximum (Tm) for glucose is approximately:",
+    "options": [
+      "150 mg/min",
+      "275 mg/min",
+      "375 mg/min",
+      "500 mg/min"
+    ],
+    "correctAnswer": "375 mg/min",
+    "explanation": "Guyton states the tubular maximum (Tm) for glucose is approximately 375 mg/min. The renal threshold for glucose (when glycosuria begins) is approximately 180 mg/dL of plasma glucose. When plasma glucose exceeds this, the filtered load exceeds the Tm and glucose appears in urine. The SGLT2 (sodium-glucose cotransporter) in the PCT is the main transporter for glucose reabsorption.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 28"
+  },
+  {
+    "id": 42,
+    "subject": "Physiology",
+    "topic": "Loop of Henle",
+    "questionText": "The thick ascending limb of the loop of Henle is the site of action of furosemide. This limb has which special permeability property?",
+    "options": [
+      "Permeable to water only, impermeable to solutes",
+      "Permeable to both water and solutes equally",
+      "Impermeable to water, actively transports NaCl (via NaKCl cotransporter)",
+      "Permeable to urea only"
+    ],
+    "correctAnswer": "Impermeable to water, actively transports NaCl (via NaKCl cotransporter)",
+    "explanation": "Guyton describes the thick ascending limb as impermeable to water but actively transporting NaCl via the NaKCl (NKCC2) cotransporter. This is the key to the countercurrent multiplier — salt leaves without water, making the interstitium hyperosmotic and the tubular fluid hypoosmotic. Furosemide blocks NKCC2, abolishing the medullary gradient and preventing urine concentration.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 28"
+  },
+  {
+    "id": 43,
+    "subject": "Physiology",
+    "topic": "Diuretics — Sites of Action",
+    "questionText": "A cardiologist prescribes a drug for a patient with heart failure edema. The drug blocks the NaKCl cotransporter in the thick ascending limb of the loop of Henle. This drug is:",
+    "options": [
+      "Spironolactone",
+      "Hydrochlorothiazide",
+      "Furosemide",
+      "Acetazolamide"
+    ],
+    "correctAnswer": "Furosemide",
+    "explanation": "Guyton confirms that loop diuretics (furosemide) act on the thick ascending limb of the loop of Henle, where they block the NaKCl (NKCC2) cotransporter. This prevents salt reabsorption, abolishes the medullary osmotic gradient, and produces a large, dilute urine. Furosemide is the most powerful diuretic and is first-line for acute pulmonary edema.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 32"
+  },
+  {
+    "id": 44,
+    "subject": "Physiology",
+    "topic": "Diuretics — Sites of Action",
+    "questionText": "A hypertensive patient is prescribed hydrochlorothiazide. Where does this drug act in the nephron?",
+    "options": [
+      "Proximal convoluted tubule",
+      "Thick ascending limb of loop of Henle",
+      "Distal convoluted tubule — blocks NaCl cotransporter",
+      "Collecting duct — blocks aldosterone receptor"
+    ],
+    "correctAnswer": "Distal convoluted tubule — blocks NaCl cotransporter",
+    "explanation": "Guyton specifies that thiazide diuretics act on the distal convoluted tubule (DCT) by blocking the NaCl cotransporter (thiazide-sensitive cotransporter). This reduces sodium reabsorption in the DCT. Thiazides are milder than loop diuretics and are commonly used for hypertension and mild edema. They also reduce calcium excretion (useful in nephrolithiasis from hypercalciuria).",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 32"
+  },
+  {
+    "id": 45,
+    "subject": "Physiology",
+    "topic": "Diuretics — Potassium Sparing",
+    "questionText": "A patient on furosemide develops severe hypokalemia. The doctor adds spironolactone. Which mechanism explains why spironolactone is potassium-sparing?",
+    "options": [
+      "It blocks the NaKCl cotransporter, preventing K+ secretion",
+      "It blocks the aldosterone receptor in the collecting duct, reducing ENaC and K+ secretion",
+      "It blocks the thiazide-sensitive NaCl transporter in the DCT",
+      "It activates aquaporin-2 to retain water and dilute K+"
+    ],
+    "correctAnswer": "It blocks the aldosterone receptor in the collecting duct, reducing ENaC and K+ secretion",
+    "explanation": "Guyton states spironolactone blocks the aldosterone receptor in the collecting duct, preventing aldosterone from stimulating ENaC (epithelial sodium channels) and K+ secretion via ROMK. Without aldosterone action, less Na+ is reabsorbed and less K+ is secreted, so K+ is conserved. Amiloride and triamterene also spare K+ but by directly blocking ENaC rather than the aldosterone receptor.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 32"
+  },
+  {
+    "id": 46,
+    "subject": "Physiology",
+    "topic": "Aldosterone and ADH",
+    "questionText": "Aldosterone and ADH both act on the collecting duct but through different mechanisms. How does ADH increase water reabsorption?",
+    "options": [
+      "ADH opens ENaC sodium channels to drive osmotic water flow",
+      "ADH inserts aquaporin-2 water channels into the luminal membrane of collecting duct cells",
+      "ADH blocks the NaKCl cotransporter, concentrating the urine",
+      "ADH activates aldosterone receptors to reabsorb sodium and water together"
+    ],
+    "correctAnswer": "ADH inserts aquaporin-2 water channels into the luminal membrane of collecting duct cells",
+    "explanation": "Guyton describes ADH (vasopressin) acting on the collecting duct by stimulating insertion of aquaporin-2 (AQP2) water channels into the luminal (apical) membrane. This makes the collecting duct permeable to water, allowing water to move into the hypertonic medullary interstitium and concentrate the urine. Without ADH, the collecting duct is virtually impermeable to water, producing dilute urine.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 28"
+  },
+  {
+    "id": 47,
+    "subject": "Physiology",
+    "topic": "Countercurrent Mechanism",
+    "questionText": "The medullary osmolality gradient in the kidney ranges from:",
+    "options": [
+      "150 to 600 mOsm (corticomedullary direction)",
+      "300 mOsm at the cortex to 1200 mOsm at the papilla tip",
+      "285 mOsm throughout the medulla",
+      "600 mOsm at the cortex to 300 mOsm at the papilla"
+    ],
+    "correctAnswer": "300 mOsm at the cortex to 1200 mOsm at the papilla tip",
+    "explanation": "Guyton describes the medullary osmolality gradient ranging from 300 mOsm at the corticomedullary junction to 1200 mOsm at the inner medullary papilla. This gradient is created by the countercurrent multiplier (thick ascending limb pumps NaCl without water) and maintained by the countercurrent exchanger (vasa recta). Urea recycling from the inner medullary collecting duct also contributes significantly to the high papillary osmolality.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 29"
+  },
+  {
+    "id": 48,
+    "subject": "Physiology",
+    "topic": "Urine Concentration",
+    "questionText": "A patient is diagnosed with central diabetes insipidus (absent ADH). What is the minimum urine osmolality they can produce?",
+    "options": [
+      "285 mOsm (isotonic to plasma)",
+      "150 mOsm",
+      "50 mOsm",
+      "100 mOsm"
+    ],
+    "correctAnswer": "50 mOsm",
+    "explanation": "Guyton states the minimum urine concentration (produced in the absence of ADH, as in diabetes insipidus) is approximately 50 mOsm/L. The maximum urine concentration when ADH is maximal is about 1200 mOsm/L. In diabetes insipidus, large volumes of very dilute urine (50 mOsm) are produced because without ADH, the collecting duct is impermeable to water.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 29"
+  },
+  {
+    "id": 49,
+    "subject": "Physiology",
+    "topic": "Urine Concentration",
+    "questionText": "The vasa recta (specialized peritubular capillaries of juxtamedullary nephrons) play which role in urine concentration?",
+    "options": [
+      "They are the countercurrent multiplier that creates the osmotic gradient",
+      "They act as a countercurrent exchanger that preserves (does not wash out) the medullary osmotic gradient",
+      "They secrete urea into the medullary interstitium",
+      "They contain aquaporin-2 that responds to ADH"
+    ],
+    "correctAnswer": "They act as a countercurrent exchanger that preserves (does not wash out) the medullary osmotic gradient",
+    "explanation": "Guyton distinguishes two countercurrent systems: (1) Countercurrent multiplier = thick ascending limb of loop of Henle (CREATES the gradient by pumping NaCl); (2) Countercurrent exchanger = vasa recta (PRESERVES the gradient by allowing equilibration as blood flows down and up, preventing washout). Without vasa recta, blood flowing through the medulla would wash out the osmotic gradient.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 29"
+  },
+  {
+    "id": 50,
+    "subject": "Physiology",
+    "topic": "Potassium Handling",
+    "questionText": "What percentage of filtered potassium is reabsorbed in the proximal convoluted tubule?",
+    "options": [
+      "40%",
+      "50%",
+      "65%",
+      "90%"
+    ],
+    "correctAnswer": "65%",
+    "explanation": "Guyton states that about 65% of filtered potassium is reabsorbed in the proximal convoluted tubule. The remaining K+ undergoes variable secretion (or sometimes reabsorption) in the collecting duct, mainly via ROMK channels, under the control of aldosterone. Urinary K+ excretion is primarily determined by collecting duct secretion, not PCT reabsorption.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 30"
+  },
+  {
+    "id": 51,
+    "subject": "Physiology",
+    "topic": "Calcium Handling",
+    "questionText": "Parathyroid hormone (PTH) increases calcium reabsorption. At which segment of the nephron does PTH primarily regulate calcium reabsorption?",
+    "options": [
+      "Proximal convoluted tubule",
+      "Thick ascending limb",
+      "Distal convoluted tubule",
+      "Collecting duct"
+    ],
+    "correctAnswer": "Distal convoluted tubule",
+    "explanation": "Guyton states: 'Ca2+ reabsorption: 99% reabsorbed — PCT 67%, thick ascending loop 25%, DCT PTH-regulated.' PTH acts primarily on the DCT to increase calcium reabsorption. Only 1% of filtered calcium is excreted in urine. PTH also acts on bone to release calcium and on the kidney to activate calcitriol (1,25-dihydroxyvitamin D3) production.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 30"
+  },
+  {
+    "id": 52,
+    "subject": "Physiology",
+    "topic": "Acid-Base — Henderson-Hasselbalch",
+    "questionText": "The Henderson-Hasselbalch equation for blood is: pH = pKa + log([HCO3-]/[H2CO3]). At normal blood pH of 7.4, the ratio of bicarbonate to carbonic acid is approximately:",
+    "options": [
+      "10:1",
+      "15:1",
+      "20:1",
+      "30:1"
+    ],
+    "correctAnswer": "20:1",
+    "explanation": "Guyton confirms that at blood pH 7.4, plasma bicarbonate is approximately 24 mmol/L and carbonic acid (from pCO2 40 mmHg × 0.03) is approximately 1.2 mmol/L. Therefore, the bicarbonate:carbonic acid ratio = 24/1.2 = 20:1. This 20:1 ratio represents the 'alkali reserve' and is essential for understanding acid-base disorders — any change in this ratio changes blood pH.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 31"
+  },
+  {
+    "id": 53,
+    "subject": "Physiology",
+    "topic": "Acid-Base — Bicarbonate Reabsorption",
+    "questionText": "In the proximal tubule, bicarbonate is reabsorbed by which enzyme-dependent mechanism?",
+    "options": [
+      "Aldosterone-stimulated Na+ reabsorption",
+      "Carbonic anhydrase-mediated H+ secretion and HCO3- reabsorption",
+      "ADH-stimulated aquaporin insertion",
+      "SGLT2 cotransport with glucose"
+    ],
+    "correctAnswer": "Carbonic anhydrase-mediated H+ secretion and HCO3- reabsorption",
+    "explanation": "Guyton explains that in the PCT, carbonic anhydrase (CA) catalyses the combination of CO2 and H2O to form H2CO3, which dissociates to H+ and HCO3-. H+ is secreted into the tubular lumen (in exchange for Na+), where it combines with filtered HCO3- to form H2CO3 → CO2 + H2O. This CO2 re-enters the cell and the cycle repeats, effectively reabsorbing HCO3- and maintaining the alkali reserve. Acetazolamide (CA inhibitor) blocks this process.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 31"
+  },
+  {
+    "id": 54,
+    "subject": "Physiology",
+    "topic": "Acid-Base Disorders",
+    "questionText": "A patient with severe uncontrolled diabetes mellitus has a blood gas showing: pH 7.20, pCO2 28 mmHg, HCO3- 10 mEq/L. What is the diagnosis?",
+    "options": [
+      "Respiratory acidosis with compensation",
+      "Metabolic alkalosis with respiratory compensation",
+      "Metabolic acidosis with respiratory compensation (Kussmaul breathing)",
+      "Respiratory alkalosis with metabolic compensation"
+    ],
+    "correctAnswer": "Metabolic acidosis with respiratory compensation (Kussmaul breathing)",
+    "explanation": "The low pH (7.20) indicates acidosis. The low HCO3- (10 mEq/L) indicates the primary problem is metabolic acidosis (DKA — excess ketoacids consume bicarbonate). The low pCO2 (28 mmHg) shows respiratory compensation — hyperventilation (Kussmaul breathing) blows off CO2 to raise pH. This is the classic picture of compensated metabolic acidosis in diabetic ketoacidosis.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 31"
+  },
+  {
+    "id": 55,
+    "subject": "Physiology",
+    "topic": "Acid-Base Disorders",
+    "questionText": "A mountaineer at high altitude develops hyperventilation leading to alkalosis. His blood gas shows: pH 7.52, pCO2 28 mmHg, HCO3- 22 mEq/L. This is:",
+    "options": [
+      "Metabolic alkalosis — primary HCO3- increase",
+      "Respiratory alkalosis — primary CO2 decrease from hyperventilation",
+      "Respiratory acidosis with metabolic compensation",
+      "Mixed metabolic and respiratory alkalosis"
+    ],
+    "correctAnswer": "Respiratory alkalosis — primary CO2 decrease from hyperventilation",
+    "explanation": "High pH (7.52 = alkalosis) with low pCO2 (28 mmHg) means the primary problem is respiratory — excess CO2 blown off by hyperventilation (hypoxia at altitude stimulates hyperventilation). The slightly reduced HCO3- (22 mEq/L) reflects early renal compensation — kidneys try to correct alkalosis by excreting more HCO3-. This is respiratory alkalosis.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 31"
+  },
+  {
+    "id": 56,
+    "subject": "Physiology",
+    "topic": "Nephrotic vs Nephritic Syndrome",
+    "questionText": "A 6-year-old child presents with massive proteinuria (>3.5 g/day), hypoalbuminemia, generalised edema, and hyperlipidemia, but NO hematuria or hypertension. This clinical picture is most consistent with:",
+    "options": [
+      "Nephritic syndrome",
+      "Nephrotic syndrome",
+      "Acute pyelonephritis",
+      "Acute tubular necrosis"
+    ],
+    "correctAnswer": "Nephrotic syndrome",
+    "explanation": "Guyton describes nephrotic syndrome as damage to glomerular membranes causing protein loss in urine. The classic features are: massive proteinuria (>3.5 g/day), hypoalbuminemia, edema, and hyperlipidemia/lipiduria. Nephritic syndrome, by contrast, presents with hematuria, mild proteinuria, oliguria, hypertension, and RBC casts — reflecting glomerular inflammation rather than protein leak.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 32"
+  },
+  {
+    "id": 57,
+    "subject": "Physiology",
+    "topic": "PAH Clearance",
+    "questionText": "A student wants to measure effective renal plasma flow (ERPF). The ideal substance for this measurement is para-aminohippuric acid (PAH) because:",
+    "options": [
+      "PAH is freely filtered only, not secreted or reabsorbed",
+      "PAH is freely filtered AND actively secreted by the PCT, so almost all PAH is cleared in one pass",
+      "PAH is completely reabsorbed in the PCT",
+      "PAH has a Tm of 375 mg/min identical to glucose"
+    ],
+    "correctAnswer": "PAH is freely filtered AND actively secreted by the PCT, so almost all PAH is cleared in one pass",
+    "explanation": "Guyton describes PAH as being freely filtered AND actively secreted by the proximal tubule. Almost all PAH entering the kidney is removed in one pass (at low plasma concentrations), making its clearance approximately equal to renal plasma flow. The Tm for PAH secretion is about 80 mg/min. Inulin, by contrast, is used to measure GFR because it is filtered only (neither secreted nor reabsorbed).",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 28"
+  },
+  {
+    "id": 58,
+    "subject": "Physiology",
+    "topic": "Micturition Reflex",
+    "questionText": "A patient with a complete spinal cord transaction above the sacral level recovers reflex bladder contractions after a few weeks. This is because:",
+    "options": [
+      "The cerebral cortex regained control of the bladder",
+      "The sacral cord segments (S2–S3) can mediate micturition reflex independently without higher control",
+      "Sympathetic nervous system takes over bladder control",
+      "The pudendal nerve regenerates to control the detrusor"
+    ],
+    "correctAnswer": "The sacral cord segments (S2–S3) can mediate micturition reflex independently without higher control",
+    "explanation": "Guyton explains: 'If the spinal cord is damaged above the sacral region but the sacral cord segments are still intact, typical micturition reflexes can still occur — they are no longer controlled by the brain.' After the initial period of spinal shock, the sacral cord mediates autonomous (uninhibited) micturition. Guyton also notes that the higher centres normally keep the reflex inhibited until a convenient time.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 59,
+    "subject": "Physiology",
+    "topic": "Glomerulotubular Balance",
+    "questionText": "GFR increases from 125 mL/min to 150 mL/min. Proximal tubular reabsorption also increases proportionally from 81 mL/min to ~97.5 mL/min. This phenomenon is called:",
+    "options": [
+      "Tubuloglomerular feedback",
+      "Autoregulation of GFR",
+      "Glomerulotubular balance",
+      "Renin-angiotensin compensation"
+    ],
+    "correctAnswer": "Glomerulotubular balance",
+    "explanation": "Guyton defines glomerulotubular balance as the intrinsic ability of the tubules to increase their reabsorption rate in response to increased tubular load (increased inflow). Even though GFR increases, the PERCENTAGE reabsorbed in the PCT stays relatively constant (~65%). This prevents overloading of distal tubular segments when GFR increases and is an important buffer against large changes in urine output.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 28"
+  },
+  {
+    "id": 60,
+    "subject": "Physiology",
+    "topic": "Renal Blood Flow",
+    "questionText": "Blood flow to the two kidneys normally accounts for what percentage of cardiac output?",
+    "options": [
+      "10%",
+      "15%",
+      "22%",
+      "30%"
+    ],
+    "correctAnswer": "22%",
+    "explanation": "Guyton states: 'Blood flow to the two kidneys is normally about 22% of the cardiac output, or 1100 mL/min.' This is remarkably high relative to the kidney's oxygen consumption, reflecting the kidneys' primary filtration role rather than high metabolic demand. This also means renal injury can cause rapid blood loss — as Snell's notes, 25% of cardiac output passes through the kidneys.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 61,
+    "subject": "Physiology",
+    "topic": "Urine Formation",
+    "questionText": "The equation governing urinary excretion rate of a substance is:",
+    "options": [
+      "Excretion = Filtration + Reabsorption + Secretion",
+      "Excretion = Filtration − Reabsorption + Secretion",
+      "Excretion = Filtration + Reabsorption − Secretion",
+      "Excretion = Secretion − Filtration − Reabsorption"
+    ],
+    "correctAnswer": "Excretion = Filtration − Reabsorption + Secretion",
+    "explanation": "Guyton explicitly states: 'Urinary excretion rate = Filtration rate − Reabsorption rate + Secretion rate.' This equation is fundamental to renal physiology. If a substance is only filtered and completely reabsorbed, excretion = 0. If it is filtered and secreted but not reabsorbed (like PAH), excretion is maximal. Creatinine is freely filtered and not significantly reabsorbed, making its clearance ≈ GFR.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 62,
+    "subject": "Physiology",
+    "topic": "Edema — Cirrhosis",
+    "questionText": "A patient with liver cirrhosis develops massive ascites. Two mechanisms contribute to this. Which of the following pair is correct?",
+    "options": [
+      "Increased plasma protein + decreased portal pressure",
+      "Decreased plasma protein production + increased portal capillary pressure from hepatic fibrosis",
+      "Increased ADH + decreased aldosterone",
+      "Lymphatic obstruction by filarial worms + decreased capillary permeability"
+    ],
+    "correctAnswer": "Decreased plasma protein production + increased portal capillary pressure from hepatic fibrosis",
+    "explanation": "Guyton describes two mechanisms of edema in cirrhosis: (1) Failure of liver cells to produce sufficient plasma proteins → decreased plasma colloid osmotic pressure → increased capillary filtration; (2) Liver fibrosis compresses portal venous drainage vessels → raised portal capillary hydrostatic pressure → transudation of fluid and protein into the abdominal cavity. Combined, these cause ascites.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 63,
+    "subject": "Physiology",
+    "topic": "Kidney — Nephrogenesis",
+    "questionText": "After age 40, the number of functioning nephrons decreases at approximately what rate?",
+    "options": [
+      "5% every 5 years",
+      "10% every 10 years",
+      "20% every 10 years",
+      "15% every 5 years"
+    ],
+    "correctAnswer": "10% every 10 years",
+    "explanation": "Guyton states: 'After age 40 years, the number of functioning nephrons usually decreases about 10% every 10 years; thus, at age 80 years, many people have 40% fewer functioning nephrons than they did at age 40 years.' The kidney cannot regenerate new nephrons. This loss is not normally life-threatening because adaptive changes in remaining nephrons compensate.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 64,
+    "subject": "Physiology",
+    "topic": "Macula Densa",
+    "questionText": "The macula densa is a group of specialised epithelial cells located at the end of the thick ascending limb. What is its function?",
+    "options": [
+      "It secretes renin in response to low blood pressure",
+      "It senses the NaCl concentration in the tubular fluid and regulates afferent arteriolar tone (tubuloglomerular feedback)",
+      "It inserts aquaporin-2 channels in response to ADH",
+      "It converts angiotensin I to angiotensin II"
+    ],
+    "correctAnswer": "It senses the NaCl concentration in the tubular fluid and regulates afferent arteriolar tone (tubuloglomerular feedback)",
+    "explanation": "Guyton states the macula densa plays an important role in controlling nephron function. It senses the NaCl (or Cl-) concentration in the tubular fluid. When NaCl is high (high GFR), it signals via TGF to constrict the afferent arteriole and reduce GFR. When NaCl is low (low GFR), the signal is reduced, allowing dilation. The macula densa also signals the adjacent JG cells to release renin when NaCl delivery is low.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26, 27"
+  },
+  {
+    "id": 65,
+    "subject": "Physiology",
+    "topic": "Acid-Base — NH4+ Excretion",
+    "questionText": "During severe acidosis, which amino acid provides NH3 in the renal tubular cells that buffers secreted H+ to form NH4+ for excretion?",
+    "options": [
+      "Aspartate",
+      "Alanine",
+      "Glutamine",
+      "Glycine"
+    ],
+    "correctAnswer": "Glutamine",
+    "explanation": "Guyton describes the NH3/NH4+ system: renal tubular cells deamidate glutamine (via glutaminase) to produce glutamate and NH3. The NH3 diffuses into the tubular lumen where it combines with secreted H+ to form NH4+, which cannot diffuse back and is excreted in urine. This is especially important in chronic acidosis — NH4+ excretion can increase markedly to eliminate the acid load.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 31"
+  },
+  {
+    "id": 66,
+    "subject": "Physiology",
+    "topic": "Efferent Arteriole",
+    "questionText": "A patient is started on an ACE inhibitor for diabetic nephropathy. Angiotensin II normally constricts the efferent arteriole preferentially. Blocking angiotensin II will therefore:",
+    "options": [
+      "Increase GFR by increasing glomerular hydrostatic pressure",
+      "Decrease GFR by reducing efferent arteriolar resistance and dropping glomerular hydrostatic pressure",
+      "Increase renal blood flow with no change in GFR",
+      "Decrease renal blood flow with increased GFR"
+    ],
+    "correctAnswer": "Decrease GFR by reducing efferent-arteriolar resistance and dropping glomerular hydrostatic pressure",
+    "explanation": "Guyton explains that angiotensin II preferentially constricts the efferent arteriole, maintaining glomerular hydrostatic pressure and GFR even when overall blood pressure falls. When ACE inhibitors block angiotensin II formation, efferent arteriolar resistance falls, glomerular hydrostatic pressure drops, and GFR may fall. This is particularly important in patients with bilateral renal artery stenosis, where ACE inhibitors can precipitate acute kidney injury.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 27"
+  },
+  {
+    "id": 67,
+    "subject": "Physiology",
+    "topic": "Renal Clearance",
+    "questionText": "Inulin is used to measure GFR because it is freely filtered and neither secreted nor reabsorbed. If inulin plasma concentration is 1 mg/mL and urine concentration is 125 mg/mL with a urine flow of 1 mL/min, the GFR is:",
+    "options": [
+      "100 mL/min",
+      "125 mL/min",
+      "150 mL/min",
+      "75 mL/min"
+    ],
+    "correctAnswer": "125 mL/min",
+    "explanation": "GFR (clearance) = Urine concentration × Urine flow rate / Plasma concentration = 125 mg/mL × 1 mL/min / 1 mg/mL = 125 mL/min. Guyton confirms the normal GFR is approximately 125 mL/min. This principle — dividing the rate of excretion by the plasma concentration — is the basis for all clearance calculations used to assess kidney function.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26, 27"
+  },
+  {
+    "id": 68,
+    "subject": "Physiology",
+    "topic": "AKI vs CKD",
+    "questionText": "Which of the following best distinguishes chronic kidney disease (CKD) from acute kidney injury (AKI)?",
+    "options": [
+      "CKD is always caused by drugs, AKI is always caused by diseases",
+      "In CKD there is irreversible reduction in nephron number over months/years; AKI is an abrupt decline in renal function that may be reversible",
+      "CKD causes hypernatremia while AKI causes hyponatremia",
+      "AKI is defined by >1 year of renal impairment, CKD by <3 months"
+    ],
+    "correctAnswer": "In CKD there is irreversible reduction in nephron number over months/years; AKI is an abrupt decline in renal function that may be reversible",
+    "explanation": "Guyton distinguishes AKI (acute kidney injury) as a sudden reduction in GFR that may be reversible with treatment, from CKD (chronic kidney disease) as a progressive, irreversible loss of nephrons over months to years. In CKD, remaining nephrons undergo compensatory hypertrophy. When GFR falls below ~15 mL/min, dialysis or transplantation is required for survival.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 32"
+  },
+  {
+    "id": 69,
+    "subject": "Physiology",
+    "topic": "Osmotic Diuretics",
+    "questionText": "Mannitol is given to a patient with cerebral edema to reduce intracranial pressure. As an osmotic diuretic, mannitol acts by:",
+    "options": [
+      "Blocking carbonic anhydrase in the PCT",
+      "Blocking NaKCl cotransporter in the thick ascending limb",
+      "Remaining in the tubular fluid (not reabsorbed), holding water osmotically in the tubule (mainly PCT and descending loop)",
+      "Blocking ENaC in the collecting duct"
+    ],
+    "correctAnswer": "Remaining in the tubular fluid (not reabsorbed), holding water osmotically in the tubule (mainly PCT and descending loop)",
+    "explanation": "Guyton explains that osmotic diuretics like mannitol are freely filtered at the glomerulus but poorly reabsorbed. They remain in the tubular fluid and osmotically retain water, preventing its reabsorption primarily in the PCT and the descending loop of Henle. This increases urine output and can reduce intracranial pressure by drawing water from the brain into the blood (plasma hypertonicity).",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 32"
+  },
+  {
+    "id": 70,
+    "subject": "Physiology",
+    "topic": "Body Fluid",
+    "questionText": "A patient is severely burned over 30% of his body surface. How much can his water loss through the skin increase compared to normal?",
+    "options": [
+      "2-fold",
+      "5-fold",
+      "10-fold",
+      "20-fold"
+    ],
+    "correctAnswer": "10-fold",
+    "explanation": "Guyton states: 'When the cornified layer becomes denuded, as occurs with extensive burns, the rate of evaporation can increase as much as 10-fold, to 3 to 5 L/day.' Normal insensible water loss through skin is about 300–400 mL/day. This is why patients with extensive burns must be given large amounts of fluid, usually intravenously, to balance fluid loss.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 71,
+    "subject": "Physiology",
+    "topic": "Ureterorenal Reflex",
+    "questionText": "A patient has a ureteric stone causing complete obstruction of the right ureter. A reflex constriction of renal arterioles also occurs. The purpose of this ureterorenal reflex is:",
+    "options": [
+      "To increase GFR and push the stone out",
+      "To reduce urine production and decrease pressure build-up in the obstructed kidney",
+      "To activate the renin-angiotensin system to treat hypertension",
+      "To increase peristalsis in the ureter to expel the stone"
+    ],
+    "correctAnswer": "To reduce urine production and decrease pressure build-up in the obstructed kidney",
+    "explanation": "Guyton states: 'The ureterorenal reflex is important for attenuating flow of fluid into the pelvis of a kidney with a blocked ureter.' When a ureter becomes blocked, intense reflex constriction occurs, which is associated with severe pain. Pain impulses cause a sympathetic reflex back to the kidney to constrict the renal arterioles, thereby decreasing urine output from the obstructed kidney, preventing pressure damage.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 72,
+    "subject": "Physiology",
+    "topic": "Hematocrit",
+    "questionText": "A male patient's hematocrit is reported as 0.40 (40%). This means:",
+    "options": [
+      "40% of blood is plasma and 60% is red blood cells",
+      "40% of blood volume is occupied by red blood cells",
+      "40% of body water is in the vascular compartment",
+      "The patient has mild anemia"
+    ],
+    "correctAnswer": "40% of blood volume is occupied by red blood cells",
+    "explanation": "Guyton defines hematocrit as the fraction of blood composed of red blood cells, determined by centrifuging. 'In men, the measured hematocrit is normally about 0.40, and in women, it is about 0.36.' A hematocrit of 0.40 means 40% of blood volume is RBCs and 60% is plasma. In severe anemia it may fall to 0.10; in polycythemia it may rise to 0.65.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 73,
+    "subject": "Physiology",
+    "topic": "Starling Forces",
+    "questionText": "The capillary filtration rate equation is: Filtration = Kf × (Pc − Pif − πc + πif). Which change would DECREASE capillary filtration and REDUCE the risk of edema?",
+    "options": [
+      "Increased capillary hydrostatic pressure (Pc)",
+      "Decreased plasma colloid osmotic pressure (πc)",
+      "Increased lymph flow removing excess interstitial fluid",
+      "Increased capillary permeability (Kf)"
+    ],
+    "correctAnswer": "Increased lymph flow removing excess interstitial fluid",
+    "explanation": "Guyton explains increased lymph flow is one of the three major safety factors against edema (contributing 7 mmHg of the total 17 mmHg safety factor). Increased lymph flow removes excess fluid and proteins from the interstitium, lowering interstitial colloid osmotic pressure (πif), which then reduces the net filtration force. Options A, B, and D all INCREASE filtration and promote edema.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 25"
+  },
+  {
+    "id": 74,
+    "subject": "Physiology",
+    "topic": "Renal Tubule — DCT",
+    "questionText": "After passing through the macula densa, where does the tubular fluid flow next?",
+    "options": [
+      "Descending loop of Henle",
+      "Proximal convoluted tubule",
+      "Distal tubule → connecting tubule → cortical collecting duct",
+      "Directly into the collecting duct"
+    ],
+    "correctAnswer": "Distal tubule → connecting tubule → cortical collecting duct",
+    "explanation": "Guyton describes the tubular sequence after the macula densa: 'Beyond the macula densa, fluid enters the distal tubule. The distal tubule is followed by the connecting tubule and cortical collecting tubule, which lead to the cortical collecting duct. The initial parts of 8 to 10 cortical collecting ducts join to form a single, larger collecting duct that runs downward into the medulla.'",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 75,
+    "subject": "Physiology",
+    "topic": "Kidney Gluconeogenesis",
+    "questionText": "During prolonged fasting, which organ's capacity to produce glucose from amino acids rivals that of the liver?",
+    "options": [
+      "Skeletal muscle",
+      "Small intestine",
+      "Kidney",
+      "Adipose tissue"
+    ],
+    "correctAnswer": "Kidney",
+    "explanation": "Guyton states: 'The kidneys synthesize glucose from amino acids and other precursors during prolonged fasting, a process referred to as gluconeogenesis. The kidneys' capacity to add glucose to the blood during prolonged periods of fasting rivals that of the liver.' This is an often-overlooked function of the kidneys beyond filtration.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 76,
+    "subject": "Physiology",
+    "topic": "Acid-Base — Metabolic Alkalosis",
+    "questionText": "A patient has been vomiting profusely for 3 days. Blood gas shows: pH 7.55, pCO2 48 mmHg, HCO3- 38 mEq/L. This is:",
+    "options": [
+      "Respiratory alkalosis with metabolic compensation",
+      "Metabolic acidosis with respiratory compensation",
+      "Metabolic alkalosis with respiratory compensation (hypoventilation retains CO2)",
+      "Respiratory acidosis with metabolic compensation"
+    ],
+    "correctAnswer": "Metabolic alkalosis with respiratory compensation (hypoventilation retains CO2)",
+    "explanation": "High pH (7.55) = alkalosis. High HCO3- (38 mEq/L) = primary metabolic alkalosis (vomiting causes loss of HCl, leaving excess HCO3-). High pCO2 (48 mmHg) = respiratory compensation — the body hypoventilates to retain CO2 and raise H2CO3 to normalize the HCO3-/H2CO3 ratio. Guyton and Satyanarayana both list vomiting as a classic cause of metabolic alkalosis.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 31"
+  },
+  {
+    "id": 77,
+    "subject": "Physiology",
+    "topic": "Concentrated vs Dilute Urine",
+    "questionText": "A patient drinks 4 liters of water rapidly. His urine becomes very dilute. The minimum urine osmolality under maximum water diuresis is approximately:",
+    "options": [
+      "100 mOsm/L",
+      "50 mOsm/L",
+      "285 mOsm/L",
+      "150 mOsm/L"
+    ],
+    "correctAnswer": "50 mOsm/L",
+    "explanation": "Guyton states the minimum urine concentration (during maximum water diuresis, i.e., no ADH) is approximately 50 mOsm/L, and the maximum concentration (with maximum ADH) is approximately 1200 mOsm/L. After drinking large amounts of water, ADH is suppressed, the collecting duct becomes impermeable to water, and the dilute tubular fluid (from the ascending limb) passes through largely unchanged, producing a very dilute urine.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 29"
+  },
+  {
+    "id": 78,
+    "subject": "Physiology",
+    "topic": "Urea Recycling",
+    "questionText": "Urea plays an important role in the kidney's ability to concentrate urine. This is because:",
+    "options": [
+      "Urea is actively pumped out of the ascending limb of Henle",
+      "Urea is permeable across the inner medullary collecting duct and is recycled back into the interstitium, contributing to the medullary osmolality gradient",
+      "Urea is reabsorbed exclusively in the PCT like glucose",
+      "Urea secretion by the DCT creates the osmotic gradient"
+    ],
+    "correctAnswer": "Urea is permeable across the inner medullary collecting duct and is recycled back into the interstitium, contributing to the medullary osmolality gradient",
+    "explanation": "Guyton explains urea recycling: 'The medullary collecting duct is permeable to urea, and there are special urea transporters that facilitate urea diffusion across the luminal and basolateral membranes. Therefore, some of the tubular urea is reabsorbed into the medullary interstitium, helping raise the osmolality in this region of the kidneys and contributing to the kidneys' overall ability to form concentrated urine.'",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 28, 29"
+  },
+  {
+    "id": 79,
+    "subject": "Physiology",
+    "topic": "Acid-Base — Titratable Acidity",
+    "questionText": "In the renal tubules, secreted H+ ions are buffered by the phosphate system (Na2HPO4 → NaH2PO4). This mechanism is called:",
+    "options": [
+      "Bicarbonate reabsorption",
+      "Titratable acidity",
+      "Ammonium excretion",
+      "Proton pump activation"
+    ],
+    "correctAnswer": "Titratable acidity",
+    "explanation": "Guyton describes titratable acidity as the amount of H+ excreted buffered by the phosphate system. H+ secreted into the lumen combines with Na2HPO4 (dibasic phosphate) to form NaH2PO4 (monobasic phosphate). This is called titratable acid because the amount can be measured by titrating urine back to blood pH (7.4) with NaOH. The phosphate buffer, unlike bicarbonate, can carry H+ all the way to a urine pH of 4.5.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 31"
+  },
+  {
+    "id": 80,
+    "subject": "Physiology",
+    "topic": "Renal Functions",
+    "questionText": "With complete renal failure, how quickly can accumulated substances cause death if hemodialysis is not initiated?",
+    "options": [
+      "Within a few hours",
+      "Within a few days",
+      "Within 2–3 weeks",
+      "Within a month"
+    ],
+    "correctAnswer": "Within a few days",
+    "explanation": "Guyton states: 'With complete renal failure, enough potassium, acids, fluid, and other substances accumulate in the body to cause death within a few days unless clinical interventions such as hemodialysis are initiated to restore, at least partially, the body fluid and electrolyte balances.' This underscores the kidney's irreplaceable role in homeostasis.",
+    "source": "Guyton & Hall Textbook of Medical Physiology 14th Ed – Chapter 26"
+  },
+  {
+    "id": 81,
+    "subject": "Biochemistry",
+    "topic": "Body Water Distribution",
+    "questionText": "According to Satyanarayana, a 70-kg man contains approximately 42 litres of total body water. How is it distributed between ICF and ECF?",
+    "options": [
+      "ICF 14L (20%), ECF 28L (40%)",
+      "ICF 28L (40%), ECF 14L (20%)",
+      "ICF 21L (30%), ECF 21L (30%)",
+      "ICF 35L (50%), ECF 7L (10%)"
+    ],
+    "correctAnswer": "ICF 28L (40%), ECF 14L (20%)",
+    "explanation": "Satyanarayana's Table 21.1 states: Total body water = 60% of body weight = 42L in a 70-kg man. Distribution: ICF = 40% of body weight = 28L; ECF = 20% of body weight = 14L, further divided into interstitial fluid (15% = 10.5L) and plasma (5% = 3.5L). The ICF is the largest compartment, predominantly maintained by K+ ions.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 82,
+    "subject": "Biochemistry",
+    "topic": "Electrolyte Composition",
+    "questionText": "The principal cation of the extracellular fluid (ECF) is:",
+    "options": [
+      "K+",
+      "Ca2+",
+      "Na+",
+      "Mg2+"
+    ],
+    "correctAnswer": "Na+",
+    "explanation": "Satyanarayana states clearly: 'Na+ is the principal extracellular cation while K+ is the intracellular cation. This difference in the concentration is essential for the cell survival which is maintained by the Na+–K+ pump.' The principal ECF anions are Cl- and HCO3-, while ICF anions are HCO3-, proteins, and organic acids.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 83,
+    "subject": "Biochemistry",
+    "topic": "Plasma Osmolality",
+    "questionText": "The normal osmolality of plasma is approximately:",
+    "options": [
+      "150–200 mOsm/kg",
+      "250–275 mOsm/kg",
+      "285–295 mOsm/kg",
+      "300–320 mOsm/kg"
+    ],
+    "correctAnswer": "285–295 mOsm/kg",
+    "explanation": "Satyanarayana states: 'The osmolality of plasma is in the range of 285–295 milliosmoles/kg.' Sodium and its associated anions make the largest contribution (~90%) to plasma osmolality. For practical purposes, plasma osmolality can be estimated as 2 × [Na+] in mmol/L. The plasma osmolality drives ADH secretion — an increase stimulates ADH release and water retention.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 84,
+    "subject": "Biochemistry",
+    "topic": "ADH Mechanism",
+    "questionText": "A patient has an increased plasma osmolality of 300 mOsm/kg. What hormone is released, and what is its direct effect on the kidney?",
+    "options": [
+      "Aldosterone is released → increases Na+ reabsorption",
+      "ADH (vasopressin) is released → increases water reabsorption from renal tubules",
+      "ANF is released → increases sodium excretion",
+      "Renin is released → constricts efferent arteriole"
+    ],
+    "correctAnswer": "ADH (vasopressin) is released → increases water reabsorption from renal tubules",
+    "explanation": "Satyanarayana states: 'An increase in osmolality promotes ADH secretion that leads to an increased water reabsorption from the renal tubules (less urine output). On the other hand, a decrease in osmolality suppresses ADH secretion.' Plasma Na+ is the most predominant contributor to osmolality, so sodium indirectly controls body water through ADH. Diabetes insipidus results from ADH deficiency.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 85,
+    "subject": "Biochemistry",
+    "topic": "Aldosterone",
+    "questionText": "Aldosterone is a mineralocorticoid produced by the adrenal cortex. Its direct effect on the renal tubule is:",
+    "options": [
+      "Increases water reabsorption via aquaporin-2",
+      "Increases Na+ reabsorption and INCREASES K+ and H+ loss from renal tubules",
+      "Decreases Na+ reabsorption to lower blood pressure",
+      "Blocks carbonic anhydrase to prevent H+ secretion"
+    ],
+    "correctAnswer": "Increases Na+ reabsorption and INCREASES K+ and H+ loss from renal tubules",
+    "explanation": "Satyanarayana states: 'Aldosterone increases Na+ reabsorption by the renal tubules at the expense of K+ and H+ ions. The net effect is the retention of Na+ in the body.' This is why hyperaldosteronism causes hypokalemia and metabolic alkalosis. In adrenal insufficiency (Addison's disease), aldosterone deficiency causes hyponatremia and hyperkalemia.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 86,
+    "subject": "Biochemistry",
+    "topic": "Renin-Angiotensin System",
+    "questionText": "According to Satyanarayana, what triggers the juxtaglomerular apparatus to secrete renin?",
+    "options": [
+      "Increase in blood pressure",
+      "Increase in plasma Na+ concentration",
+      "Decrease in blood pressure (fall in ECF volume)",
+      "Increase in plasma K+ concentration"
+    ],
+    "correctAnswer": "Decrease in blood pressure (fall in ECF volume)",
+    "explanation": "Satyanarayana states: 'Decrease in the blood pressure (due to a fall in ECF volume) is sensed by juxtaglomerular apparatus of the nephron which secretes renin. Renin acts on angiotensinogen to produce angiotensin I. The latter is then converted to angiotensin II which stimulates the release of aldosterone.' Aldosterone and ADH then coordinate to restore Na+ and water balance.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 87,
+    "subject": "Biochemistry",
+    "topic": "ANF",
+    "questionText": "Atrial Natriuretic Factor (ANF) is released from the heart in response to increased blood volume. What are its renal effects?",
+    "options": [
+      "Decreases GFR and increases Na+ retention",
+      "Increases GFR, increases sodium excretion and urine output — opposing aldosterone",
+      "Stimulates aldosterone release to retain Na+",
+      "Acts on the DCT to reabsorb more Ca2+"
+    ],
+    "correctAnswer": "Increases GFR, increases sodium excretion and urine output — opposing aldosterone",
+    "explanation": "Satyanarayana states: 'ANF acts on kidneys to increase GFR, sodium excretion and urine output. Thus ANF opposes the actions of renin and aldosterone (which increase salt retention and blood pressure).' ANF is a 28-amino acid peptide released from the atrium in response to increased blood volume, elevated blood pressure, and high salt intake — acting as a natural 'pressure relief valve.'",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 88,
+    "subject": "Biochemistry",
+    "topic": "Dehydration",
+    "questionText": "A patient with severe dehydration is brought to the emergency. Which set of clinical features is most consistent with severe dehydration?",
+    "options": [
+      "Increased blood pressure, puffy face, high urine output",
+      "Low blood pressure, sunken eyeballs, decreased skin turgor, lethargy, and confusion",
+      "Normal blood pressure, good skin turgor, normal urine output",
+      "Headache, convulsions, diluted plasma"
+    ],
+    "correctAnswer": "Low blood pressure, sunken eyeballs, decreased skin turgor, lethargy, and confusion",
+    "explanation": "Satyanarayana lists the salient features of severe dehydration: 'increased pulse rate, low blood pressure, sunken eyeballs, decreased skin turgor, lethargy, confusion, and coma.' The low urine output occurs because ADH secretion increases markedly. The plasma protein and blood urea concentrations are increased due to haemoconcentration.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 89,
+    "subject": "Biochemistry",
+    "topic": "Blood pH",
+    "questionText": "The normal pH of blood compatible with life is maintained in the narrow range of:",
+    "options": [
+      "7.0–7.8",
+      "6.8–7.8",
+      "7.35–7.45",
+      "7.2–7.6"
+    ],
+    "correctAnswer": "7.35–7.45",
+    "explanation": "Satyanarayana states: 'The normal pH of the blood is maintained in the narrow range of 7.35–7.45, i.e., slightly alkaline.' He also states the blood pH compatible with life is 6.8–7.8, beyond which life cannot exist. For practical purposes, 7.35–7.45 is the normal range; below 7.35 is acidosis, above 7.45 is alkalosis.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 90,
+    "subject": "Biochemistry",
+    "topic": "Bicarbonate Buffer",
+    "questionText": "At a normal blood pH of 7.4, the bicarbonate to carbonic acid ratio in blood is:",
+    "options": [
+      "10:1",
+      "15:1",
+      "20:1",
+      "30:1"
+    ],
+    "correctAnswer": "20:1",
+    "explanation": "Satyanarayana states: 'At a blood pH 7.4, the ratio of bicarbonate to carbonic acid is 20:1. Thus, the bicarbonate concentration is much higher (20 times) than carbonic acid in the blood. This is referred to as alkali reserve and is responsible for the effective buffering of H+ ions, generated in the body.' Bicarbonate = ~24 mmol/L; H2CO3 = pCO2 × 0.03 = 40 × 0.03 = 1.2 mmol/L.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 91,
+    "subject": "Biochemistry",
+    "topic": "Renal H+ Excretion",
+    "questionText": "According to Satyanarayana, which is the ONLY route through which H+ ions can be permanently eliminated from the body?",
+    "options": [
+      "Lungs — via expired CO2",
+      "Sweat — through the skin",
+      "Kidneys — via urine",
+      "Gastrointestinal tract — via feces"
+    ],
+    "correctAnswer": "Kidneys — via urine",
+    "explanation": "Satyanarayana explicitly states: 'Kidney is the only route through which H+ can be eliminated from the body. H+ excretion occurs in the proximal convoluted tubules (renal tubular cells) and is coupled with the regeneration of HCO3-.' The lungs can only eliminate CO2 (volatile acid) — a temporary measure — but nonvolatile acids (sulfuric, phosphoric acid) can ONLY be excreted by the kidneys.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 92,
+    "subject": "Biochemistry",
+    "topic": "NH4+ Excretion",
+    "questionText": "In the renal tubular cells, NH3 is produced by deamidation of which amino acid?",
+    "options": [
+      "Asparagine",
+      "Alanine",
+      "Glutamine",
+      "Lysine"
+    ],
+    "correctAnswer": "Glutamine",
+    "explanation": "Satyanarayana states: 'The renal tubular cells deamidate glutamine to glutamate and NH3. This reaction is catalysed by the enzyme glutaminase. The NH3, liberated in this reaction, diffuses into the tubular lumen where it combines with H+ to form NH4+. Ammonium ions cannot diffuse back into tubular cells and, therefore, are excreted into urine.' This is especially important in acidosis.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 93,
+    "subject": "Biochemistry",
+    "topic": "Anion Gap",
+    "questionText": "The normal anion gap in plasma is approximately:",
+    "options": [
+      "2–5 mEq/L",
+      "8–18 mEq/L (approximately 15 mEq/L)",
+      "20–30 mEq/L",
+      "30–40 mEq/L"
+    ],
+    "correctAnswer": "8–18 mEq/L (approximately 15 mEq/L)",
+    "explanation": "Satyanarayana states: 'The anion gap in a healthy individual is around 15 mEq/L (range 8–18 mEq/L).' Anion gap = (Na+ + K+) − (Cl- + HCO3-). It represents unmeasured plasma anions (proteins, phosphate, sulfate, urate, and organic acids). An increased anion gap (>18 mEq/L) suggests accumulation of unmeasured anions, as seen in DKA, lactic acidosis, and renal failure.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 94,
+    "subject": "Biochemistry",
+    "topic": "Metabolic Acidosis",
+    "questionText": "A patient with uncontrolled Type 1 diabetes develops metabolic acidosis. The anion gap is elevated. Which organic acids are responsible?",
+    "options": [
+      "Lactic acid and pyruvic acid from glycolysis",
+      "Acetoacetic acid and β-hydroxybutyric acid (ketone bodies)",
+      "Sulfuric acid from protein catabolism",
+      "Phosphoric acid from phospholipid breakdown"
+    ],
+    "correctAnswer": "Acetoacetic acid and β-hydroxybutyric acid (ketone bodies)",
+    "explanation": "Satyanarayana states: 'Metabolic acidosis is commonly seen in severe uncontrolled diabetes mellitus which is associated with excessive production of acetoacetic acid and β-hydroxybutyric acid (both are organic acids).' These ketoacids are the unmeasured anions that cause the elevated anion gap in DKA. The respiratory compensation is hyperventilation (Kussmaul breathing) to blow off CO2.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 95,
+    "subject": "Biochemistry",
+    "topic": "Metabolic Alkalosis and Hypokalemia",
+    "questionText": "A patient with severe hypokalemia paradoxically excretes acid urine despite having systemic alkalosis. What is the explanation?",
+    "options": [
+      "Aldosterone is suppressed, reducing Na+ reabsorption",
+      "In severe K+ deficiency, H+ ions replace K+ inside cells and renal tubular cells exchange H+ (instead of K+) with reabsorbed Na+, acidifying the urine",
+      "The kidneys try to compensate metabolic alkalosis by retaining H+",
+      "ADH deficiency causes loss of both water and H+"
+    ],
+    "correctAnswer": "In severe K+ deficiency, H+ ions replace K+ inside cells and renal tubular cells exchange H+ (instead of K+) with reabsorbed Na+, acidifying the urine",
+    "explanation": "Satyanarayana explains: 'In severe K+ deficiency, H+ ions are retained inside the cells to replace missing K+ ions. In the renal tubular cells, H+ ions are exchanged (instead of K+) with the reabsorbed Na+. Paradoxically, the patient excretes acid urine despite alkalosis.' This paradoxical aciduria in metabolic alkalosis with hypokalemia is a classic biochemistry/physiology exam concept.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 96,
+    "subject": "Biochemistry",
+    "topic": "Carbonic Anhydrase",
+    "questionText": "Acetazolamide inhibits carbonic anhydrase. This would impair which renal acid-base mechanism?",
+    "options": [
+      "Potassium excretion via ROMK channels",
+      "H+ secretion and HCO3- reabsorption in the proximal tubule",
+      "Urea recycling in the inner medullary collecting duct",
+      "Aquaporin-2 insertion in response to ADH"
+    ],
+    "correctAnswer": "H+ secretion and HCO3- reabsorption in the proximal tubule",
+    "explanation": "Satyanarayana states: 'The enzyme carbonic anhydrase (inhibited by acetazolamide) is of central importance in the renal regulation of pH.' Carbonic anhydrase in the PCT cell catalyses H2O + CO2 → H2CO3 → H+ + HCO3-. The H+ is secreted and the HCO3- is reabsorbed. Inhibiting CA with acetazolamide prevents this, reducing H+ secretion and causing bicarbonate wasting — producing a mild proximal renal tubular acidosis.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 97,
+    "subject": "Biochemistry",
+    "topic": "Urine pH",
+    "questionText": "The normal pH of urine is approximately acidic (~6.0), despite blood pH being 7.4. This is because:",
+    "options": [
+      "The kidneys add bicarbonate to the urine",
+      "The kidneys acidify the urine by excreting H+ ions (nonvolatile acids) generated by body metabolism",
+      "The kidneys reabsorb all H+ from the filtrate",
+      "The kidneys excrete CO2 directly into the urine"
+    ],
+    "correctAnswer": "The kidneys acidify the urine by excreting H+ ions (nonvolatile acids) generated by body metabolism",
+    "explanation": "Satyanarayana states: 'The pH of urine is normally acidic (~6.0). This clearly indicates that the kidneys have contributed to the acidification of urine... the H+ ions generated in the body in the normal circumstances are eliminated by acidified urine.' The urine pH is variable (range 4.5–9.5) depending on H+ concentration. A vegetarian diet produces less acid and more alkaline urine.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 98,
+    "subject": "Biochemistry",
+    "topic": "Overhydration",
+    "questionText": "A patient develops water intoxication from excessive intake of hypotonic fluids. What is the expected effect on plasma osmolality?",
+    "options": [
+      "Plasma osmolality increases, cells shrink",
+      "Plasma osmolality decreases, cells swell",
+      "Plasma osmolality remains unchanged, only ECF expands",
+      "Plasma osmolality increases, ECF volume decreases"
+    ],
+    "correctAnswer": "Plasma osmolality decreases, cells swell",
+    "explanation": "Satyanarayana states that overhydration is associated with 'dilution of ECF and ICF with a decrease in osmolality.' When the ECF osmolality drops, water moves into cells by osmosis causing cell swelling. The clinical symptoms include headache, lethargy, and convulsions. Treatment is stopping water intake and administration of hypertonic saline to restore osmolality.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 99,
+    "subject": "Biochemistry",
+    "topic": "Respiratory Acidosis",
+    "questionText": "A patient with severe asthma has CO2 retention. Blood gas shows: pH 7.25, pCO2 65 mmHg, HCO3- 28 mEq/L. What is the mechanism of compensation?",
+    "options": [
+      "Hyperventilation to blow off more CO2",
+      "Renal compensation — kidneys retain more HCO3- and excrete more H+ over 3–4 days",
+      "Aldosterone release to retain sodium and water",
+      "ADH suppression to excrete excess water"
+    ],
+    "correctAnswer": "Renal compensation — kidneys retain more HCO3- and excrete more H+ over 3–4 days",
+    "explanation": "Satyanarayana states: 'The renal mechanism comes to the rescue to compensate respiratory acidosis. More HCO3- is generated and retained by the kidneys which adds up to the alkali reserve of the body. The excretion of titratable acidity and NH4+ is elevated in urine.' Renal compensation is slower (days) but more complete than respiratory compensation (minutes). The elevated HCO3- (28 mEq/L) reflects this renal compensation.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 100,
+    "subject": "Biochemistry",
+    "topic": "Cholera and Electrolytes",
+    "questionText": "Cholera toxin stimulates intestinal cells to secrete large amounts of Cl- and Na+ into the intestinal lumen. This produces severe diarrhea because:",
+    "options": [
+      "These ions decrease the osmotic pressure, pushing water out of the lumen",
+      "These ions raise the osmotic pressure in the intestinal lumen, drawing water into it from the body",
+      "The toxin directly ruptures intestinal cells, releasing their contents",
+      "The toxin blocks ADH, causing water diuresis"
+    ],
+    "correctAnswer": "These ions raise the osmotic pressure in the intestinal lumen, drawing water into it from the body",
+    "explanation": "Satyanarayana explains: 'This bacterium (V. cholerae) produces a toxin which stimulates the intestinal cells to secrete various ions (Cl-, Na+, K+, HCO3-) into the intestinal lumen. These ions collectively raise the osmotic pressure and suck the water into the lumen. This results in diarrhoea with heavy loss of water (5–10 litres/day).' Treatment is oral rehydration therapy (ORT).",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 101,
+    "subject": "Biochemistry",
+    "topic": "Bicarbonate Buffer",
+    "questionText": "The most important buffer of the extracellular fluid (particularly plasma) is:",
+    "options": [
+      "Phosphate buffer (NaH2PO4/Na2HPO4)",
+      "Protein buffer (haemoglobin/plasma proteins)",
+      "Bicarbonate buffer (NaHCO3/H2CO3)",
+      "Ammonia buffer (NH3/NH4+)"
+    ],
+    "correctAnswer": "Bicarbonate buffer (NaHCO3/H2CO3)",
+    "explanation": "Satyanarayana states: 'Sodium bicarbonate and carbonic acid (NaHCO3–H2CO3) is the most predominant buffer system of the extracellular fluid, particularly the plasma.' The bicarbonate buffer is most important clinically because: (1) the components can be measured easily; (2) both components are regulated — HCO3- by kidneys, CO2 by lungs; (3) it serves as an index to understand acid-base disturbances.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 21"
+  },
+  {
+    "id": 102,
+    "subject": "Biochemistry",
+    "topic": "Urine Constituents",
+    "questionText": "A patient's urine is positive for glucose (glycosuria). His fasting blood glucose is 200 mg/dL. Why is there glucose in his urine?",
+    "options": [
+      "The glomerular filtration rate is too low",
+      "The renal threshold for glucose (180 mg/dL) has been exceeded, saturating the reabsorptive capacity",
+      "Aldosterone has blocked glucose reabsorption in the DCT",
+      "ADH has made the collecting duct impermeable to glucose"
+    ],
+    "correctAnswer": "The renal threshold for glucose (180 mg/dL) has been exceeded, saturating the reabsorptive capacity",
+    "explanation": "The renal threshold for glucose is 180 mg/dL — when plasma glucose exceeds this, the filtered load exceeds the tubular maximum (Tm) of the glucose transporters (SGLT2 in PCT). Satyanarayana confirms: 'The renal threshold for glucose is 180 mg/dL.' At 200 mg/dL plasma glucose, the amount filtered (200 × GFR) exceeds the maximum reabsorption capacity, so glucose 'spills' into urine. This is how diabetes mellitus classically presents.",
+    "source": "Satyanarayana Biochemistry 4th Ed – Chapter 20 (Organ Function Tests)"
+  },
+  {
+    "id": 103,
+    "subject": "Histology",
+    "topic": "Renal Corpuscle",
+    "questionText": "The filtration membrane (barrier) in the glomerulus consists of which three layers in order from blood to Bowman's space?",
+    "options": [
+      "Basement membrane → fenestrated endothelium → podocyte foot processes",
+      "Fenestrated endothelium → glomerular basement membrane → podocyte foot processes (slit diaphragms)",
+      "Podocyte foot processes → basement membrane → fenestrated endothelium",
+      "Simple squamous endothelium → mesangial cells → podocytes"
+    ],
+    "correctAnswer": "Fenestrated endothelium → glomerular basement membrane → podocyte foot processes (slit diaphragms)",
+    "explanation": "Laiq Hussain describes the filtration membrane (Chapter 20 — Urinary System) as consisting of three layers from blood to urinary space: (1) Fenestrated endothelium of glomerular capillaries — large pores allow most molecules through except blood cells; (2) Glomerular basement membrane (GBM) — negatively charged, main barrier to proteins; (3) Podocyte foot processes (pedicels) with slit diaphragms — secondary filtration barrier.",
+    "source": "Medical Histology by Laiq Hussain – Chapter 20"
+  },
+  {
+    "id": 104,
+    "subject": "Histology",
+    "topic": "Proximal Convoluted Tubule",
+    "questionText": "Under the microscope, the proximal convoluted tubule (PCT) can be identified by which histological feature?",
+    "options": [
+      "Simple squamous epithelium with no brush border",
+      "Large cuboidal cells with a prominent brush border (microvilli) on the luminal surface",
+      "Transitional epithelium with 5–8 cell layers",
+      "Simple columnar cells with many goblet cells"
+    ],
+    "correctAnswer": "Large cuboidal cells with a prominent brush border (microvilli) on the luminal surface",
+    "explanation": "Laiq Hussain describes the PCT as lined by large cuboidal cells with a prominent brush border (microvilli) on the luminal surface, greatly increasing the surface area for reabsorption. The cells also have abundant mitochondria for active transport. In contrast, the DCT has smaller cuboidal cells WITHOUT a brush border — this distinction is a classic histology exam question.",
+    "source": "Medical Histology by Laiq Hussain – Chapter 20"
+  },
+  {
+    "id": 105,
+    "subject": "Histology",
+    "topic": "Distal Convoluted Tubule",
+    "questionText": "How can the distal convoluted tubule (DCT) be distinguished from the proximal convoluted tubule (PCT) on light microscopy?",
+    "options": [
+      "DCT has a larger lumen and MORE cells visible per cross-section",
+      "DCT cells are smaller, with NO brush border, and the lumen appears larger with more cells visible per cross-section",
+      "DCT has stratified squamous epithelium",
+      "DCT cells are larger, with a more prominent brush border than the PCT"
+    ],
+    "correctAnswer": "DCT cells are smaller, with NO brush border, and the lumen appears larger with more cells visible per cross-section",
+    "explanation": "Laiq Hussain distinguishes PCT from DCT on histology: PCT cells are large cuboidal with prominent brush borders and a small lumen (cells take up most of the space). DCT cells are SMALLER cuboidal cells with NO brush border, have a relatively larger lumen, and more cells appear per cross-section due to smaller cell size. The DCT is where thiazides act and PTH regulates Ca2+ reabsorption.",
+    "source": "Medical Histology by Laiq Hussain – Chapter 20"
+  },
+  {
+    "id": 106,
+    "subject": "Histology",
+    "topic": "Loop of Henle",
+    "questionText": "The thin segment of the loop of Henle is lined by:",
+    "options": [
+      "Simple cuboidal epithelium with brush border",
+      "Simple squamous epithelium resembling capillary endothelium",
+      "Transitional (urothelial) epithelium",
+      "Simple columnar epithelium with cilia"
+    ],
+    "correctAnswer": "Simple squamous epithelium resembling capillary endothelium",
+    "explanation": "Laiq Hussain describes the thin segment of the loop of Henle as lined by simple squamous epithelium, which can be difficult to distinguish from capillary endothelium on light microscopy. The thick segment, by contrast, is lined by simple cuboidal epithelium. The thin descending limb is permeable to water; the thin and thick ascending limbs are impermeable to water but allow solute transport.",
+    "source": "Medical Histology by Laiq Hussain – Chapter 20"
+  },
+  {
+    "id": 107,
+    "subject": "Histology",
+    "topic": "Juxtaglomerular Apparatus",
+    "questionText": "The juxtaglomerular apparatus (JGA) consists of three components. Which cell type secretes renin?",
+    "options": [
+      "Macula densa cells — specialised DCT cells",
+      "Extraglomerular mesangial cells (lacis cells)",
+      "Juxtaglomerular (JG) cells — modified smooth muscle cells of the afferent arteriole",
+      "Podocytes of Bowman's capsule"
+    ],
+    "correctAnswer": "Juxtaglomerular (JG) cells — modified smooth muscle cells of the afferent arteriole",
+    "explanation": "Laiq Hussain describes the JGA as consisting of: (1) Macula densa — specialised DCT cells that sense NaCl concentration; (2) Juxtaglomerular (JG) cells — modified smooth muscle cells in the wall of the afferent arteriole that SECRETE RENIN; (3) Extraglomerular mesangial cells (lacis cells). Histologically, JG cells contain renin granules and can be identified by their granular cytoplasm.",
+    "source": "Medical Histology by Laiq Hussain – Chapter 20"
+  },
+  {
+    "id": 108,
+    "subject": "Histology",
+    "topic": "Podocytes",
+    "questionText": "Podocytes are specialised cells of the visceral layer of Bowman's capsule. What is their unique structural feature?",
+    "options": [
+      "They contain microvilli forming a brush border",
+      "They have foot processes (pedicels) that wrap around glomerular capillaries with filtration slits between them",
+      "They are ciliated columnar cells",
+      "They form tight junctions with no gaps"
+    ],
+    "correctAnswer": "They have foot processes (pedicels) that wrap around glomerular capillaries with filtration slits between them",
+    "explanation": "Laiq Hussain describes podocytes as having primary and secondary cytoplasmic processes called pedicels (foot processes) that interdigitate and wrap around the glomerular capillaries. Between adjacent pedicels are filtration slits (slit diaphragms) approximately 25–60 nm wide. These filtration slits act as the final barrier to large proteins. Damage to podocytes (as in minimal change disease) causes massive proteinuria.",
+    "source": "Medical Histology by Laiq Hussain – Chapter 20"
+  },
+  {
+    "id": 109,
+    "subject": "Histology",
+    "topic": "Transitional Epithelium",
+    "questionText": "The lining of the ureter and urinary bladder is a special epithelium that can stretch. This epithelium is called:",
+    "options": [
+      "Simple squamous epithelium",
+      "Pseudostratified columnar epithelium",
+      "Transitional epithelium (urothelium)",
+      "Stratified squamous non-keratinised epithelium"
+    ],
+    "correctAnswer": "Transitional epithelium (urothelium)",
+    "explanation": "Laiq Hussain describes transitional epithelium (urothelium) as the lining of the renal pelvis, ureter, urinary bladder, and upper urethra. In the relaxed (empty) state it appears stratified with 5–7 cell layers and dome-shaped (umbrella) surface cells. When stretched (full bladder), it appears thinner (2–3 layers). This ability to stretch without leaking is essential for urine storage.",
+    "source": "Medical Histology by Laiq Hussain – Chapter 20"
+  },
+  {
+    "id": 110,
+    "subject": "Histology",
+    "topic": "Bowman's Capsule",
+    "questionText": "The parietal layer of Bowman's capsule is lined by which type of epithelium?",
+    "options": [
+      "Simple cuboidal epithelium with microvilli",
+      "Simple squamous epithelium",
+      "Transitional epithelium",
+      "Simple columnar epithelium with goblet cells"
+    ],
+    "correctAnswer": "Simple squamous epithelium",
+    "explanation": "Laiq Hussain describes the renal corpuscle as consisting of the glomerulus surrounded by Bowman's capsule, which has two layers: (1) Parietal layer — simple squamous epithelium forming the outer wall; (2) Visceral layer — specialised podocytes that cover the glomerular capillaries. The space between the two layers (Bowman's space/capsular space) receives the glomerular filtrate.",
+    "source": "Medical Histology by Laiq Hussain – Chapter 20"
+  },
+  {
+    "id": 111,
+    "subject": "Histology",
+    "topic": "Collecting Duct",
+    "questionText": "The collecting duct contains two types of cells. The principal cells respond to ADH by:",
+    "options": [
+      "Secreting renin",
+      "Inserting aquaporin-2 channels into the luminal membrane to increase water permeability",
+      "Reabsorbing potassium via ROMK channels",
+      "Secreting H+ ions via H+/ATPase pump"
+    ],
+    "correctAnswer": "Inserting aquaporin-2 channels into the luminal membrane to increase water permeability",
+    "explanation": "Laiq Hussain describes the collecting duct as lined by principal cells (which respond to ADH by inserting aquaporin-2 to increase water reabsorption, and to aldosterone via ENaC for Na+ reabsorption) and intercalated cells (which regulate acid-base balance by secreting H+ or HCO3-). The ability of ADH to make the collecting duct permeable to water is the key to urine concentration.",
+    "source": "Medical Histology by Laiq Hussain – Chapter 20"
+  },
+  {
+    "id": 112,
+    "subject": "Histology",
+    "topic": "Macula Densa",
+    "questionText": "The macula densa can be identified histologically as:",
+    "options": [
+      "Modified smooth muscle cells in the afferent arteriole wall",
+      "Specialised tall, closely packed DCT cells at the point where the DCT contacts the glomerulus",
+      "Flattened squamous cells on the outer surface of the glomerular capillary",
+      "Pale-staining cells in the cortical collecting duct"
+    ],
+    "correctAnswer": "Specialised tall, closely packed DCT cells at the point where the DCT contacts the glomerulus",
+    "explanation": "Laiq Hussain describes the macula densa as a group of specialised, taller and more closely packed epithelial cells of the distal convoluted tubule at the point where the DCT comes into close contact with the hilum of its parent glomerulus. Their nuclei appear crowded (dense nuclei = 'macula densa'). These cells sense NaCl concentration in tubular fluid and participate in tubuloglomerular feedback.",
+    "source": "Medical Histology by Laiq Hussain – Chapter 20"
+  },
+  {
+    "id": 113,
+    "subject": "Embryology",
+    "topic": "Kidney Development Sequence",
+    "questionText": "In human embryological development, the kidneys develop through three successive stages. What is the correct sequence?",
+    "options": [
+      "Metanephros → mesonephros → pronephros",
+      "Pronephros → mesonephros → metanephros",
+      "Mesonephros → pronephros → metanephros",
+      "Pronephros → metanephros → mesonephros"
+    ],
+    "correctAnswer": "Pronephros → mesonephros → metanephros",
+    "explanation": "Langman's Chapter 16 describes the kidney developing through three successive systems: (1) Pronephros — vestigial, appears in week 4, disappears quickly, non-functional; (2) Mesonephros — functional briefly in early embryonic life, acts as interim kidney; (3) Metanephros — the permanent kidney, develops from two sources: the ureteric bud and the metanephric mesenchyme (cap). Only the metanephros persists as the adult kidney.",
+    "source": "Langman's Medical Embryology 15th Ed – Chapter 16"
+  },
+  {
+    "id": 114,
+    "subject": "Embryology",
+    "topic": "Ureteric Bud",
+    "questionText": "The ureteric bud (metanephric diverticulum), which gives rise to the ureter, renal pelvis, calyces, and collecting ducts, is an outgrowth of which structure?",
+    "options": [
+      "Lateral plate mesoderm",
+      "Mesonephric (Wolffian) duct",
+      "Paramesonephric (Müllerian) duct",
+      "Cloaca"
+    ],
+    "correctAnswer": "Mesonephric (Wolffian) duct",
+    "explanation": "Langman's states the ureteric bud is an outgrowth of the mesonephric (Wolffian) duct, near its entrance into the cloaca. The ureteric bud grows into the metanephric mesenchyme (metanephric cap) and undergoes repeated branching to form the collecting system (ureter, pelvis, major and minor calyces, collecting ducts). The inductive interaction between the ureteric bud and metanephric cap is essential for kidney development.",
+    "source": "Langman's Medical Embryology 15th Ed – Chapter 16"
+  },
+  {
+    "id": 115,
+    "subject": "Embryology",
+    "topic": "Ascent of Kidney",
+    "questionText": "During normal development, the metanephric kidney ascends from the sacral region to its final lumbar position. A kidney that fails to ascend fully and is found in the pelvis is called:",
+    "options": [
+      "Horseshoe kidney",
+      "Polycystic kidney",
+      "Pelvic kidney (ectopic kidney)",
+      "Duplex kidney"
+    ],
+    "correctAnswer": "Pelvic kidney (ectopic kidney)",
+    "explanation": "Langman's explains that the metanephric kidneys initially develop in the sacral region and then ascend to their adult lumbar position (T12–L3 level). This ascent is due to differential growth of the caudal body and reduction of the embryonic curvature. If a kidney fails to ascend normally, it remains in the pelvis — called a pelvic kidney or ectopic kidney. Blood supply comes from nearby vessels (internal iliac or aorta) rather than from the normal renal arteries.",
+    "source": "Langman's Medical Embryology 15th Ed – Chapter 16"
+  },
+  {
+    "id": 116,
+    "subject": "Embryology",
+    "topic": "Horseshoe Kidney",
+    "questionText": "A 20-year-old patient is found on imaging to have a horseshoe kidney. The two kidneys are fused at their lower poles. Why does this kidney fail to ascend to the normal position?",
+    "options": [
+      "The ureter is too short to allow further ascent",
+      "The fused lower poles are trapped under the inferior mesenteric artery, preventing further ascent",
+      "The adrenal gland blocks ascent of the fused kidneys",
+      "The vertebral column prevents ascent of the fused kidney"
+    ],
+    "correctAnswer": "The fused lower poles are trapped under the inferior mesenteric artery, preventing further ascent",
+    "explanation": "Langman's explains that in horseshoe kidney, the lower poles of the two kidneys fuse as they cross the root of the inferior mesenteric artery. The fused isthmus is trapped below the inferior mesenteric artery, preventing normal ascent. The horseshoe kidney is usually located at the L3–L4 level. It is the most common renal fusion anomaly (1 in 400–500 persons) and is associated with an increased risk of hydronephrosis and infections.",
+    "source": "Langman's Medical Embryology 15th Ed – Chapter 16"
+  },
+  {
+    "id": 117,
+    "subject": "Embryology",
+    "topic": "Polycystic Kidney Disease",
+    "questionText": "Autosomal recessive polycystic kidney disease (ARPKD) typically presents in:",
+    "options": [
+      "Middle-aged adults (40–60 years)",
+      "Elderly patients (>70 years)",
+      "Neonates and infants — often detected in utero by oligohydramnios",
+      "Young adults (20–30 years) with hypertension"
+    ],
+    "correctAnswer": "Neonates and infants — often detected in utero by oligohydramnios",
+    "explanation": "Langman's describes ARPKD (infantile type) as presenting at birth or in early childhood, often detected prenatally by oligohydramnios (due to absent fetal urine production causing the Potter sequence — pulmonary hypoplasia, limb deformities, characteristic facies). In contrast, autosomal dominant PKD (ADPKD) typically presents in adults aged 30–50 years with hypertension, hematuria, and flank pain. Both result from abnormal tubular development.",
+    "source": "Langman's Medical Embryology 15th Ed – Chapter 16"
+  },
+  {
+    "id": 118,
+    "subject": "Embryology",
+    "topic": "Posterior Urethral Valves",
+    "questionText": "A newborn male infant has bilateral hydronephrosis and difficulty voiding. Voiding cystourethrogram shows obstruction in the posterior urethra. What is the most likely embryological anomaly?",
+    "options": [
+      "Absent ureteric bud",
+      "Horseshoe kidney",
+      "Posterior urethral valves — abnormal folds of mucous membrane obstructing urine flow",
+      "Failure of pronephros to involute"
+    ],
+    "correctAnswer": "Posterior urethral valves — abnormal folds of mucous membrane obstructing urine flow",
+    "explanation": "Langman's describes posterior urethral valves as abnormal folds of mucous membrane in the posterior urethra that obstruct urine outflow. This occurs ONLY in males. The obstruction causes bilateral hydronephrosis, hydroureter, and bladder hypertrophy. Severe cases detected prenatally show oligohydramnios (insufficient fetal urine output). It is the most common cause of severe obstructive uropathy in male neonates.",
+    "source": "Langman's Medical Embryology 15th Ed – Chapter 16"
+  },
+  {
+    "id": 119,
+    "subject": "Embryology",
+    "topic": "Duplex Ureter",
+    "questionText": "A patient is found to have two ureters draining the same kidney. This anomaly (duplex ureter) is caused by:",
+    "options": [
+      "Two separate metanephric caps developing",
+      "Premature division of the ureteric bud before it enters the metanephric mesenchyme",
+      "Failure of the mesonephros to involute",
+      "Abnormal ascent of the kidney"
+    ],
+    "correctAnswer": "Premature division of the ureteric bud before it enters the metanephric mesenchyme",
+    "explanation": "Langman's explains that duplication of the ureter (duplex ureter) results from premature division (bifurcation) of the ureteric bud before it reaches the metanephric mesenchyme. Complete duplication occurs when two separate ureteric buds arise from the mesonephric duct — each then induces a separate collecting system. The ureter from the upper pole of a duplex kidney inserts lower and more medially in the bladder (Weigert-Meyer rule).",
+    "source": "Langman's Medical Embryology 15th Ed – Chapter 16"
+  },
+  {
+    "id": 120,
+    "subject": "Embryology",
+    "topic": "Metanephric Cap",
+    "questionText": "The metanephric cap (metanephric mesenchyme) is induced by the ureteric bud. What structures does the metanephric cap eventually form?",
+    "options": [
+      "Ureter, renal pelvis, major and minor calyces, and collecting ducts",
+      "Glomeruli, Bowman's capsule, and the renal tubules (PCT, loop of Henle, DCT)",
+      "The renal fascia and perirenal fat",
+      "The mesonephric duct and pronephric tubules"
+    ],
+    "correctAnswer": "Glomeruli, Bowman's capsule, and the renal tubules (PCT, loop of Henle, DCT)",
+    "explanation": "Langman's describes two components of metanephros development: (1) The URETERIC BUD gives rise to the ureter, renal pelvis, major and minor calyces, and collecting ducts (the collecting system); (2) The METANEPHRIC CAP (metanephric mesenchyme) — induced by the ureteric bud — differentiates into the glomeruli, Bowman's capsule, proximal tubule, loop of Henle, and distal tubule (the nephron proper, excluding collecting duct). Both components must interact normally for kidney formation.",
+    "source": "Langman's Medical Embryology 15th Ed – Chapter 16"
+  }
+]
