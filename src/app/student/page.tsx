@@ -1,8 +1,7 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
-import { getAttemptsForStudentAction, getQuizAction } from '@/lib/actions';
+import { getAttemptsForStudentAction, getQuizzesAction } from '@/lib/actions';
 import { QuizAttempt, Quiz } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -39,16 +38,15 @@ export default function StudentPortal() {
       const results = await getAttemptsForStudentAction(name);
       setAttempts(results);
       
+      // Batch fetch all quizzes to avoid N+1 query issue
+      const allQuizzes = await getQuizzesAction();
       const quizMap: Record<string, Quiz> = {};
-      for (const attempt of results) {
-        if (!quizMap[attempt.quizId]) {
-          const q = await getQuizAction(attempt.quizId);
-          if (q) quizMap[attempt.quizId] = q;
-        }
-      }
+      allQuizzes.forEach(q => {
+        quizMap[q.id] = q;
+      });
       setQuizzes(quizMap);
     } catch (err) {
-      console.error(err);
+      console.error("Student portal search error:", err);
     } finally {
       setLoading(false);
     }

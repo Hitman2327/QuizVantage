@@ -1,7 +1,7 @@
 'use server';
 /**
  * @fileOverview This file implements a Genkit flow for extracting quiz questions from document text.
- * It is optimized for large documents and variable MCQ counts.
+ * It is optimized for large documents and robust string matching.
  */
 
 import { ai } from '@/ai/genkit';
@@ -22,11 +22,11 @@ const QuizQuestionSchema = z.object({
     .array(z.string())
     .min(4)
     .max(4)
-    .describe('Exactly 4 multiple-choice options. DO NOT include prefixes like A, B, C, D.'),
+    .describe('Exactly 4 multiple-choice options.'),
   correctAnswer: z
     .string()
     .describe(
-      'The exact text of the correct answer option. MUST be an identical copy of one of the options.'
+      'The exact text of the correct answer option. MUST match one of the 4 options exactly.'
     ),
   explanation: z
     .string()
@@ -53,23 +53,21 @@ const extractQuizPrompt = ai.definePrompt({
   name: 'extractQuizPrompt',
   input: { schema: CreateQuizFromDocumentInputSchema },
   output: { schema: CreateQuizFromDocumentOutputSchema },
-  prompt: `You are a high-speed educational AI. Exhaustively extract high-quality multiple-choice questions from the text below.
+  prompt: `You are an expert medical and academic assessment AI. Your goal is to extract high-quality, scientifically accurate multiple-choice questions from the provided text.
 
 Instructions:
-1. Identify EVERY potential question that can be derived from the text. 
-2. Do not stop after 5 or 10 questions. If the text is massive, extract as many as possible (up to 50 per call).
-3. Each question MUST have exactly 4 distinct options.
-4. IMPORTANT: Do NOT include "A.", "B.", "1.", or any other prefixes in the options array.
-5. The "correctAnswer" field MUST be an EXACT string match to one of the 4 options provided.
-6. Mark the correct answer precisely.
-7. Keep explanations concise but helpful.
+1. Extract as many unique questions as possible (up to 50).
+2. Each question MUST have exactly 4 distinct options.
+3. IMPORTANT: The "correctAnswer" field MUST be an EXACT text match to one of the strings in the "options" array. 
+4. DO NOT use single letters like "A" or "B" for the "correctAnswer" field; provide the full option text.
+5. DO NOT include prefixes like "A. ", "B. ", "1) " inside the option strings themselves.
 
 Text Content:
 ---
 {{{documentContent}}}
 ---
 
-Return the complete JSON array of questions immediately.`,
+Return the complete JSON array of questions.`,
 });
 
 const createQuizFromDocumentFlow = ai.defineFlow(

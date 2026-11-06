@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { getQuizAction, saveAttemptAction, checkExistingAttemptAction } from '@/lib/actions';
 import { Quiz, QuizAttempt, Question } from '@/lib/types';
@@ -16,24 +16,48 @@ import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
 /**
- * Normalizes a choice string by removing common MCQ prefixes (e.g., "A. ", "1) ")
- * and trimming whitespace to ensure robust comparisons.
+ * Normalizes a choice string for comparison.
+ * 1. Replaces non-breaking spaces.
+ * 2. Trims whitespace.
+ * 3. Lowercases everything.
+ * 4. Strips prefixes like "A. ", "1) ", etc.
  */
-const normalizeAnswer = (text: string) => {
+const normalize = (text: string) => {
   if (!text) return "";
   return text
+    .replace(/\u00A0/g, ' ') 
     .trim()
     .toLowerCase()
-    .replace(/^[a-z0-9][\.\)\s-]+\s*/i, '') // Remove "A. ", "1) ", "b- " etc
+    .replace(/^([a-z0-9])[\.\)\s-]+\s+/i, '') 
     .trim();
 };
 
-const isAnswerCorrect = (selected: string, correct: string) => {
+/**
+ * Robustly checks if the selected answer matches the correct one.
+ * Supports exact match, normalized match, and single-letter index matching.
+ */
+const isCorrect = (selected: string, correct: string, options: string[]) => {
   if (!selected || !correct) return false;
+  
   const s = selected.trim();
   const c = correct.trim();
+
+  // 1. Direct equality
   if (s === c) return true;
-  return normalizeAnswer(s) === normalizeAnswer(c);
+
+  // 2. Normalized equality
+  const ns = normalize(s);
+  const nc = normalize(c);
+  if (ns === nc && ns !== "") return true;
+
+  // 3. Single-letter index fallback (if 'correct' is just "A", "B", "C", or "D")
+  const letterMatch = c.match(/^[A-D]$/i);
+  if (letterMatch) {
+    const index = letterMatch[0].toUpperCase().charCodeAt(0) - 65;
+    if (options[index] && options[index] === selected) return true;
+  }
+
+  return false;
 };
 
 export default function StudentQuiz() {
@@ -127,7 +151,7 @@ export default function StudentQuiz() {
     if (!quiz || !studentName) return;
 
     const score = quiz.questions.reduce((acc, q) => 
-      isAnswerCorrect(answers[q.id], q.correctAnswer) ? acc + 1 : acc, 0
+      isCorrect(answers[q.id], q.correctAnswer, q.options) ? acc + 1 : acc, 0
     );
 
     const attempt: QuizAttempt = {
@@ -326,15 +350,15 @@ export default function StudentQuiz() {
           </h3>
           {quiz.questions.map((q, idx) => {
             const studentAnswer = existingAttempt.answers[q.id];
-            const isCorrect = isAnswerCorrect(studentAnswer, q.correctAnswer);
+            const isAnswerCorrect = isCorrect(studentAnswer, q.correctAnswer, q.options);
             return (
-              <Card key={q.id} className={cn("border-none shadow-lg rounded-2xl overflow-hidden transition-all hover:shadow-xl", isCorrect ? "ring-2 ring-green-500/20" : "ring-2 ring-red-500/20")}>
-                <div className={cn("h-2 w-full", isCorrect ? "bg-green-500" : "bg-red-500")}></div>
+              <Card key={q.id} className={cn("border-none shadow-lg rounded-2xl overflow-hidden transition-all hover:shadow-xl", isAnswerCorrect ? "ring-2 ring-green-500/20" : "ring-2 ring-red-500/20")}>
+                <div className={cn("h-2 w-full", isAnswerCorrect ? "bg-green-500" : "bg-red-500")}></div>
                 <CardHeader className="p-8 pb-4">
                   <div className="flex justify-between items-start">
                     <span className="text-sm font-black text-muted-foreground uppercase tracking-tighter">Q {idx + 1}</span>
-                    <Badge variant={isCorrect ? "default" : "destructive"} className="rounded-full px-4 py-1">
-                      {isCorrect ? "Correct" : "Incorrect"}
+                    <Badge variant={isAnswerCorrect ? "default" : "destructive"} className="rounded-full px-4 py-1">
+                      {isAnswerCorrect ? "Correct" : "Incorrect"}
                     </Badge>
                   </div>
                   <CardTitle className="text-xl font-bold mt-4 leading-relaxed">{q.questionText}</CardTitle>
@@ -342,8 +366,7 @@ export default function StudentQuiz() {
                 <CardContent className="p-8 pt-2 space-y-3">
                   {Array.isArray(q.options) && q.options.map((option, optionIdx) => {
                     const isStudentChoice = studentAnswer === option;
-                    // Check if THIS specific option matches the correct answer in the DB
-                    const isOptionCorrect = isAnswerCorrect(option, q.correctAnswer);
+                    const isOptionCorrect = isCorrect(option, q.correctAnswer, q.options);
                     
                     let bgClass = 'bg-white border-border';
                     let textClass = 'text-foreground';
