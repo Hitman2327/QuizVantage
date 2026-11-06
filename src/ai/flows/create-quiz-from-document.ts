@@ -1,4 +1,3 @@
-
 'use server';
 /**
  * @fileOverview This file implements a Genkit flow for extracting quiz questions from document text.
@@ -23,11 +22,11 @@ const QuizQuestionSchema = z.object({
     .array(z.string())
     .min(4)
     .max(4)
-    .describe('Exactly 4 multiple-choice options.'),
+    .describe('Exactly 4 multiple-choice options. DO NOT include prefixes like A, B, C, D.'),
   correctAnswer: z
     .string()
     .describe(
-      'The exact text of the correct answer option.'
+      'The exact text of the correct answer option. MUST be an identical copy of one of the options.'
     ),
   explanation: z
     .string()
@@ -60,8 +59,10 @@ Instructions:
 1. Identify EVERY potential question that can be derived from the text. 
 2. Do not stop after 5 or 10 questions. If the text is massive, extract as many as possible (up to 50 per call).
 3. Each question MUST have exactly 4 distinct options.
-4. Mark the correct answer precisely by its text.
-5. Keep explanations concise but helpful.
+4. IMPORTANT: Do NOT include "A.", "B.", "1.", or any other prefixes in the options array.
+5. The "correctAnswer" field MUST be an EXACT string match to one of the 4 options provided.
+6. Mark the correct answer precisely.
+7. Keep explanations concise but helpful.
 
 Text Content:
 ---
